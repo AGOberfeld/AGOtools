@@ -1,6 +1,10 @@
 # AGOtools
 
+AGOtools is an R package providing some useful tools for the experimental research on Time-To-Collision (TTC) estimation in traffic contexts. It is built by the Arbeitsgruppe Oberfeld from Johannes Gutenberg-Universität Mainz, Germany. 
 
+## Project Status
+
+This Project is currently under construction. 
 
 
 ## Installation
