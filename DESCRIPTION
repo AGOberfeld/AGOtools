@@ -1,0 +1,29 @@
+Package: AGOtools
+Title: Useful tools for the Arbeitsgruppe Oberfeld at Johannes Gutenberg-University Mainz
+Version: 0.0.0.9000
+Authors@R: 
+    person("Daniel", "Oberfeld-Twistel", , "oberfeld@uni-mainz.de", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+    person("Simon", "Schaefer", , "ssimonbe@students.uni-mainz.de", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: This package provides functions for data analyses concerning TTC estimation.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: 
+    dplyr,
+    tidyr,
+    rlang,
+    stats,
+    ggthemes,
+    extrafont,
+    ggplot2,
+    stringr,
+    tibble
+Depends: 
+    R (>= 2.10)
+LazyData: true
