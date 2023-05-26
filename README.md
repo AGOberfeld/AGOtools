@@ -93,7 +93,7 @@ tidyQuickPsy returns a list with two elements:
 
 ### plotQuickPsy
 
-Takes a object produced by tidyQuickPsy and plots the resulting psychometric functions for each person separately.
+Takes an object produced by tidyQuickPsy and plots the resulting psychometric functions for each person separately.
 
 ```
 qp <- quickpsy(d = data,  
