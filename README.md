@@ -5,21 +5,20 @@
 
 ## Installation
 
-* Download the entire project (download button on the right-hand side).
-* Open the file AGOtools.Rproj
-* make sure devtools is loaded
+Install AGOtools with:
 ```
-require(devtools)
+devtools::install_github("AGOberfeld/AGOtoolsR")
 ```
-* Execute the command:
-```
-install()
-```
-* AGOtools will now be installed on your system.
 
 ## Dependencies
 
-Before using AGOtools, make sure the right Quickpsy-version (dev-version from github) is installed. If you have already installed the official version from CRAN, remove quickpsy before installing it again from github.
+Before using AGOtools, make sure the right Quickpsy-version (dev-version from github) is installed:
+```
+devtools::install_github("danilinares/quickpsy")
+```
+
+
+If you have already installed the official version from CRAN, remove quickpsy before installing it again from github.
 
 ```
 remove.packages("quickpsy")
