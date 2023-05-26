@@ -4,7 +4,10 @@
 \alias{plotQuickPsy}
 \title{plots individual psychometric functions derived from tidy quickpsy data frame.}
 \usage{
-plotQuickPsy(qp, values)
+plotQuickPsy(
+  qp,
+  values = c("nTrials", "sigmaEst", "se_sigmaEst", "muEst", "se_muEst", "LLRpValue")
+)
 }
 \arguments{
 \item{qp}{tidy quickpsy object (see function tidyQuickPsy)}

@@ -89,7 +89,24 @@ tidyQuickPsy returns a list with two elements:
 
 ### plotQuickPsy
 
-Takes a tidy tibble (produced by tidyQuickPsy) and plots the resulting psychometric functions for each person separately.
+Takes a object produced by tidyQuickPsy and plots the resulting psychometric functions for each person separately.
+
+```
+qp <- quickpsy(d = data,  
+                x = var_expl, 
+                k = var_response, 
+                n = nTrials,  
+                grouping = c("vp_code","modality","v0","a","label","gain"),  
+                fun=cum_normal_fun,  
+                guess=0,  
+                lapses=0,  
+                bootstrap = 'none')  
+
+qp_tidy <- tidyQuickPsy(qp)
+
+plotQuickPsy(qp_tidy)
+
+```
 
 ### plotThemeAGO
 

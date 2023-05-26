@@ -12,7 +12,13 @@
 #' @importFrom stats pnorm
 #'
 plotQuickPsy <- function(qp, # new quickpsy object (containing qp$fit and qp$tidy_fit)
-                         values){ # chr. vector of values which are depicted in function plots, should correspond to column names in qp$tidy_fit
+                         values = c("nTrials",
+                                    "sigmaEst",
+                                    "se_sigmaEst",
+                                    "muEst",
+                                    "se_muEst",
+                                    "LLRpValue"))
+  { # chr. vector of values which are depicted in function plots, should correspond to column names in qp$tidy_fit
 
   tidy_fit <- qp$tidy_fit #df
   fit <- qp$fit #old qp object
