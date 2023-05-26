@@ -1,11 +1,11 @@
 #' plots individual psychometric functions derived from tidy quickpsy data frame.
 #'
-#' @param qp tidy quickpsy object (see function tidyQuickPsy)
-#' @param values plotted values
+#' @param qp tidy quickpsy object (see function `tidyQuickPsy`)
+#' @param values plotted values (default = `c("nTrials", "sigmaEst", "se_sigmaEst", "muEst", "se_muEst", "LLRpValue")`)
 #'
 #' @return returns a list containing two elements:
-#' `qp` = quickpsy object passed to the function individual psychometric functions
-#' `plot_list` = list containing the fitted psychmetric function for each participant-condition combination
+#' @return `qp` quickpsy object passed to the function
+#' @return `plot_list` list containing the fitted psychometric function for each participant-condition combination
 #' @export
 #' @importFrom stringr str_c str_flatten
 #' @importFrom tibble deframe

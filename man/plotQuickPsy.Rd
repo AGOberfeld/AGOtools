@@ -10,14 +10,16 @@ plotQuickPsy(
 )
 }
 \arguments{
-\item{qp}{tidy quickpsy object (see function tidyQuickPsy)}
+\item{qp}{tidy quickpsy object (see function \code{tidyQuickPsy})}
 
-\item{values}{plotted values}
+\item{values}{plotted values (default = \code{c("nTrials", "sigmaEst", "se_sigmaEst", "muEst", "se_muEst", "LLRpValue")})}
 }
 \value{
 returns a list containing two elements:
-\code{qp} = quickpsy object passed to the function individual psychometric functions
-\code{plot_list} = list containing the fitted psychmetric function for each participant-condition combination
+
+\code{qp} quickpsy object passed to the function
+
+\code{plot_list} list containing the fitted psychometric function for each participant-condition combination
 }
 \description{
 plots individual psychometric functions derived from tidy quickpsy data frame.
