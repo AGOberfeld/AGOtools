@@ -15,7 +15,9 @@ plotQuickPsy(
 \item{values}{plotted values}
 }
 \value{
-list of individual psychometric functions
+returns a list containing two elements:
+\code{qp} = quickpsy object passed to the function individual psychometric functions
+\code{plot_list} = list containing the fitted psychmetric function for each participant-condition combination
 }
 \description{
 plots individual psychometric functions derived from tidy quickpsy data frame.

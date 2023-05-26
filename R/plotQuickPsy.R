@@ -3,7 +3,9 @@
 #' @param qp tidy quickpsy object (see function tidyQuickPsy)
 #' @param values plotted values
 #'
-#' @return list of individual psychometric functions
+#' @return returns a list containing two elements:
+#' `qp` = quickpsy object passed to the function individual psychometric functions
+#' `plot_list` = list containing the fitted psychmetric function for each participant-condition combination
 #' @export
 #' @importFrom stringr str_c str_flatten
 #' @importFrom tibble deframe
