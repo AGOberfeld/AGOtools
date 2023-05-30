@@ -11,7 +11,7 @@ This Project is currently under construction.
 
 Install AGOtools with:
 ```
-devtools::install_github("AGOberfeld/AGOtoolsR")
+devtools::install_github("AGOberfeld/AGOtools")
 ```
 
 ## Dependencies
