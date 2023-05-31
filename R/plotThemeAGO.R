@@ -34,7 +34,7 @@ plotThemeAGO <- function(base_size=14, base_family="Arial Unicode MS") {
             legend.key = element_rect(colour = NA),
             legend.position = "bottom",
             legend.direction = "horizontal",
-            legend.key.size= unit(0.2, "cm"),
+            legend.key.size= unit(0.21, "cm"),
             legend.margin=margin(t = 1, r = 1, b = 0, l = 0, unit = "cm"),
             legend.title = element_text(face="italic",size=rel(0.8)),
             strip.background = element_blank(),
