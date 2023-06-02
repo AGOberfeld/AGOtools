@@ -61,4 +61,4 @@ options(ggplot2.discrete.fill= tab20colorsSatH)
 scale_shape_discrete = function(...) {
   scale_shape_manual(values = c(15, 1, 17, 5))
 }
-}
+
