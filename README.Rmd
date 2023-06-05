@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
 )
 require(AGOtools)
 require(tidyverse)
+require(quickpsy)
 ```
 
 # AGOtools
@@ -99,10 +100,13 @@ Use the following arguments in the quickpsy function:
 `grouping` = concatinated vector of the variables that define the experimental conditions + partipiant code variable
 
 
-```
+```{r, warning=FALSE}
+data <- streetcrossing %>% 
+  filter(vp_code == "vp0001")
+
 qp <- quickpsy(d = data,  
-                x = var_expl, 
-                k = var_response, 
+                x = track_TTC, 
+                k = nCross, 
                 n = nTrials,  
                 grouping = c("vp_code","modality","v0","a","label","gain"),  
                 fun=cum_normal_fun,  
@@ -111,6 +115,8 @@ qp <- quickpsy(d = data,
                 bootstrap = 'none')  
 
 qp_tidy <- tidyQuickPsy(qp)
+
+qp_tidy$tidy_fit
 ```
 tidyQuickPsy returns a list with two elements:  
 -   `qp_tidy$qp` is the "old" quickpsy object
@@ -121,20 +127,10 @@ tidyQuickPsy returns a list with two elements:
 
 Takes an object produced by tidyQuickPsy and plots the resulting psychometric functions for each person separately.
 
-```
-qp <- quickpsy(d = data,  
-                x = var_expl, 
-                k = var_response, 
-                n = nTrials,  
-                grouping = c("vp_code","modality","v0","a","label","gain"),  
-                fun=cum_normal_fun,  
-                guess=0,  
-                lapses=0,  
-                bootstrap = 'none')  
-
+```{r, warning=FALSE}
 qp_tidy <- tidyQuickPsy(qp)
 
-plotQuickPsy(qp_tidy)
+plotQuickPsy(qp_tidy)$plot_list[[1]]
 
 ```
 
@@ -144,8 +140,12 @@ Plot theme for classic TTC plots.
 
 ### Data sets
 
+
 ```{r}
 data("loudness_block")
 loudness_block
+
+data("streetcrossing")
+streetcrossing
 ```
 

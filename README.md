@@ -130,7 +130,7 @@ experimental conditions + partipiant code variable
 
 ``` r
 data <- streetcrossing %>% 
-  filter(vp_code %in% c("vp0001","vp0002","vp0004"))
+  filter(vp_code == "vp0001")
 
 qp <- quickpsy(d = data,  
                 x = track_TTC, 
@@ -141,16 +141,6 @@ qp <- quickpsy(d = data,
                 guess=0,  
                 lapses=0,  
                 bootstrap = 'none')  
-#> Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in
-#> dplyr 1.1.0.
-#> ℹ Please use `reframe()` instead.
-#> ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()`
-#>   always returns an ungrouped data frame and adjust accordingly.
-#> ℹ The deprecated feature was likely used in the quickpsy package.
-#>   Please report the issue to the authors.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-#> generated.
 
 qp_tidy <- tidyQuickPsy(qp)
 #> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
@@ -163,8 +153,8 @@ qp_tidy <- tidyQuickPsy(qp)
 #> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
 
 qp_tidy$tidy_fit
-#> # A tibble: 40 × 20
-#> # Groups:   vp_code, modality, v0, a, label, gain [40]
+#> # A tibble: 16 × 20
+#> # Groups:   vp_code, modality, v0, a, label, gain [16]
 #>    vp_code modality    v0     a label   gain muEst sigmaEst se_muEst se_sigmaEst
 #>    <chr>   <chr>    <dbl> <int> <chr>  <int> <dbl>    <dbl>    <dbl>       <dbl>
 #>  1 vp0001  A         10       2 Kia_v…     0  4.14    1.19     0.176       0.292
@@ -177,7 +167,12 @@ qp_tidy$tidy_fit
 #>  8 vp0001  A         60       0 Kia_v…    10  5.37    1.94     0.311       0.424
 #>  9 vp0001  AV        10       2 Kia_v…     0  3.60    0.820    0.137       0.159
 #> 10 vp0001  AV        10       2 Kia_v…    10  4.60    1.31     0.212       0.263
-#> # ℹ 30 more rows
+#> 11 vp0001  AV        30       0 Kia_v…     0  4.90    1.87     0.294       0.411
+#> 12 vp0001  AV        30       0 Kia_v…    10  6.19    3.47     0.546       0.765
+#> 13 vp0001  AV        49.6     0 Kia_v…     0  3.59    0.949    0.142       0.205
+#> 14 vp0001  AV        49.6     0 Kia_v…    10  4.82    1.72     0.276       0.314
+#> 15 vp0001  AV        60       0 Kia_v…     0  3.55    0.676    0.115       0.128
+#> 16 vp0001  AV        60       0 Kia_v…    10  3.66    1.03     0.175       0.192
 #> # ℹ 10 more variables: nTrials <int>, LLRtestvalue <dbl>, LLRtestDF <int>,
 #> #   p_value <dbl>, LLRpValue <dbl>, LL <dbl>, nParFittedModel <int>,
 #> #   LLsaturated <dbl>, nParSaturatedModel <int>, trialData <list>
@@ -193,19 +188,21 @@ object.
 Takes an object produced by tidyQuickPsy and plots the resulting
 psychometric functions for each person separately.
 
-    qp <- quickpsy(d = data,  
-                    x = var_expl, 
-                    k = var_response, 
-                    n = nTrials,  
-                    grouping = c("vp_code","modality","v0","a","label","gain"),  
-                    fun=cum_normal_fun,  
-                    guess=0,  
-                    lapses=0,  
-                    bootstrap = 'none')  
+``` r
+qp_tidy <- tidyQuickPsy(qp)
+#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
+#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
+#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
+#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
+#> Adding missing grouping variables: `vp_code`, `modality`, `v0`, `a`, `label`,
+#> `gain`
+#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
+#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
 
-    qp_tidy <- tidyQuickPsy(qp)
+plotQuickPsy(qp_tidy)$plot_list[[1]]
+```
 
-    plotQuickPsy(qp_tidy)
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 ### plotThemeAGO
 
