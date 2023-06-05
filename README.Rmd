@@ -146,6 +146,6 @@ Plot theme for classic TTC plots.
 
 ```{r}
 data("loudness_block")
-?loudness_block
+loudness_block
 ```
 
