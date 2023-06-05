@@ -143,14 +143,6 @@ qp <- quickpsy(d = data,
                 bootstrap = 'none')  
 
 qp_tidy <- tidyQuickPsy(qp)
-#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
-#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
-#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
-#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
-#> Adding missing grouping variables: `vp_code`, `modality`, `v0`, `a`, `label`,
-#> `gain`
-#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
-#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
 
 qp_tidy$tidy_fit
 #> # A tibble: 16 × 20
@@ -190,14 +182,6 @@ psychometric functions for each person separately.
 
 ``` r
 qp_tidy <- tidyQuickPsy(qp)
-#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
-#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
-#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
-#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
-#> Adding missing grouping variables: `vp_code`, `modality`, `v0`, `a`, `label`,
-#> `gain`
-#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
-#> Joining with `by = join_by(vp_code, modality, v0, a, label, gain)`
 
 plotQuickPsy(qp_tidy)$plot_list[[1]]
 ```

@@ -97,7 +97,7 @@ Use the following arguments in the quickpsy function:
 `x` = Name of the explanatory variable (e.g. TTC)  
 `k` = Name of the response variable.  
 `n` = number of trials   
-`grouping` = concatinated vector of the variables that define the experimental conditions + partipiant code variable
+`grouping` = concatinated vector of the variables that define the experimental conditions + partipiant code variable  
 
 
 ```{r, warning=FALSE}

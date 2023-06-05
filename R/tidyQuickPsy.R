@@ -12,6 +12,8 @@
 #'
 tidyQuickPsy <- function(fit){
 
+  suppressMessages(
+
   df <- fit$par %>%
     mutate(par_name = case_when( # rename parameters
       parn == "p1" ~ "muEst",
@@ -46,6 +48,8 @@ tidyQuickPsy <- function(fit){
   # left_join(fit$curves %>%# add cum normal function values as nested list -> plots per person condition combination
   #             group_by(!!!syms(fit$grouping)) %>%
   #             nest(.key="curves"))
+
+  )
 
   return_list <- list(
     fit = fit, # old quickpsy-object (list)
