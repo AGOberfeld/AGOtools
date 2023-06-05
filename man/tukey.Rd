@@ -4,7 +4,7 @@
 \alias{tukey}
 \title{Detect outlier according to the tukey criterion.}
 \usage{
-tukey(data, dv, tukey_crit = 3)
+tukey(data, dv, tukey_crit = 3, exclude = F)
 }
 \arguments{
 \item{data}{data frame to apply the tukey outlier analysis on.}
@@ -12,6 +12,8 @@ tukey(data, dv, tukey_crit = 3)
 \item{dv}{variable to apply the tukey outlier analysis on.}
 
 \item{tukey_crit}{factor of the IQR that defines an outlier.}
+
+\item{exclude}{logical indicating if outliers should be excluded (default = FALSE).}
 }
 \value{
 data frame including new variables concerning tukey outlier analysis.
