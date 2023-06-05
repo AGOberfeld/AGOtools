@@ -1,5 +1,6 @@
 #' Detect outlier according to the tukey criterion.
 #'
+#' @param data data frame.
 #' @param dv continuous dependent variable AS VECTOR. For TTC experiments insert the estimated TTC here.
 #' @param tukey_crit factor of the IQR that defines an outlier.
 #'

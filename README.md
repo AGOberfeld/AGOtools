@@ -52,7 +52,7 @@ outlier_testdata %>%
 
 Returns a list of variables and adds them to the initial data set:
 
-`trialsInSet` = total number of trials in the data set
+`trialsInSet` = total number of trials in the data set  
 `IQR` = inter quantile range  
 `Quant25` = 25% quantile  
 `Quant75` = 75% quantile  

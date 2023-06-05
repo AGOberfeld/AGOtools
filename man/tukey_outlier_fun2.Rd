@@ -7,6 +7,8 @@
 tukey_outlier_fun2(data, dv, tukey_crit = 3)
 }
 \arguments{
+\item{data}{data frame.}
+
 \item{dv}{continuous dependent variable AS VECTOR. For TTC experiments insert the estimated TTC here.}
 
 \item{tukey_crit}{factor of the IQR that defines an outlier.}
