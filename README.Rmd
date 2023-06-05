@@ -138,6 +138,62 @@ plotQuickPsy(qp_tidy)$plot_list[[1]]
 
 Plot theme for classic TTC plots.
 
+```{r, warning=FALSE}
+dat_clean <- loudness_block %>%
+  tukey(Estimated_TTC, 
+        exclude = T) %>% 
+  mutate(TTC_as_factor = factor(TTC),
+         Condition_text = str_c(GaindB," dB, ",loudnessVariation)) %>% 
+  group_by(Participantnr, TTC, TTC_as_factor, Velocity, Condition_text, loudnessVariation, GaindB) %>% 
+  summarise(mean_estTTC = mean(Estimated_TTC), 
+            SD_estTTC = sd(Estimated_TTC),
+            N_estTTC = n())
+
+sum_dat <- dat_clean %>%
+   filter(Participantnr != "vp001") %>% 
+   group_by(TTC, TTC_as_factor, Velocity, GaindB, loudnessVariation, Condition_text) %>%
+   summarise(mean_estTTC_mean = mean(mean_estTTC), SD_estTTC_mean = sd(mean_estTTC)) 
+
+dat_clean %>%
+  filter(Participantnr != "vp001") %>% 
+  ggplot(aes(x = TTC, 
+             y = mean_estTTC, 
+             color = as.factor(GaindB),
+             shape = as.factor(loudnessVariation), 
+             linetype = as.factor(loudnessVariation)))+
+  geom_abline(aes(intercept=0, slope =1), 
+              color = "grey")+
+  geom_line(data = sum_dat, 
+            aes(x = TTC, 
+                y = mean_estTTC_mean), 
+            linewidth = 1, 
+            show.legend = FALSE)+
+  stat_summary_bin(fun.data = mean_se, 
+                   geom = "errorbar", 
+                   linewidth = 1, 
+                   alpha = 0.7, 
+                   show.legend = FALSE)+
+  stat_summary_bin(fun = mean, 
+                   geom = "point", 
+                   alpha = 0.9,
+                   size = 3, 
+                   show.legend = TRUE)+
+  geom_jitter(alpha = 0.1, 
+              width = 0.3, 
+              show.legend = FALSE)+
+  coord_cartesian(xlim = c(0,6), 
+                  ylim = c(0,6))+
+  facet_wrap(vars(Velocity))+
+  plotThemeAGO(base_size = 14)+
+  labs(x = "Presented TTC [s]", 
+       y = "Estimated TTC [s]", 
+       colour = "Gain (dB)", 
+       shape = "", 
+       linetype="")+
+  theme(aspect.ratio = 1)
+```
+
+
 ### Data sets
 
 
