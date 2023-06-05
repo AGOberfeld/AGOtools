@@ -62,13 +62,19 @@ Adds variables to a given dataset (data) which indicate if oberservations on a s
 
 The argument tukey_crit can be used to modify the factor of the inter quantile range (default = 3).
 
+Identify outliers without excluding them:
 ```{r}
-tukey(data = loudness_block, dv = Estimated_TTC, tukey_crit=3)
+tukey(data = loudness_block, 
+      dv = Estimated_TTC, 
+      tukey_crit=3, 
+      exclude = FALSE)
+```
 
-# OR:
-
+Identify outliers and exclude them:
+```{r}
 loudness_block %>%
-	tukey(Estimated_TTC)
+	tukey(Estimated_TTC, 
+	      exclude = TRUE)
 ```
 
 Returns a list of variables and adds them to the initial data set:
@@ -135,3 +141,11 @@ plotQuickPsy(qp_tidy)
 ### plotThemeAGO
 
 Plot theme for classic TTC plots.
+
+### Data sets
+
+```{r}
+data("loudness_block")
+?loudness_block
+```
+

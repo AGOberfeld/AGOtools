@@ -48,8 +48,13 @@ the tukey criterion.
 The argument tukey_crit can be used to modify the factor of the inter
 quantile range (default = 3).
 
+Identify outliers without excluding them:
+
 ``` r
-tukey(data = loudness_block, dv = Estimated_TTC, tukey_crit=3)
+tukey(data = loudness_block, 
+      dv = Estimated_TTC, 
+      tukey_crit=3, 
+      exclude = FALSE)
 #> # A tibble: 11,040 × 20
 #>    Participantnr Condition Session_code Block Trialnr Velocity Car_label  GaindB
 #>    <chr>             <int>        <int> <fct>   <int> <fct>    <chr>       <dbl>
@@ -69,25 +74,28 @@ tukey(data = loudness_block, dv = Estimated_TTC, tukey_crit=3)
 #> #   Estimated_TTC_IQR <dbl>, Estimated_TTC_Quant25 <dbl>,
 #> #   Estimated_TTC_Quant75 <dbl>, Estimated_TTC_outlierTukeyLow <dbl>,
 #> #   Estimated_TTC_outlierTukeyHigh <dbl>, Estimated_TTC_outlierTukey <dbl>
+```
 
-# OR:
+Identify outliers and exclude them:
 
+``` r
 loudness_block %>%
-    tukey(Estimated_TTC)
-#> # A tibble: 11,040 × 20
+    tukey(Estimated_TTC, 
+          exclude = TRUE)
+#> # A tibble: 10,784 × 20
 #>    Participantnr Condition Session_code Block Trialnr Velocity Car_label  GaindB
 #>    <chr>             <int>        <int> <fct>   <int> <fct>    <chr>       <dbl>
 #>  1 vp001                 1            1 1          24 50       Kia_v0_50…      0
-#>  2 vp001                 1            1 1          25 50       Kia_v0_50…      0
-#>  3 vp001                 1            1 1          26 10       Kia_v0_10…      0
-#>  4 vp001                 1            1 1          27 30       Kia_v0_30…      0
-#>  5 vp001                 1            1 1          28 10       Kia_v0_10…      0
-#>  6 vp001                 1            1 1          29 10       Kia_v0_10…      0
-#>  7 vp001                 1            1 1          30 30       Kia_v0_30…      0
-#>  8 vp001                 1            1 1          31 30       Kia_v0_30…      0
-#>  9 vp001                 1            1 1          32 10       Kia_v0_10…      0
-#> 10 vp001                 1            1 1          33 30       Kia_v0_30…      0
-#> # ℹ 11,030 more rows
+#>  2 vp001                 1            1 1          27 30       Kia_v0_30…      0
+#>  3 vp001                 1            1 1          28 10       Kia_v0_10…      0
+#>  4 vp001                 1            1 1          32 10       Kia_v0_10…      0
+#>  5 vp001                 1            1 1          33 30       Kia_v0_30…      0
+#>  6 vp001                 1            1 1          34 30       Kia_v0_30…      0
+#>  7 vp001                 1            1 1          36 10       Kia_v0_10…      0
+#>  8 vp001                 1            1 1          37 10       Kia_v0_10…      0
+#>  9 vp001                 1            1 1          38 50       Kia_v0_50…      0
+#> 10 vp001                 1            1 1          39 50       Kia_v0_50…      0
+#> # ℹ 10,774 more rows
 #> # ℹ 12 more variables: gainBlock1 <dbl>, loudnessVariation <chr>, TTC <dbl>,
 #> #   Estimated_TTC <dbl>, vOcc <dbl>, Estimated_TTC_trialsInSet <int>,
 #> #   Estimated_TTC_IQR <dbl>, Estimated_TTC_Quant25 <dbl>,
@@ -159,3 +167,10 @@ psychometric functions for each person separately.
 ### plotThemeAGO
 
 Plot theme for classic TTC plots.
+
+### Data sets
+
+``` r
+data("loudness_block")
+?loudness_block
+```
