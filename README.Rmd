@@ -11,6 +11,8 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+require(AGOtools)
+require(tidyverse)
 ```
 
 # AGOtools
@@ -60,7 +62,7 @@ Adds variables to a given dataset (data) which indicate if oberservations on a s
 
 The argument tukey_crit can be used to modify the factor of the inter quantile range (default = 3).
 
-```
+```{r}
 tukey(data = loudness_block, dv = Estimated_TTC, tukey_crit=3)
 
 # OR:

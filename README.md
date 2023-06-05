@@ -48,12 +48,52 @@ the tukey criterion.
 The argument tukey_crit can be used to modify the factor of the inter
 quantile range (default = 3).
 
-    tukey(data = loudness_block, dv = Estimated_TTC, tukey_crit=3)
+``` r
+tukey(data = loudness_block, dv = Estimated_TTC, tukey_crit=3)
+#> # A tibble: 11,040 × 20
+#>    Participantnr Condition Session_code Block Trialnr Velocity Car_label  GaindB
+#>    <chr>             <int>        <int> <fct>   <int> <fct>    <chr>       <dbl>
+#>  1 vp001                 1            1 1          24 50       Kia_v0_50…      0
+#>  2 vp001                 1            1 1          25 50       Kia_v0_50…      0
+#>  3 vp001                 1            1 1          26 10       Kia_v0_10…      0
+#>  4 vp001                 1            1 1          27 30       Kia_v0_30…      0
+#>  5 vp001                 1            1 1          28 10       Kia_v0_10…      0
+#>  6 vp001                 1            1 1          29 10       Kia_v0_10…      0
+#>  7 vp001                 1            1 1          30 30       Kia_v0_30…      0
+#>  8 vp001                 1            1 1          31 30       Kia_v0_30…      0
+#>  9 vp001                 1            1 1          32 10       Kia_v0_10…      0
+#> 10 vp001                 1            1 1          33 30       Kia_v0_30…      0
+#> # ℹ 11,030 more rows
+#> # ℹ 12 more variables: gainBlock1 <dbl>, loudnessVariation <chr>, TTC <dbl>,
+#> #   Estimated_TTC <dbl>, vOcc <dbl>, Estimated_TTC_trialsInSet <int>,
+#> #   Estimated_TTC_IQR <dbl>, Estimated_TTC_Quant25 <dbl>,
+#> #   Estimated_TTC_Quant75 <dbl>, Estimated_TTC_outlierTukeyLow <dbl>,
+#> #   Estimated_TTC_outlierTukeyHigh <dbl>, Estimated_TTC_outlierTukey <dbl>
 
-    # OR:
+# OR:
 
-    loudness_block %>%
-        tukey(Estimated_TTC)
+loudness_block %>%
+    tukey(Estimated_TTC)
+#> # A tibble: 11,040 × 20
+#>    Participantnr Condition Session_code Block Trialnr Velocity Car_label  GaindB
+#>    <chr>             <int>        <int> <fct>   <int> <fct>    <chr>       <dbl>
+#>  1 vp001                 1            1 1          24 50       Kia_v0_50…      0
+#>  2 vp001                 1            1 1          25 50       Kia_v0_50…      0
+#>  3 vp001                 1            1 1          26 10       Kia_v0_10…      0
+#>  4 vp001                 1            1 1          27 30       Kia_v0_30…      0
+#>  5 vp001                 1            1 1          28 10       Kia_v0_10…      0
+#>  6 vp001                 1            1 1          29 10       Kia_v0_10…      0
+#>  7 vp001                 1            1 1          30 30       Kia_v0_30…      0
+#>  8 vp001                 1            1 1          31 30       Kia_v0_30…      0
+#>  9 vp001                 1            1 1          32 10       Kia_v0_10…      0
+#> 10 vp001                 1            1 1          33 30       Kia_v0_30…      0
+#> # ℹ 11,030 more rows
+#> # ℹ 12 more variables: gainBlock1 <dbl>, loudnessVariation <chr>, TTC <dbl>,
+#> #   Estimated_TTC <dbl>, vOcc <dbl>, Estimated_TTC_trialsInSet <int>,
+#> #   Estimated_TTC_IQR <dbl>, Estimated_TTC_Quant25 <dbl>,
+#> #   Estimated_TTC_Quant75 <dbl>, Estimated_TTC_outlierTukeyLow <dbl>,
+#> #   Estimated_TTC_outlierTukeyHigh <dbl>, Estimated_TTC_outlierTukey <dbl>
+```
 
 Returns a list of variables and adds them to the initial data set:
 
