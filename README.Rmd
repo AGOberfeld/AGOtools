@@ -116,7 +116,8 @@ qp <- quickpsy(d = data,
 
 qp_tidy <- tidyQuickPsy(qp)
 
-qp_tidy$tidy_fit
+qp_tidy$tidy_fit %>% 
+  head()
 ```
 
 tidyQuickPsy returns a list with two elements:  
@@ -226,9 +227,9 @@ dat_clean %>%
 
 ```{r}
 data("loudness_block")
-loudness_block
+head(loudness_block)
 
 data("streetcrossing")
-streetcrossing
+head(streetcrossing)
 ```
 

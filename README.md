@@ -144,27 +144,18 @@ qp <- quickpsy(d = data,
 
 qp_tidy <- tidyQuickPsy(qp)
 
-qp_tidy$tidy_fit
-#> # A tibble: 16 × 20
-#> # Groups:   vp_code, modality, v0, a, label, gain [16]
-#>    vp_code modality    v0     a label   gain muEst sigmaEst se_muEst se_sigmaEst
-#>    <chr>   <chr>    <dbl> <int> <chr>  <int> <dbl>    <dbl>    <dbl>       <dbl>
-#>  1 vp0001  A         10       2 Kia_v…     0  4.14    1.19     0.176       0.292
-#>  2 vp0001  A         10       2 Kia_v…    10  6.37    0.948    0.167       0.190
-#>  3 vp0001  A         30       0 Kia_v…     0  1.56    0.927    0.159       0.190
-#>  4 vp0001  A         30       0 Kia_v…    10  5.03    2.09     0.323       0.472
-#>  5 vp0001  A         49.6     0 Kia_v…     0  2.46    2.20     0.345       0.461
-#>  6 vp0001  A         49.6     0 Kia_v…    10  4.78    2.52     0.392       0.553
-#>  7 vp0001  A         60       0 Kia_v…     0  2.41    1.08     0.167       0.248
-#>  8 vp0001  A         60       0 Kia_v…    10  5.37    1.94     0.311       0.424
-#>  9 vp0001  AV        10       2 Kia_v…     0  3.60    0.820    0.137       0.159
-#> 10 vp0001  AV        10       2 Kia_v…    10  4.60    1.31     0.212       0.263
-#> 11 vp0001  AV        30       0 Kia_v…     0  4.90    1.87     0.294       0.411
-#> 12 vp0001  AV        30       0 Kia_v…    10  6.19    3.47     0.546       0.765
-#> 13 vp0001  AV        49.6     0 Kia_v…     0  3.59    0.949    0.142       0.205
-#> 14 vp0001  AV        49.6     0 Kia_v…    10  4.82    1.72     0.276       0.314
-#> 15 vp0001  AV        60       0 Kia_v…     0  3.55    0.676    0.115       0.128
-#> 16 vp0001  AV        60       0 Kia_v…    10  3.66    1.03     0.175       0.192
+qp_tidy$tidy_fit %>% 
+  head()
+#> # A tibble: 6 × 20
+#> # Groups:   vp_code, modality, v0, a, label, gain [6]
+#>   vp_code modality    v0     a label    gain muEst sigmaEst se_muEst se_sigmaEst
+#>   <chr>   <chr>    <dbl> <int> <chr>   <int> <dbl>    <dbl>    <dbl>       <dbl>
+#> 1 vp0001  A         10       2 Kia_v0…     0  4.14    1.19     0.176       0.292
+#> 2 vp0001  A         10       2 Kia_v0…    10  6.37    0.948    0.167       0.190
+#> 3 vp0001  A         30       0 Kia_v0…     0  1.56    0.927    0.159       0.190
+#> 4 vp0001  A         30       0 Kia_v0…    10  5.03    2.09     0.323       0.472
+#> 5 vp0001  A         49.6     0 Kia_v0…     0  2.46    2.20     0.345       0.461
+#> 6 vp0001  A         49.6     0 Kia_v0…    10  4.78    2.52     0.392       0.553
 #> # ℹ 10 more variables: nTrials <int>, LLRtestvalue <dbl>, LLRtestDF <int>,
 #> #   p_value <dbl>, LLRpValue <dbl>, LL <dbl>, nParFittedModel <int>,
 #> #   LLsaturated <dbl>, nParSaturatedModel <int>, trialData <list>
@@ -198,7 +189,7 @@ qp_list <- safe_quickpsy(data = streetcrossing,
               k = nCross,
               n = nTrials,
               grouping = c("vp_code","modality","v0","a","label","gain"))
-#> Warning in safe_quickpsy(data = streetcrossing, part_id = vp_code, x = track_TTC, : Error occurred in data of the following participants: vp00014, vp0008
+#> Warning in safe_quickpsy(data = streetcrossing, part_id = vp_code, x = track_TTC, : Error occurred in: vp00014, vp0008
 
 # tidy data and combine data sets from each participant:
 tidy_qp_list <- map(qp_list,tidyQuickPsy)
@@ -299,38 +290,28 @@ dat_clean %>%
 
 ``` r
 data("loudness_block")
-loudness_block
-#> # A tibble: 11,040 × 13
-#>    Participantnr Condition Session_code Block Trialnr Velocity Car_label  GaindB
-#>    <chr>             <int>        <int> <fct>   <int> <fct>    <chr>       <dbl>
-#>  1 vp001                 1            1 1          24 50       Kia_v0_50…      0
-#>  2 vp001                 1            1 1          25 50       Kia_v0_50…      0
-#>  3 vp001                 1            1 1          26 10       Kia_v0_10…      0
-#>  4 vp001                 1            1 1          27 30       Kia_v0_30…      0
-#>  5 vp001                 1            1 1          28 10       Kia_v0_10…      0
-#>  6 vp001                 1            1 1          29 10       Kia_v0_10…      0
-#>  7 vp001                 1            1 1          30 30       Kia_v0_30…      0
-#>  8 vp001                 1            1 1          31 30       Kia_v0_30…      0
-#>  9 vp001                 1            1 1          32 10       Kia_v0_10…      0
-#> 10 vp001                 1            1 1          33 30       Kia_v0_30…      0
-#> # ℹ 11,030 more rows
+head(loudness_block)
+#> # A tibble: 6 × 13
+#>   Participantnr Condition Session_code Block Trialnr Velocity Car_label   GaindB
+#>   <chr>             <int>        <int> <fct>   <int> <fct>    <chr>        <dbl>
+#> 1 vp001                 1            1 1          24 50       Kia_v0_50_…      0
+#> 2 vp001                 1            1 1          25 50       Kia_v0_50_…      0
+#> 3 vp001                 1            1 1          26 10       Kia_v0_10_…      0
+#> 4 vp001                 1            1 1          27 30       Kia_v0_30_…      0
+#> 5 vp001                 1            1 1          28 10       Kia_v0_10_…      0
+#> 6 vp001                 1            1 1          29 10       Kia_v0_10_…      0
 #> # ℹ 5 more variables: gainBlock1 <dbl>, loudnessVariation <chr>, TTC <dbl>,
 #> #   Estimated_TTC <dbl>, vOcc <dbl>
 
 data("streetcrossing")
-streetcrossing
-#> # A tibble: 2,771 × 10
-#>    vp_code label       modality    v0     a  gain track_TTC nTrials nCross vp   
-#>    <chr>   <chr>       <chr>    <dbl> <int> <int>     <dbl>   <int>  <int> <chr>
-#>  1 vp0001  Kia_v0_10_… A           10     2     0      2.86       6      0 Kia_…
-#>  2 vp0001  Kia_v0_10_… A           10     2     0      3          1      1 Kia_…
-#>  3 vp0001  Kia_v0_10_… A           10     2     0      3.29       6      2 Kia_…
-#>  4 vp0001  Kia_v0_10_… A           10     2     0      3.34       3      2 Kia_…
-#>  5 vp0001  Kia_v0_10_… A           10     2     0      3.78      10      1 Kia_…
-#>  6 vp0001  Kia_v0_10_… A           10     2     0      3.85      16      6 Kia_…
-#>  7 vp0001  Kia_v0_10_… A           10     2     0      4.35       6      4 Kia_…
-#>  8 vp0001  Kia_v0_10_… A           10     2     0      4.42       9      7 Kia_…
-#>  9 vp0001  Kia_v0_10_… A           10     2     0      5         14      9 Kia_…
-#> 10 vp0001  Kia_v0_10_… A           10     2     0      5.09       7      6 Kia_…
-#> # ℹ 2,761 more rows
+head(streetcrossing)
+#> # A tibble: 6 × 10
+#>   vp_code label        modality    v0     a  gain track_TTC nTrials nCross vp   
+#>   <chr>   <chr>        <chr>    <dbl> <int> <int>     <dbl>   <int>  <int> <chr>
+#> 1 vp0001  Kia_v0_10_r… A           10     2     0      2.86       6      0 Kia_…
+#> 2 vp0001  Kia_v0_10_r… A           10     2     0      3          1      1 Kia_…
+#> 3 vp0001  Kia_v0_10_r… A           10     2     0      3.29       6      2 Kia_…
+#> 4 vp0001  Kia_v0_10_r… A           10     2     0      3.34       3      2 Kia_…
+#> 5 vp0001  Kia_v0_10_r… A           10     2     0      3.78      10      1 Kia_…
+#> 6 vp0001  Kia_v0_10_r… A           10     2     0      3.85      16      6 Kia_…
 ```

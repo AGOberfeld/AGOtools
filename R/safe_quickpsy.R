@@ -71,7 +71,7 @@ safe_quickpsy <- function(part_id,data,x,k,n,grouping){
   error_names <- names(qp_list[sapply(qp_list, rlang::is_error)])
 
   if(length(error_names) > 0){
-    warning(str_c("Error occurred in data of the following participants: ",
+    warning(str_c("Error occurred in: ",
                   str_flatten(error_names,collapse = ", "),
                   "\n"))
   }
