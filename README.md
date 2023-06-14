@@ -188,7 +188,48 @@ plotQuickPsy(qp_tidy)$plot_list[[1]]
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
-### plotThemeAGO
+If the hessian matrix for one participant is not solvable, quickpsy
+breaks. To prevent this, use `safe_quickpsy`:
+
+``` r
+qp_list <- safe_quickpsy(data = streetcrossing,
+              part_id = vp_code,
+              x = track_TTC,
+              k = nCross,
+              n = nTrials,
+              grouping = c("vp_code","modality","v0","a","label","gain"))
+#> Warning in safe_quickpsy(data = streetcrossing, part_id = vp_code, x = track_TTC, : Error occurred in data of the following participants: vp00014, vp0008
+
+# tidy data and combine data sets from each participant:
+tidy_qp_list <- map(qp_list,tidyQuickPsy)
+
+map(tidy_qp_list,function(.x){return(.x$tidy_fit)}) %>% 
+  bind_rows() %>% 
+  head()
+#> # A tibble: 6 × 20
+#> # Groups:   vp_code, modality, v0, a, label, gain [6]
+#>   vp_code modality    v0     a label    gain muEst sigmaEst se_muEst se_sigmaEst
+#>   <chr>   <chr>    <dbl> <int> <chr>   <int> <dbl>    <dbl>    <dbl>       <dbl>
+#> 1 vp0001  A         10       2 Kia_v0…     0  4.14    1.19     0.176       0.292
+#> 2 vp0001  A         10       2 Kia_v0…    10  6.37    0.948    0.167       0.190
+#> 3 vp0001  A         30       0 Kia_v0…     0  1.56    0.927    0.159       0.190
+#> 4 vp0001  A         30       0 Kia_v0…    10  5.03    2.09     0.323       0.472
+#> 5 vp0001  A         49.6     0 Kia_v0…     0  2.46    2.20     0.345       0.461
+#> 6 vp0001  A         49.6     0 Kia_v0…    10  4.78    2.52     0.392       0.553
+#> # ℹ 10 more variables: nTrials <int>, LLRtestvalue <dbl>, LLRtestDF <int>,
+#> #   p_value <dbl>, LLRpValue <dbl>, LL <dbl>, nParFittedModel <int>,
+#> #   LLsaturated <dbl>, nParSaturatedModel <int>, trialData <list>
+
+# only participant nr 1:
+plot_list <- map(tidy_qp_list[1], plotQuickPsy)
+
+# show only first plot:
+plot_list$vp0001$plot_list[1]
+#> [[1]]
+```
+
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" /> \###
+plotThemeAGO
 
 Plot theme for classic TTC plots.
 
@@ -252,7 +293,7 @@ dat_clean %>%
   theme(aspect.ratio = 1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
 
 ### Data sets
 

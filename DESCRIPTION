@@ -23,7 +23,8 @@ Imports:
     extrafont,
     ggplot2,
     stringr,
-    tibble
+    tibble,
+    quickpsy
 Depends: 
     R (>= 2.10)
 LazyData: true
