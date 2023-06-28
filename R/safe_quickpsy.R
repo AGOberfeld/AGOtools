@@ -34,7 +34,7 @@ safe_quickpsy <- function(part_id,data,x,k,n,grouping){
   x_str <- rlang::as_string(rlang::enexpr(x))
   k_str <- rlang::as_string(rlang::enexpr(k))
   n_str <- rlang::as_string(rlang::enexpr(n))
-  grouping <- as.character(grouping)
+  grouping <- as.character(c(part_id_str,grouping))
 
   # extract participant ids:
   vp_codes <- data[[part_id_str]] %>%
@@ -44,7 +44,7 @@ safe_quickpsy <- function(part_id,data,x,k,n,grouping){
 
   # loop across all participants:
   for (i in seq_along(vp_codes)){
-    data <- streetcrossing %>%
+    data <- data %>%
       filter((!!sym(part_id_str)) == vp_codes[i])
 
     qp_list[[i]] <- tryCatch(quickpsy(d = data,
@@ -56,10 +56,11 @@ safe_quickpsy <- function(part_id,data,x,k,n,grouping){
                    guess=0,
                    lapses=0,
                    bootstrap = 'none'),
-                   warning=function(w){print(w)},
-                   error = function(e){
-                     rlang::error_cnd("error in quickpsy function")
-                   },
+
+                   warning = function(w){print(w)},
+
+                   error = function(e){e},
+
                    finally = "finished")
 
     names(qp_list)[i] <- vp_codes[i]
