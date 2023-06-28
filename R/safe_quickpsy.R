@@ -37,9 +37,8 @@ safe_quickpsy <- function(part_id,data,x,k,n,grouping){
   grouping <- as.character(grouping)
 
   # extract participant ids:
-  vp_codes <- data[,part_id_str] %>%
-    unique() %>%
-    deframe()
+  vp_codes <- data[[part_id_str]] %>%
+    unique()
 
   qp_list <- list()
 
