@@ -57,6 +57,15 @@ devtools::install_github("danilinares/quickpsy")
 
 ## Functions
 
+### set_options
+
+Sets the color palette of ggplots to default values. By default the matplotlib colors are chosen.
+
+```{r}
+set_options()
+```
+
+
 ### tukey
 
 Adds variables to a given dataset (data) which indicate if oberservations on a specified variable (dv) are outliers according to the tukey criterion.
@@ -139,29 +148,30 @@ plotQuickPsy(qp_tidy)$plot_list[[1]]
 
 ```
 
-If the hessian matrix for one participant is not solvable, quickpsy breaks. To prevent this, use `safe_quickpsy`:
+<!-- If the hessian matrix for one participant is not solvable, quickpsy breaks. To prevent this, use `safe_quickpsy`: -->
 
-```{r}
-qp_list <- safe_quickpsy(data = streetcrossing,
-              part_id = vp_code,
-              x = track_TTC,
-              k = nCross,
-              n = nTrials,
-              grouping = c("vp_code","modality","v0","a","label","gain"))
+<!-- ```{r} -->
+<!-- qp_list <- safe_quickpsy(data = streetcrossing, -->
+<!--               part_id = vp_code, -->
+<!--               x = track_TTC, -->
+<!--               k = nCross, -->
+<!--               n = nTrials, -->
+<!--               grouping = c("vp_code","modality","v0","a","label","gain")) -->
 
-# tidy data and combine data sets from each participant:
-tidy_qp_list <- map(qp_list,tidyQuickPsy)
+<!-- # tidy data and combine data sets from each participant: -->
+<!-- tidy_qp_list <- map(qp_list,tidyQuickPsy) -->
 
-map(tidy_qp_list,function(.x){return(.x$tidy_fit)}) %>% 
-  bind_rows() %>% 
-  head()
+<!-- map(tidy_qp_list,function(.x){return(.x$tidy_fit)}) %>%  -->
+<!--   bind_rows() %>%  -->
+<!--   head() -->
 
-# only participant nr 1:
-plot_list <- map(tidy_qp_list[1], plotQuickPsy)
+<!-- # only participant nr 1: -->
+<!-- plot_list <- map(tidy_qp_list[1], plotQuickPsy) -->
 
-# show only first plot:
-plot_list$vp0001$plot_list[1]
-```
+<!-- # show only first plot: -->
+<!-- plot_list$vp0001$plot_list[1] -->
+<!-- ``` -->
+
 ### plotThemeAGO
 
 Plot theme for classic TTC plots.
