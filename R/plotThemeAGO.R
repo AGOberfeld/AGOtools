@@ -1,5 +1,5 @@
 
-#' Complete plot theme for TTC estimation plots
+#' Complete plot theme for publication-ready data plots
 #' @param base_size base size
 #' @param base_family base font family, default = Arial Unicode MS
 #'
