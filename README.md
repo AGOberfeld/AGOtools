@@ -126,16 +126,16 @@ the higher criterion (1) or is within both criteria (0)
 
 ### tidyQuickPsy
 
-This function is used to facilitate the analysis of psyhometric function fitted with quickpsy (https://github.com/danilinares/quickpsy).
+This function is used to facilitate the analysis of psychometric functions fitted with quickpsy (https://github.com/danilinares/quickpsy).
 Takes a quickpsy-object and turns it as a tibble.
 
 Use the following arguments in the quickpsy function:  
 `d` = data  
 `x` = Name of the explanatory variable (e.g. TTC)  
-`k` = Name of the variable containing the number of "positive" decisions per condition (= unique combination of the grouping variables) 
-`n` = number of trials per condition (= unique combination of the grouping variables) 
+`k` = Name of the variable containing the number of "positive" decisions per group (= unique combination of the grouping variables) 
+`n` = Name of the variable containing the number of trials per group (= unique combination of the grouping variables) 
 `grouping` = concatenated vector of the variables that define the
-experimental conditions to which separate psychometric functions are fit (e.g., vector containing the partipiant code variable and the variables defining separate expeirmental conditions)
+groups of trials (i.e., rows in the input dataset) to which separate psychometric functions are fit (e.g., a vector containing the participant code variable and the variables defining separate experimental conditions)
 
 ``` r
 data <- streetcrossing %>% 
