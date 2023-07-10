@@ -4,7 +4,7 @@
 #' @param colors choose default color palette values. Matplotlib colors are chosen by default.
 #' @importFrom ggplot2 scale_colour_discrete
 #'
-#' @return a list containing quickpsy objects for each participant.
+#' @return void
 #' @export
 #' @examples
 #' set_options()
@@ -31,7 +31,16 @@ set_options <- function(colors = c( '#1f77b4',
                                          '#17becf',
                                          '#9edae5')){
 
-#show_col(tab20_colors)
+  #load default packages
+  require(tidyverse)
+  require(ggthemes)
+  require(extrafont)
+  # require(pracma)
+  # require(rlang)
+  require(colorspace)
+  require(scales)
+
+  #show_col(tab20_colors)
 tab20colorsSatH <- colors[seq(1, length(colors), by = 2)]
 tab20colorsSatL <- colors[seq(2, length(colors), by = 2)]
 
@@ -46,4 +55,13 @@ options(ggplot2.discrete.fill = tab20colorsSatH)
 scale_shape_discrete <- function(...) {
   scale_shape_manual(values = c(15, 1, 17, 5))
 }
+
+require(knitr)
+knitr::opts_chunk$set(echo = FALSE,comment = '', fig.width = 6, fig.height = 6,dpi=300)
+
+options(digits=5)
+options(download.file.method="libcurl")
+options(scipen = 999) #avoid scientific notation
+options(width = 250) # extend the width of the output
+
 }
