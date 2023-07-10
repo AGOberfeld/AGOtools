@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-AGOtools is an R package providing some useful tools for the analysis of empirical data (plot themes for publication-ready plots using R's ggplot, outlier detection using a Tukey criterion, helper function for fitting psychomatric functions with the R package quickpsy etc.).
+AGOtools is an R package providing some useful tools for the analysis of empirical data (plot themes for publication-ready plots using R's ggplot, outlier detection using a Tukey criterion, helper functions for fitting psychometric functions with the R package quickpsy (https://github.com/danilinares/quickpsy) etc.).
 It is maintained by the work group of Prof. Dr. Daniel Oberfeld-Twistel (https://www.staff.uni-mainz.de/oberfeld/) at Johannes
 Gutenberg-Universität Mainz, Germany.
 
