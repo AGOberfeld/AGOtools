@@ -51,8 +51,8 @@ set_options()
 
 Adds variables to an input dataset (data) which indicate if
 observations on a specified variable (dv) are outliers according to
-a "nonparametric"  criterion proposed by John Tukey. Values of variable dv more than k*IQR (interquartile range) below the first quartile (25% quantile) 
-or more than k*IQR above the third quartile (75% quantile) are flagged as outliers.
+a "nonparametric"  criterion proposed by John Tukey. Values of variable dv more than k`*`IQR (interquartile range) below the first quartile (25% quantile) 
+or more than k`*`IQR above the third quartile (75% quantile) are flagged as outliers.
 The argument tukey_crit can be used to modify the factor k (default = 3).
 
 
