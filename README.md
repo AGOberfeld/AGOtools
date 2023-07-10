@@ -6,9 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-AGOtools is an R package providing some useful tools for the
-experimental research on Time-To-Collision (TTC) estimation in traffic
-contexts. It is built by the Arbeitsgruppe Oberfeld from Johannes
+AGOtools is an R package providing some useful tools for the analysis of empirical data (plot themes for publication-ready plots using R's ggplot, outlier detection using a Tukey criterion, helper function for fitting psychomatric functions with the R package quickpsy etc.).
+It is maintained by the work group of Prof. Dr. Daniel Oberfeld-Twistel (https://www.staff.uni-mainz.de/oberfeld/) at Johannes
 Gutenberg-Universität Mainz, Germany.
 
 ## Project Status
@@ -24,7 +23,7 @@ Install AGOtools with:
 ## Dependencies
 
 Before using AGOtools, make sure the right Quickpsy-version (dev-version
-from github) is installed:
+from Github, https://github.com/danilinares/quickpsy) is installed:
 
     devtools::install_github("danilinares/quickpsy")
 
@@ -42,7 +41,7 @@ quickpsy before installing it again from github.
 ### set_options
 
 Sets the color palette of ggplots to default values. By default the
-matplotlib colors are chosen.
+matplotlib colors are chosen. Also sets the number format for the R output and loads some default packages.
 
 ``` r
 set_options()
@@ -50,12 +49,12 @@ set_options()
 
 ### tukey
 
-Adds variables to a given dataset (data) which indicate if
-oberservations on a specified variable (dv) are outliers according to
-the tukey criterion.
+Adds variables to an input dataset (data) which indicate if
+observations on a specified variable (dv) are outliers according to
+a "nonparametric"  criterion proposed by John Tukey. Values of variable dv more than k*IQR (interquartile range) below the first quartile (25% quantile) 
+or more than k*IQR above the third quartile (75% quantile) are flagged as outliers.
+The argument tukey_crit can be used to modify the factor k (default = 3).
 
-The argument tukey_crit can be used to modify the factor of the inter
-quantile range (default = 3).
 
 Identify outliers without excluding them:
 
@@ -127,15 +126,16 @@ the higher criterion (1) or is within both criteria (0)
 
 ### tidyQuickPsy
 
-Takes a quickpsy-object and turns it into a tibble.
+This function is used to facilitate the analysis of psyhometric function fitted with quickpsy (https://github.com/danilinares/quickpsy).
+Takes a quickpsy-object and turns it as a tibble.
 
 Use the following arguments in the quickpsy function:  
 `d` = data  
 `x` = Name of the explanatory variable (e.g. TTC)  
-`k` = Name of the response variable.  
-`n` = number of trials  
-`grouping` = concatinated vector of the variables that define the
-experimental conditions + partipiant code variable
+`k` = Name of the variable containing the number of "positive" decisions per condition (= unique combination of the grouping variables) 
+`n` = number of trials per condition (= unique combination of the grouping variables) 
+`grouping` = concatenated vector of the variables that define the
+experimental conditions to which separate psychometric functions are fit (e.g., vector containing the partipiant code variable and the variables defining separate expeirmental conditions)
 
 ``` r
 data <- streetcrossing %>% 
@@ -209,7 +209,7 @@ plotQuickPsy(qp_tidy)$plot_list[[1]]
 
 ### plotThemeAGO
 
-Plot theme for classic TTC plots.
+Plot theme for publication-ready data plots
 
 ``` r
 dat_clean <- loudness_block %>%
