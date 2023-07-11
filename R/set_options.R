@@ -41,14 +41,15 @@ set_options <- function(colors = c( '#1f77b4',
   require(scales)
 
   #show_col(tab20_colors)
-  .GlobalEnv$tab20colorsSatH <- colors[seq(1, length(colors), by = 2)]
-  .GlobalEnv$tab20colorsSatL <- colors[seq(2, length(colors), by = 2)]
+  # tab20colorsSatH <- colors[seq(1, length(colors), by = 2)]
+  assign("tab20colorsSatH", "colors[seq(1, length(colors), by = 2)]", envir = .GlobalEnv)
+  tab20colorsSatL <- colors[seq(2, length(colors), by = 2)]
 
 #set default ggplot color palette
 options(ggplot2.discrete.colour= tab20colorsSatH)
 #define list of colors in the default ggplot color palette
-.GlobalEnv$ggplotColorPaletteDefault <- ggplot2::scale_color_discrete()$palette
-.GlobalEnv$ggplotColorsDefault <- ggplotColorPaletteDefault(10)
+ggplotColorPaletteDefault <- ggplot2::scale_color_discrete()$palette
+ggplotColorsDefault <- ggplotColorPaletteDefault(10)
 options(ggplot2.discrete.fill = tab20colorsSatH)
 
 #define default shape scale
