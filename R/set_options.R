@@ -1,6 +1,6 @@
 #' set_options
 #'
-#' Sets color palette options to matplotlib colors.
+#' Sets color palette options to matplotlib tab20 palette (default), sets global variables and loads some defauilt packages
 #' @param colors choose default color palette values. Matplotlib colors are chosen by default.
 #' @importFrom ggplot2 scale_colour_discrete
 #'
@@ -46,10 +46,10 @@ set_options <- function(colors = c( '#1f77b4',
 
   #set default ggplot color palette
   options(ggplot2.discrete.colour= tab20colorsSatH)
+  options(ggplot2.discrete.fill = tab20colorsSatH)
   #define list of colors in the default ggplot color palette, set in .GlobalEnv$
   .GlobalEnv$ggplotColorPaletteDefault <- ggplot2::scale_color_discrete()$palette
   .GlobalEnv$ggplotColorsDefault <- ggplotColorPaletteDefault(10)
-  options(ggplot2.discrete.fill = tab20colorsSatH)
 
   #define default shape scale
   scale_shape_discrete <- function(...) {scale_shape_manual(values = c(15, 1, 17, 5))}
