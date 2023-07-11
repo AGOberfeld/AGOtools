@@ -52,9 +52,7 @@ ggplotColorsDefault <- ggplotColorPaletteDefault(10)
 options(ggplot2.discrete.fill = tab20colorsSatH)
 
 #define default shape scale
-scale_shape_discrete <- function(...) {
-  scale_shape_manual(values = c(15, 1, 17, 5))
-}
+scale_shape_discrete <- function(...) {scale_shape_manual(values = c(15, 1, 17, 5))}
 
 require(knitr)
 knitr::opts_chunk$set(echo = FALSE,comment = '', fig.width = 6, fig.height = 6,dpi=300)
