@@ -41,26 +41,25 @@ set_options <- function(colors = c( '#1f77b4',
   require(scales)
 
   #show_col(tab20_colors)
-  # tab20colorsSatH <- colors[seq(1, length(colors), by = 2)]
-  assign("tab20colorsSatH", "colors[seq(1, length(colors), by = 2)]", envir = .GlobalEnv)
-  tab20colorsSatL <- colors[seq(2, length(colors), by = 2)]
+  .GlobalEnv$tab20colorsSatH <- colors[seq(1, length(colors), by = 2)]
+  .GlobalEnv$tab20colorsSatL <- colors[seq(2, length(colors), by = 2)]
 
-#set default ggplot color palette
-options(ggplot2.discrete.colour= tab20colorsSatH)
-#define list of colors in the default ggplot color palette
-ggplotColorPaletteDefault <- ggplot2::scale_color_discrete()$palette
-ggplotColorsDefault <- ggplotColorPaletteDefault(10)
-options(ggplot2.discrete.fill = tab20colorsSatH)
+  #set default ggplot color palette
+  options(ggplot2.discrete.colour= tab20colorsSatH)
+  #define list of colors in the default ggplot color palette, set in .GlobalEnv$
+  .GlobalEnv$ggplotColorPaletteDefault <- ggplot2::scale_color_discrete()$palette
+  .GlobalEnv$ggplotColorsDefault <- ggplotColorPaletteDefault(10)
+  options(ggplot2.discrete.fill = tab20colorsSatH)
 
-#define default shape scale
-ggplot2::scale_shape_discrete <- function(...) {scale_shape_manual(values = c(15, 1, 17, 5))}
+  #define default shape scale
+  ggplot2::scale_shape_discrete <- function(...) {scale_shape_manual(values = c(15, 1, 17, 5))}
 
-require(knitr)
-knitr::opts_chunk$set(echo = FALSE,comment = '', fig.width = 6, fig.height = 6,dpi=300)
+  require(knitr)
+  knitr::opts_chunk$set(echo = FALSE,comment = '', fig.width = 6, fig.height = 6,dpi=300)
 
-options(digits=5)
-options(download.file.method="libcurl")
-options(scipen = 999) #avoid scientific notation
-options(width = 250) # extend the width of the output
+  options(digits=5)
+  options(download.file.method="libcurl")
+  options(scipen = 999) #avoid scientific notation
+  options(width = 250) # extend the width of the output
 
 }
