@@ -33,12 +33,12 @@ set_options <- function(colors = c( '#1f77b4',
 
   #load default packages
   require(tidyverse)
-  require(ggthemes)
-  require(extrafont)
+  # require(ggthemes)
+  # require(extrafont)
   # require(pracma)
   # require(rlang)
-  require(colorspace)
-  require(scales)
+  # require(colorspace)
+  # require(scales)
 
   #show_col(tab20_colors)
   .GlobalEnv$tab20colorsSatH <- colors[seq(1, length(colors), by = 2)]
@@ -56,7 +56,7 @@ set_options <- function(colors = c( '#1f77b4',
 
   require(knitr)
   knitr::opts_chunk$set(echo = FALSE,comment = '', fig.width = 6, fig.height = 6,dpi=300)
-
+  #bla
   options(digits=5)
   options(download.file.method="libcurl")
   options(scipen = 999) #avoid scientific notation
