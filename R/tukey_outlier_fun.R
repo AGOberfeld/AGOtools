@@ -1,4 +1,4 @@
-#' Detect outlier according to the tukey criterion.
+#' Detect outliers according to a Tukey criterion.
 #'
 #' @param dv continuous dependent variable. For TTC experiments insert the estimated TTC here.
 #' @param tukey_crit factor of the IQR that defines an outlier.
@@ -8,7 +8,7 @@
 #'
 #' @examples
 #' iris |>
-#' dplyr::mutate(tidyr::as_tibble(tukey_outlier_fun(dv=Petal.Length,tukey_crit=3)))
+#' dplyr::mutate(tidyr::as_tibble(tukey_outlier_fun(dv=Petal.Length,tukey_crit=1.5)))
 #'
 #'
 tukey_outlier_fun <- function(dv,tukey_crit=3){

@@ -43,10 +43,11 @@ set_options <- function(colors = c( '#1f77b4',
   #show_col(tab20_colors)
   .GlobalEnv$tab20colorsSatH <- colors[seq(1, length(colors), by = 2)]
   .GlobalEnv$tab20colorsSatL <- colors[seq(2, length(colors), by = 2)]
+  .GlobalEnv$tab20colors=c(.GlobalEnv$tab20colorsSatH,.GlobalEnv$tab20colorsSatL)
 
   #set default ggplot color palette
-  options(ggplot2.discrete.colour= tab20colorsSatH)
-  options(ggplot2.discrete.fill = tab20colorsSatH)
+  options(ggplot2.discrete.colour= .GlobalEnv$tab20colors)
+  options(ggplot2.discrete.fill = .GlobalEnv$tab20colors)
   #define list of colors in the default ggplot color palette, set in .GlobalEnv$
   .GlobalEnv$ggplotColorPaletteDefault <- ggplot2::scale_color_discrete()$palette
   .GlobalEnv$ggplotColorsDefault <- ggplotColorPaletteDefault(10)
