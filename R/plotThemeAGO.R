@@ -41,17 +41,8 @@ plotThemeAGO <- function(base_size=14, base_family="Arial Unicode MS") {
             legend.title = element_text(face="italic",size=rel(0.8)),
             strip.background = element_blank(),
             strip.text = element_text(face="bold")),
-     scale_shape_manual(values = c(15, 1, 17, 5)),
-     scale_color_manual(values = c( '#1f77b4','#ff7f0e',
-                                     '#2ca02c','#d62728',
-                                     '#9467bd','#8c564b',
-                                     '#e377c2','#7f7f7f',
-                                     '#bcbd22','#17becf')),
-     scale_fill_manual(values = c( '#1f77b4','#ff7f0e',
-                                    '#2ca02c','#d62728',
-                                    '#9467bd','#8c564b',
-                                    '#e377c2','#7f7f7f',
-                                    '#bcbd22','#17becf')))
+     scale_shape_manual(values = c(15, 1, 17, 5))
+    )
 
 }
 
