@@ -57,15 +57,6 @@ devtools::install_github("danilinares/quickpsy")
 
 ## Functions
 
-### set_options
-
-Sets the color palette of ggplots to default values. By default the matplotlib colors are chosen.
-
-```{r}
-set_options()
-```
-
-
 ### tukey
 
 Adds variables to a given dataset (data) which indicate if oberservations on a specified variable (dv) are outliers according to the tukey criterion.
@@ -86,6 +77,15 @@ loudness_block %>%
 	tukey(Estimated_TTC, 
 	      exclude = TRUE)
 ```
+
+Outlier exclusion groupwise:
+```{r}
+loudness_block %>% 
+  group_by(Condition, Car_label, GaindB,loudnessVariation) %>% 
+  tukey(Estimated_TTC, 
+	      exclude = TRUE)
+```
+
 
 Returns a list of variables and adds them to the initial data set:
 
@@ -171,7 +171,6 @@ plotQuickPsy(qp_tidy)$plot_list[[1]]
 <!-- # show only first plot: -->
 <!-- plot_list$vp0001$plot_list[1] -->
 <!-- ``` -->
-
 ### plotThemeAGO
 
 Plot theme for classic TTC plots.
