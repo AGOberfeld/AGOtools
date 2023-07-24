@@ -2,7 +2,7 @@
 % Please edit documentation in R/tukey_outlier_fun.R
 \name{tukey_outlier_fun}
 \alias{tukey_outlier_fun}
-\title{Detect outlier according to the tukey criterion.}
+\title{Detect outliers according to a Tukey criterion.}
 \usage{
 tukey_outlier_fun(dv, tukey_crit = 3)
 }
@@ -15,11 +15,11 @@ tukey_outlier_fun(dv, tukey_crit = 3)
 A list of vectors.
 }
 \description{
-Detect outlier according to the tukey criterion.
+Detect outliers according to a Tukey criterion.
 }
 \examples{
 iris |>
-dplyr::mutate(tidyr::as_tibble(tukey_outlier_fun(dv=Petal.Length,tukey_crit=3)))
+dplyr::mutate(tidyr::as_tibble(tukey_outlier_fun(dv=Petal.Length,tukey_crit=1.5)))
 
 
 }

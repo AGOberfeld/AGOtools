@@ -4,6 +4,7 @@
 #' @param tukey_crit factor of the IQR that defines an outlier.
 #'
 #' @return A list of vectors.
+#' @importFrom dplyr ungroup
 #' @export
 #'
 #' @examples

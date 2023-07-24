@@ -14,10 +14,10 @@ set_options(
 \item{colors}{choose default color palette values. Matplotlib colors are chosen by default.}
 }
 \value{
-a list containing quickpsy objects for each participant.
+void
 }
 \description{
-Sets color palette options to matplotlib colors.
+Sets color palette options to matplotlib tab20 palette (default), sets global variables and loads some defauilt packages
 }
 \examples{
 set_options()

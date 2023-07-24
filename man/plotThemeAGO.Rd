@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotThemeAGO.R
 \name{plotThemeAGO}
 \alias{plotThemeAGO}
-\title{Complete plot theme for TTC estimation plots}
+\title{Complete plot theme for publication-ready data plots}
 \usage{
 plotThemeAGO(base_size = 14, base_family = "Arial Unicode MS")
 }
@@ -12,5 +12,5 @@ plotThemeAGO(base_size = 14, base_family = "Arial Unicode MS")
 \item{base_family}{base font family, default = Arial Unicode MS}
 }
 \description{
-Complete plot theme for TTC estimation plots
+Complete plot theme for publication-ready data plots
 }
