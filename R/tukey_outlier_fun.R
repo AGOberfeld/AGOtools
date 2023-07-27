@@ -20,16 +20,18 @@ tukey_outlier_fun <- function(dv,tukey_crit=3){
   IQR=stats::IQR(dv,na.rm = TRUE)
   Quant25=unname(stats::quantile(dv,probs=0.25,na.rm = TRUE))
   Quant75=unname(stats::quantile(dv,probs=0.75,na.rm = TRUE))
-  upper=Quant75+tukey_crit*IQR
-  lower=Quant25-tukey_crit*IQR
-  outlierTukeyLow=ifelse( dv<lower,1,0)
-  outlierTukeyHigh=ifelse( dv>upper,1,0)
+  Tukey_upper_limit=Quant75+tukey_crit*IQR
+  Tukey_lower_limit=Quant25-tukey_crit*IQR
+  outlierTukeyLow=ifelse( dv<Tukey_lower_limit,1,0)
+  outlierTukeyHigh=ifelse( dv>Tukey_upper_limit,1,0)
   outlierTukey=ifelse( outlierTukeyLow|outlierTukeyHigh,1,0)
   return_list <- list(
     "trialsInSet" = trialsInSet,
     "IQR" = IQR,
     "Quant25" = Quant25,
     "Quant75" = Quant75,
+    "Tukey_lower_limit"=Tukey_lower_limit,
+    "Tukey_upper_limit"=Tukey_upper_limit,
     "outlierTukeyLow" = outlierTukeyLow,
     "outlierTukeyHigh" = outlierTukeyHigh,
     "outlierTukey" = outlierTukey
@@ -38,15 +40,6 @@ tukey_outlier_fun <- function(dv,tukey_crit=3){
   # name output according to input variable:
 
   names(return_list) <- c(paste0(dv_str,"_",names(return_list)))
-
-  # names(return_list) <- c(paste0(dv_str,"_","trialsInSet"),
-  #                         paste0(dv_str,"_","IQR"),
-  #                         paste0(dv_str,"_","Quant25"),
-  #                         paste0(dv_str,"_","Quant75"),
-  #                         paste0(dv_str,"_","outlierTukeyLow"),
-  #                         paste0(dv_str,"_","outlierTukeyHigh"),
-  #                         paste0(dv_str,"_","outlierTukey")
-  #)
 
   return(return_list)
 }
