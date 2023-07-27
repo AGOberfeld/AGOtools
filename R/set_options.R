@@ -2,7 +2,8 @@
 #'
 #' Sets color palette options to matplotlib tab20 palette (default), sets global variables and loads some defauilt packages
 #' @param colors choose default color palette values. Matplotlib colors are chosen by default.
-#' @importFrom ggplot2 scale_colour_discrete
+#' @importFrom ggplot2 scale_color_discrete
+#' @import knitr
 #'
 #' @return void
 #' @export
@@ -55,12 +56,11 @@ set_options <- function(colors = c( '#1f77b4',
   #define default shape scale
   scale_shape_discrete <- function(...) {scale_shape_manual(values = c(15, 1, 17, 5))}
 
-  require(knitr)
+  #require(knitr)
   knitr::opts_chunk$set(echo = FALSE,comment = '', fig.width = 6, fig.height = 6,dpi=300)
   #bla
   options(digits=5)
   options(download.file.method="libcurl")
   options(scipen = 999) #avoid scientific notation
   options(width = 250) # extend the width of the output
-
 }

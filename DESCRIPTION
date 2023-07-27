@@ -24,7 +24,8 @@ Imports:
     ggplot2,
     stringr,
     tibble,
-    quickpsy
+    quickpsy,
+    knitr
 Depends: 
     R (>= 2.10)
 LazyData: true

@@ -10,17 +10,19 @@
 #' @examples
 #' tukey(iris,Petal.Length)
 #'
-#' @import dplyr
-#' @import rlang
-#' @import tidyr
+#' @importFrom dplyr group_by mutate filter group_vars
+#' @importFrom rlang enexpr as_string
+#' @importFrom tidyr as_tibble
 
 
 tukey <- function(data,dv,tukey_crit=3,exclude = F){
 
   dv_ <- rlang::enexpr(dv)
   dv_str <- rlang::as_string(dv_)
+  groups <- group_vars(data)
 
   data <- data %>%
+    dplyr::group_by(!!!syms(groups)) %>%
     dplyr::mutate(tidyr::as_tibble(tukey_outlier_fun(dv=!!sym(dv_str),
                                                      tukey_crit=tukey_crit)))
 

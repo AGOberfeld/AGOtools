@@ -6,8 +6,9 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-AGOtools is an R package providing some useful tools for the analysis of empirical data (plot themes for publication-ready plots using R's ggplot, outlier detection using a Tukey criterion, helper functions for fitting psychometric functions with the R package quickpsy (https://github.com/danilinares/quickpsy) etc.).
-It is maintained by the work group of Prof. Dr. Daniel Oberfeld-Twistel (https://www.staff.uni-mainz.de/oberfeld/) at Johannes
+AGOtools is an R package providing some useful tools for the
+experimental research on Time-To-Collision (TTC) estimation in traffic
+contexts. It is built by the Arbeitsgruppe Oberfeld from Johannes
 Gutenberg-Universität Mainz, Germany.
 
 ## Project Status
@@ -23,7 +24,7 @@ Install AGOtools with:
 ## Dependencies
 
 Before using AGOtools, make sure the right Quickpsy-version (dev-version
-from Github, https://github.com/danilinares/quickpsy) is installed:
+from github) is installed:
 
     devtools::install_github("danilinares/quickpsy")
 
@@ -38,23 +39,14 @@ quickpsy before installing it again from github.
 
 ## Functions
 
-### set_options
-
-Sets the color palette of ggplots to default values. By default the
-matplotlib colors are chosen. Also sets the number format for the R output and loads some default packages.
-
-``` r
-set_options()
-```
-
 ### tukey
 
-Adds variables to an input dataset (data) which indicate if
-observations on a specified variable (dv) are outliers according to
-a "nonparametric"  criterion proposed by John Tukey. Values of variable dv more than k`*`IQR (interquartile range) below the first quartile (25% quantile) 
-or more than k`*`IQR above the third quartile (75% quantile) are flagged as outliers.
-The argument tukey_crit can be used to modify the factor k (default = 3).
+Adds variables to a given dataset (data) which indicate if
+oberservations on a specified variable (dv) are outliers according to
+the tukey criterion.
 
+The argument tukey_crit can be used to modify the factor of the inter
+quantile range (default = 3).
 
 Identify outliers without excluding them:
 
@@ -111,6 +103,35 @@ loudness_block %>%
 #> #   Estimated_TTC_outlierTukeyHigh <dbl>, Estimated_TTC_outlierTukey <dbl>
 ```
 
+Outlier exclusion groupwise:
+
+``` r
+loudness_block %>% 
+  group_by(Condition, Car_label, GaindB,loudnessVariation) %>% 
+  tukey(Estimated_TTC, 
+          exclude = TRUE)
+#> # A tibble: 10,802 × 20
+#> # Groups:   Condition, Car_label, GaindB, loudnessVariation [12]
+#>    Participantnr Condition Session_code Block Trialnr Velocity Car_label  GaindB
+#>    <chr>             <int>        <int> <fct>   <int> <fct>    <chr>       <dbl>
+#>  1 vp001                 1            1 1          24 50       Kia_v0_50…      0
+#>  2 vp001                 1            1 1          27 30       Kia_v0_30…      0
+#>  3 vp001                 1            1 1          28 10       Kia_v0_10…      0
+#>  4 vp001                 1            1 1          32 10       Kia_v0_10…      0
+#>  5 vp001                 1            1 1          33 30       Kia_v0_30…      0
+#>  6 vp001                 1            1 1          34 30       Kia_v0_30…      0
+#>  7 vp001                 1            1 1          36 10       Kia_v0_10…      0
+#>  8 vp001                 1            1 1          37 10       Kia_v0_10…      0
+#>  9 vp001                 1            1 1          38 50       Kia_v0_50…      0
+#> 10 vp001                 1            1 1          39 50       Kia_v0_50…      0
+#> # ℹ 10,792 more rows
+#> # ℹ 12 more variables: gainBlock1 <dbl>, loudnessVariation <chr>, TTC <dbl>,
+#> #   Estimated_TTC <dbl>, vOcc <dbl>, Estimated_TTC_trialsInSet <int>,
+#> #   Estimated_TTC_IQR <dbl>, Estimated_TTC_Quant25 <dbl>,
+#> #   Estimated_TTC_Quant75 <dbl>, Estimated_TTC_outlierTukeyLow <dbl>,
+#> #   Estimated_TTC_outlierTukeyHigh <dbl>, Estimated_TTC_outlierTukey <dbl>
+```
+
 Returns a list of variables and adds them to the initial data set:
 
 `trialsInSet` = total number of trials in the data set  
@@ -126,16 +147,15 @@ the higher criterion (1) or is within both criteria (0)
 
 ### tidyQuickPsy
 
-This function is used to facilitate the analysis of psychometric functions fitted with quickpsy (https://github.com/danilinares/quickpsy).
-Takes a quickpsy-object and turns it as a tibble.
+Takes a quickpsy-object and turns it into a tibble.
 
 Use the following arguments in the quickpsy function:  
 `d` = data  
 `x` = Name of the explanatory variable (e.g. TTC)  
-`k` = Name of the variable containing the number of "positive" decisions per group (= unique combination of the grouping variables) 
-`n` = Name of the variable containing the number of trials per group (= unique combination of the grouping variables) 
-`grouping` = concatenated vector of the variables that define the
-groups of trials (i.e., rows in the input dataset) to which separate psychometric functions are fit (e.g., a vector containing the participant code variable and the variables defining separate experimental conditions)
+`k` = Name of the response variable.  
+`n` = number of trials  
+`grouping` = concatinated vector of the variables that define the
+experimental conditions + partipiant code variable
 
 ``` r
 data <- streetcrossing %>% 
@@ -209,7 +229,7 @@ plotQuickPsy(qp_tidy)$plot_list[[1]]
 
 ### plotThemeAGO
 
-Plot theme for publication-ready data plots
+Plot theme for classic TTC plots.
 
 ``` r
 dat_clean <- loudness_block %>%
