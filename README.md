@@ -41,8 +41,8 @@ quickpsy before installing it again from github.
 
 ### set_options
 
-Sets matplotlib color palette as ggplot options and loads several
-usefule packages (`tidyverse`, `pracma`, `extrafont`).
+Sets matplotlib color palette as ggplot options and loads several useful
+packages (`tidyverse`, `pracma`, `extrafont`).
 
 ``` r
 set_options()

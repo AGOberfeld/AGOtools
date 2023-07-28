@@ -57,6 +57,14 @@ devtools::install_github("danilinares/quickpsy")
 
 ## Functions
 
+### set_options
+
+Sets matplotlib color palette as ggplot options and loads several usefule packages (`tidyverse`, `pracma`, `extrafont`).
+```{r}
+set_options()
+```
+
+
 ### tukey
 
 Adds variables to a given dataset (data) which indicate if oberservations on a specified variable (dv) are outliers according to the tukey criterion.

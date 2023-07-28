@@ -19,6 +19,8 @@ A list of vectors:
 \item \code{Quant25} = 25\% quantile
 \item \code{Quant75} = 75\% quantile
 \item \code{outlierTukeyLow} = indicates if dv for a given trial is lower than the tukey criterion (1) or not (0)
+\item \code{Tukey_lower_limit} = lower limit below which the values are excluded
+\item \code{Tukey_upper_limit} = upper limit above which the values are excluded
 }
 }
 \description{
