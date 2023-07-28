@@ -161,8 +161,8 @@ plotQuickPsy(qp_tidy)$plot_list[[1]]
 <!-- # tidy data and combine data sets from each participant: -->
 <!-- tidy_qp_list <- map(qp_list,tidyQuickPsy) -->
 
-<!-- map(tidy_qp_list,function(.x){return(.x$tidy_fit)}) %>%  -->
-<!--   bind_rows() %>%  -->
+<!-- map(tidy_qp_list,function(.x){return(.x$tidy_fit)}) %>% -->
+<!--   bind_rows() %>% -->
 <!--   head() -->
 
 <!-- # only participant nr 1: -->

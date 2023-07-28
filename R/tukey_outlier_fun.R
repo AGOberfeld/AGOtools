@@ -3,7 +3,14 @@
 #' @param dv continuous dependent variable. For TTC experiments insert the estimated TTC here.
 #' @param tukey_crit factor of the IQR that defines an outlier.
 #'
-#' @return A list of vectors.
+#' @return A list of vectors:
+#' * `trialsInSet` = total number of trials in the data set
+#' * `IQR` = inter quantile range
+#' * `Quant25` = 25% quantile
+#' * `Quant75` = 75% quantile
+#' * `outlierTukeyLow` = indicates if dv for a given trial is lower than the tukey criterion (1) or not (0)
+#' * `Tukey_lower_limit` = lower limit below which the values are excluded
+#' * `Tukey_upper_limit` = upper limit above which the values are excluded
 #' @importFrom dplyr ungroup
 #' @export
 #'

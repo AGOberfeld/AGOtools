@@ -41,6 +41,8 @@ safe_quickpsy <- function(part_id,data,x,k,n,grouping){
     unique()
 
   qp_list <- list()
+  condition_list <- data %>%
+    group_split(!!!syms(grouping))
 
   # loop across all participants:
   for (i in seq_along(vp_codes)){

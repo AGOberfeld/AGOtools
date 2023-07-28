@@ -12,7 +12,14 @@ tukey_outlier_fun(dv, tukey_crit = 3)
 \item{tukey_crit}{factor of the IQR that defines an outlier.}
 }
 \value{
-A list of vectors.
+A list of vectors:
+\itemize{
+\item \code{trialsInSet} = total number of trials in the data set
+\item \code{IQR} = inter quantile range
+\item \code{Quant25} = 25\% quantile
+\item \code{Quant75} = 75\% quantile
+\item \code{outlierTukeyLow} = indicates if dv for a given trial is lower than the tukey criterion (1) or not (0)
+}
 }
 \description{
 Detect outliers according to a Tukey criterion.
