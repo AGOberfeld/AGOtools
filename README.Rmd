@@ -59,7 +59,7 @@ devtools::install_github("danilinares/quickpsy")
 
 ### set_options
 
-Sets matplotlib color palette as ggplot options and loads several usefule packages (`tidyverse`, `pracma`, `extrafont`).
+Sets ggplot color options to matplotlib color palette and loads several useful packages (`tidyverse`, `pracma`, `extrafont`).
 ```{r}
 set_options()
 ```
