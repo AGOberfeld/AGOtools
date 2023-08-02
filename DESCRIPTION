@@ -1,12 +1,12 @@
 Package: AGOtools
-Title: Useful tools for the analysis of data from behavioral experiments and other empirical data, maintained by the work group of Prof. Dr. Daniel Oberfeld-Twistel (https://www.staff.uni-mainz.de/oberfeld/) at Johannes Gutenberg-Universitaet Mainz.
+Title: Useful tools for the analysis of data from behavioral experiments and other empirical data (plot themes for publication-ready plots using R's ggplot, outlier detection using a Tukey criterion, helper function for fitting psychometric functions with the R package quickpsy etc.).
 Version: 0.0.0.9000
 Authors@R: 
     person("Daniel", "Oberfeld-Twistel", , "oberfeld@uni-mainz.de", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6710-3309"))
     person("Simon", "Schaefer", , "ssimonbe@students.uni-mainz.de", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Provides useful tools for the analysis of empirical data (plot themes for publication-ready plots using R's ggplot, outlier detection using a Tukey criterion, helper function for fitting psychometric functions with the R package quickpsy etc.). It is maintained by the work group of Prof. Dr. Daniel Oberfeld-Twistel at Johannes Gutenberg-Universitaet Mainz.
+Description: Provides useful tools for the analysis of empirical data. Maintained by the work group of Prof. Dr. Daniel Oberfeld-Twistel at Johannes Gutenberg-Universitaet Mainz (https://www.staff.uni-mainz.de/oberfeld/).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
