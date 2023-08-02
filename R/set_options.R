@@ -1,8 +1,8 @@
 #' set_options
 #'
-#' Sets color palette options to matplotlib tab20 palette (default), sets global variables and loads some defauilt packages
+#' Sets color palette options to the Matplotlib tab20 palette (default), sets global variables
 #' @param colors choose default color palette values. Matplotlib colors are chosen by default.
-#' @importFrom ggplot2 scale_color_discrete
+#' @importFrom ggplot2 scale_color_discrete scale_shape_manual
 #' @import knitr
 #'
 #' @return void
@@ -33,10 +33,10 @@ set_options <- function(colors = c( '#1f77b4',
                                          '#9edae5')){
 
   #load default packages
-  require(tidyverse)
+  # require(tidyverse)
   # require(ggthemes)
-  require(extrafont)
-  require(pracma)
+  # require(extrafont)
+  # require(pracma)
   # require(rlang)
   # require(colorspace)
   # require(scales)
@@ -53,12 +53,12 @@ set_options <- function(colors = c( '#1f77b4',
   .GlobalEnv$ggplotColorPaletteDefault <- ggplot2::scale_color_discrete()$palette
   .GlobalEnv$ggplotColorsDefault <- ggplotColorPaletteDefault(10)
 
-  #define default shape scale
-  scale_shape_discrete <- function(...) {scale_shape_manual(values = c(15, 1, 17, 5))}
+  # #define default shape scale
+  # scale_shape_discrete <- function(...) {scale_shape_manual(values = c(15, 1, 17, 5))}
 
   #require(knitr)
   knitr::opts_chunk$set(echo = FALSE,comment = '', fig.width = 6, fig.height = 6,dpi=300)
-  #bla
+  #set some options for output
   options(digits=5)
   options(download.file.method="libcurl")
   options(scipen = 999) #avoid scientific notation

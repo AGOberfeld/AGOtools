@@ -17,7 +17,7 @@ set_options(
 void
 }
 \description{
-Sets color palette options to matplotlib tab20 palette (default), sets global variables and loads some defauilt packages
+Sets color palette options to the Matplotlib tab20 palette (default), sets global variables
 }
 \examples{
 set_options()
