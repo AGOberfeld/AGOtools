@@ -1,5 +1,5 @@
 Package: AGOtools
-Title: Useful tools for useful tools for the analysis of data from behavioral experiments and other empirical data, maintained by the work group of Prof. Dr. Daniel Oberfeld-Twistel (https://www.staff.uni-mainz.de/oberfeld/) at Johannes
+Title: Useful tools for the analysis of data from behavioral experiments and other empirical data, maintained by the work group of Prof. Dr. Daniel Oberfeld-Twistel (https://www.staff.uni-mainz.de/oberfeld/) at Johannes GutenenBeg-Universitaet Mainz.
 Version: 0.0.0.9000
 Authors@R: 
     person("Daniel", "Oberfeld-Twistel", , "oberfeld@uni-mainz.de", role = c("aut", "cre"),
