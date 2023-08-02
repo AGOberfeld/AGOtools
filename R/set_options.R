@@ -3,7 +3,7 @@
 #' Sets color palette options to the Matplotlib tab20 palette (default), sets global variables
 #' @param colors choose default color palette values. Matplotlib colors are chosen by default.
 #' @importFrom ggplot2 scale_color_discrete scale_shape_manual
-#' @import knitr tidyverse pracma rlang
+#' @import knitr
 #'
 #' @return void
 #' @export
@@ -33,11 +33,11 @@ set_options <- function(colors = c( '#1f77b4',
                                          '#9edae5')){
 
   #load default packages
-  # require(tidyverse)
+  require(tidyverse)
+  require(pracma)
+  require(rlang)
   # require(ggthemes)
   # require(extrafont)
-  # require(pracma)
-  # require(rlang)
   # require(colorspace)
   # require(scales)
 
