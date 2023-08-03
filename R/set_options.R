@@ -36,8 +36,8 @@ set_options <- function(colors = c( '#1f77b4',
   require(tidyverse)
   require(pracma)
   require(rlang)
+  require(extrafont)
   # require(ggthemes)
-  # require(extrafont)
   # require(colorspace)
   # require(scales)
 
