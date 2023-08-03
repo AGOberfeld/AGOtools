@@ -10,14 +10,11 @@
 #'
 #' @return data.frame containing nested data
 #' @export
-#'
-#' @examples
-#' iris %>%
-#'   nestByAddGroupKey("Species")
-#'
 #' @importFrom tidyr unite all_of nest
 #' @importFrom dplyr %>% group_by across
-#' @import magrittr
+#' @examples
+#' iris %>% nestByAddGroupKey("Species")
+#'
 #'
 nestByAddGroupKey <- function(dataframe,groupVars){
 
