@@ -16,7 +16,7 @@
 #'   nestByAddGroupKey("Species")
 #'
 #' @importFrom tidyr unite all_of nest
-#' @importFrom dplyr "%>%" group_by across
+#' @importFrom dplyr %>% group_by across
 #' @import magrittr
 #'
 nestByAddGroupKey <- function(dataframe,groupVars){
