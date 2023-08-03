@@ -6,10 +6,11 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-AGOtools is an R package providing some useful tools for the
-experimental research on Time-To-Collision (TTC) estimation in traffic
-contexts. It is built by the Arbeitsgruppe Oberfeld from Johannes
-Gutenberg-Universität Mainz, Germany.
+AGOtools is an R package providing some useful tools for the analysis of
+empirical data (plot themes for publication-ready plots using R’s
+ggplot, outlier detection using a Tukey criterion, helper functions for
+fitting psychometric functions with the R package quickpsy
+(<https://github.com/danilinares/quickpsy>) etc.).
 
 ## Project Status
 
@@ -23,8 +24,8 @@ Install AGOtools with:
 
 ## Dependencies
 
-Before using AGOtools, make sure the right Quickpsy-version (dev-version
-from github) is installed:
+Before using AGOtools, make sure the right Quickpsy-version (dev-verion
+from Github, <https://github.com/danilinares/quickpsy>) is installed:
 
     devtools::install_github("danilinares/quickpsy")
 
@@ -41,29 +42,39 @@ quickpsy before installing it again from github.
 
 ### set_options
 
-Sets ggplot color options to matplotlib color palette and loads several
-useful packages (`tidyverse`, `pracma`, `extrafont`).
+Sets the color palette of ggplots to default values. By default the
+matplotlib colors are chosen. Also sets the number format for the R
+output and loads some default packages (`tidyverse`, `pracma`,
+`extrafont`).
 
 ``` r
 set_options()
-#> Lade nötiges Paket: extrafont
-#> Registering fonts with R
 #> Lade nötiges Paket: pracma
 #> 
 #> Attache Paket: 'pracma'
 #> Das folgende Objekt ist maskiert 'package:purrr':
 #> 
 #>     cross
+#> Lade nötiges Paket: rlang
+#> 
+#> Attache Paket: 'rlang'
+#> Die folgenden Objekte sind maskiert von 'package:purrr':
+#> 
+#>     %@%, flatten, flatten_chr, flatten_dbl, flatten_int, flatten_lgl,
+#>     flatten_raw, invoke, splice
+#> Lade nötiges Paket: extrafont
+#> Registering fonts with R
 ```
 
 ### tukey
 
-Adds variables to a given dataset (data) which indicate if
-oberservations on a specified variable (dv) are outliers according to
-the tukey criterion.
-
-The argument tukey_crit can be used to modify the factor of the inter
-quantile range (default = 3).
+Adds variables to an input dataset (data) which indicate if observations
+on a specified variable (dv) are outliers according to a “nonparametric”
+criterion proposed by John Tukey. Values of variable dv more than
+k`*`IQR (interquartile range) below the first quartile (25% quantile) or
+more than k`*`IQR above the third quartile (75% quantile) are flagged as
+outliers. The argument tukey_crit can be used to modify the factor k
+(default = 3).
 
 Identify outliers without excluding them:
 
@@ -138,15 +149,23 @@ the higher criterion (1) or is within both criteria (0)
 
 ### tidyQuickPsy
 
-Takes a quickpsy-object and turns it into a tibble.
+This function is used to facilitate the analysis of psychometric
+functions fitted with quickpsy
+(<https://github.com/danilinares/quickpsy>).
+
+Takes a quickpsy-object and turns it as a tibble.
 
 Use the following arguments in the quickpsy function:  
 `d` = data  
 `x` = Name of the explanatory variable (e.g. TTC)  
-`k` = Name of the response variable.  
-`n` = number of trials  
-`grouping` = concatinated vector of the variables that define the
-experimental conditions + partipiant code variable
+`k` = Name of the variable containing the number of “positive” decisions
+per group (= unique combination of the grouping variables) `n` = Name of
+the variable containing the number of trials per group (= unique
+combination of the grouping variables) `grouping` = concatinated vector
+of the variables that define the groups of trials (i.e., rows in the
+input dataset) to which separate psychometric functions are fit (e.g., a
+vector containing the participant code variable and the variables
+defining separate experimental conditions)
 
     # A tibble: 6 × 20
     # Groups:   vp_code, modality, v0, a, label, gain [6]
@@ -192,7 +211,7 @@ psychometric functions for each person separately.
 
 ### plotThemeAGO
 
-Plot theme for classic TTC plots.
+Plot theme for publication-ready data plots.
 
     `summarise()` has grouped output by 'Participantnr', 'TTC', 'TTC_as_factor', 'Velocity', 'Condition_text', 'loudnessVariation'. You can override using the `.groups` argument.
     `summarise()` has grouped output by 'TTC', 'TTC_as_factor', 'Velocity', 'GaindB', 'loudnessVariation'. You can override using the `.groups` argument.
