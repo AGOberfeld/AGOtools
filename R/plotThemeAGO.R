@@ -12,7 +12,7 @@
 #' @import extrafont
 #' @importFrom ggthemes theme_foundation
 #'
-plotThemeAGO <- function(base_size=14, base_family="Arial Unicode MS") {
+plotThemeAGO <- function(base_size=12, base_family="Arial Unicode MS") {
 
   list(ggthemes::theme_foundation(base_size=base_size, base_family=base_family)
     + theme(plot.title = element_text(face = "bold",
@@ -26,7 +26,7 @@ plotThemeAGO <- function(base_size=14, base_family="Arial Unicode MS") {
             panel.grid.minor = element_blank(),
             panel.spacing    = unit(0, "mm"),
             panel.border = element_rect(colour = "black", fill = NA),
-            plot.margin=unit(c(10,5,5,5),"mm"),
+            plot.margin=unit(c(5,5,5,5),"mm"), #margin(t = 0, r = 0, b = 0, l = 0, unit = "pt")
             axis.title = element_text(face = "bold",size = rel(0.8)),
             axis.title.y = element_text(angle=90,vjust =2),
             axis.title.x = element_text(vjust = -0.2),
@@ -37,7 +37,7 @@ plotThemeAGO <- function(base_size=14, base_family="Arial Unicode MS") {
             legend.position = "bottom",
             legend.direction = "horizontal",
             legend.key.size= unit(0.21, "cm"),
-            legend.margin=margin(t = 1, r = 1, b = 0, l = 0, unit = "cm"),
+            legend.margin=margin(t = 3, r = 3, b = 0, l = 0, unit = "mm"),
             legend.title = element_text(face="italic",size=rel(0.8)),
             strip.background = element_blank(),
             strip.text = element_text(face="bold")),
