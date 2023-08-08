@@ -158,29 +158,64 @@ plotQuickPsy(qp_tidy)$plot_list[[1]]
 
 ```
 
-<!-- If the hessian matrix for one participant is not solvable, quickpsy breaks. To prevent this, use `safe_quickpsy`: -->
+If the hessian matrix for one participant is not solvable, use this workaround to loop through all participant-condition combinations:
 
-<!-- ```{r} -->
-<!-- qp_list <- safe_quickpsy(data = streetcrossing, -->
-<!--               part_id = vp_code, -->
-<!--               x = track_TTC, -->
-<!--               k = nCross, -->
-<!--               n = nTrials, -->
-<!--               grouping = c("vp_code","modality","v0","a","label","gain")) -->
+```{r, results='hide'}
+# load data
+data <- streetcrossing
 
-<!-- # tidy data and combine data sets from each participant: -->
-<!-- tidy_qp_list <- map(qp_list,tidyQuickPsy) -->
+# split by conditions and participant ID
+data_list <- data %>% 
+  group_split(vp_code,modality,v0,a,label,gain)
 
-<!-- map(tidy_qp_list,function(.x){return(.x$tidy_fit)}) %>% -->
-<!--   bind_rows() %>% -->
-<!--   head() -->
+qp_list <- list()
+df_list <- list()
 
-<!-- # only participant nr 1: -->
-<!-- plot_list <- map(tidy_qp_list[1], plotQuickPsy) -->
+# safe quickpsy execution
+for(i in seq_along(data_list)){
+  qp_list[[i]] <- tryCatch(tidyQuickPsy(quickpsy(d = data_list[[i]],
+                           x = track_TTC,
+                           k = nCross,
+                           n = nTrials,
+                           grouping = c("vp_code","modality","v0","a","label","gain"),
+                           bootstrap = 'none')),
+                           
+                           warning = function(w){print(w)},
+                           
+                           error = function(e){e},
+                           
+                           finally = "finished")
+  
+  # tidy dfs
+  df_list[[i]] <- qp_list[[i]]$tidy_fit
+  
+  status_message <- paste(round(i/length(data_list),4)*100,"% completed")
+  print(status_message)
+  if(rlang::is_error(qp_list[[i]])){
+    print(paste("Error in data_list-element Nr.",i))
+  }
+}
 
-<!-- # show only first plot: -->
-<!-- plot_list$vp0001$plot_list[1] -->
-<!-- ``` -->
+# Filter List for errors
+qp_list_clean <- qp_list[!sapply(qp_list, rlang::is_error)]
+df_list_clean <- df_list[!sapply(df_list, rlang::is_error)]
+
+# row bind data frame
+
+df <- df_list_clean %>% 
+  bind_rows()
+
+# plot list
+
+plot_list <- list()
+
+for(i in seq_along(qp_list_clean)){
+  plot_list[[i]] <- plotQuickPsy(qp_list_clean[[i]])$plot_list[[1]]
+
+  status_message <- paste(round(i/length(qp_list_clean),2)*100,"% completed")
+  print(status_message)
+}
+```
 ### plotThemeAGO
 
 Plot theme for publication-ready data plots.

@@ -188,26 +188,10 @@ object.
 Takes an object produced by tidyQuickPsy and plots the resulting
 psychometric functions for each person separately.
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="80%" />
 
-<!-- If the hessian matrix for one participant is not solvable, quickpsy breaks. To prevent this, use `safe_quickpsy`: -->
-<!-- ```{r} -->
-<!-- qp_list <- safe_quickpsy(data = streetcrossing, -->
-<!--               part_id = vp_code, -->
-<!--               x = track_TTC, -->
-<!--               k = nCross, -->
-<!--               n = nTrials, -->
-<!--               grouping = c("vp_code","modality","v0","a","label","gain")) -->
-<!-- # tidy data and combine data sets from each participant: -->
-<!-- tidy_qp_list <- map(qp_list,tidyQuickPsy) -->
-<!-- map(tidy_qp_list,function(.x){return(.x$tidy_fit)}) %>% -->
-<!--   bind_rows() %>% -->
-<!--   head() -->
-<!-- # only participant nr 1: -->
-<!-- plot_list <- map(tidy_qp_list[1], plotQuickPsy) -->
-<!-- # show only first plot: -->
-<!-- plot_list$vp0001$plot_list[1] -->
-<!-- ``` -->
+If the hessian matrix for one participant is not solvable, use this
+workaround to loop through all participant-condition combinations:
 
 ### plotThemeAGO
 
@@ -216,7 +200,7 @@ Plot theme for publication-ready data plots.
     `summarise()` has grouped output by 'Participantnr', 'TTC', 'TTC_as_factor', 'Velocity', 'Condition_text', 'loudnessVariation'. You can override using the `.groups` argument.
     `summarise()` has grouped output by 'TTC', 'TTC_as_factor', 'Velocity', 'GaindB', 'loudnessVariation'. You can override using the `.groups` argument.
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="80%" />
 
 ### Data sets
 
