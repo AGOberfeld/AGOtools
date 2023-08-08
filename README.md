@@ -193,6 +193,63 @@ psychometric functions for each person separately.
 If the hessian matrix for one participant is not solvable, use this
 workaround to loop through all participant-condition combinations:
 
+``` r
+# load data
+data <- streetcrossing
+
+# split by conditions and participant ID
+data_list <- data %>% 
+  group_split(vp_code,modality,v0,a,label,gain)
+
+qp_list <- list()
+df_list <- list()
+
+# safe quickpsy execution
+for(i in seq_along(data_list)){
+  qp_list[[i]] <- tryCatch(tidyQuickPsy(quickpsy(d = data_list[[i]],
+                           x = track_TTC,
+                           k = nCross,
+                           n = nTrials,
+                           grouping = c("vp_code","modality","v0","a","label","gain"),
+                           bootstrap = 'none')),
+                           
+                           warning = function(w){print(w)},
+                           
+                           error = function(e){e},
+                           
+                           finally = "finished")
+  
+  # tidy dfs
+  df_list[[i]] <- qp_list[[i]]$tidy_fit
+  
+  status_message <- paste(round(i/length(data_list),4)*100,"% completed")
+  print(status_message)
+  if(rlang::is_error(qp_list[[i]])){
+    print(paste("Error in data_list-element Nr.",i))
+  }
+}
+
+# Filter List for errors
+qp_list_clean <- qp_list[!sapply(qp_list, rlang::is_error)]
+df_list_clean <- df_list[!sapply(df_list, rlang::is_error)]
+
+# row bind data frame
+
+df <- df_list_clean %>% 
+  bind_rows()
+
+# plot list
+
+plot_list <- list()
+
+for(i in seq_along(qp_list_clean)){
+  plot_list[[i]] <- plotQuickPsy(qp_list_clean[[i]])$plot_list[[1]]
+
+  status_message <- paste(round(i/length(qp_list_clean),2)*100,"% completed")
+  print(status_message)
+}
+```
+
 ### plotThemeAGO
 
 Plot theme for publication-ready data plots.

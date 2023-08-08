@@ -160,7 +160,7 @@ plotQuickPsy(qp_tidy)$plot_list[[1]]
 
 If the hessian matrix for one participant is not solvable, use this workaround to loop through all participant-condition combinations:
 
-```{r, results='hide'}
+```{r, eval=FALSE}
 # load data
 data <- streetcrossing
 
