@@ -5,6 +5,15 @@
 #' @param tukey_crit factor of the IQR that defines an outlier.
 #' @param exclude logical indicating if outliers should be excluded (default = FALSE).
 #' @return data frame including new variables concerning tukey outlier analysis.
+#' @return `trialsInSet` = total number of trials in the data set
+#' @return `IQR` = inter quantile range
+#' @return `Quant25` = 25% quantile
+#' @return `Quant75` = 75% quantile
+#' @return `outlierTukeyLow` = indicates if dv for a given trial is lower than the tukey criterion (1) or not (0)
+#' @return `outlierTukeyHigh` = indicates if dv for a given trial is higher than the tukey criterion (1) or not (0)
+#' @return `outlierTukey` = indicates if dv for a given trial exceeds the lower or the higher criterion (1) or is within both criteria (0)
+#' @return `Tukey_lower_limit` = highest value above which values are excluded
+#' @return `Tukey_upper_limit` = lowest value below which values are excluded
 #' @export
 #'
 #' @examples

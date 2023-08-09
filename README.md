@@ -162,7 +162,9 @@ tukey criterion (1) or not (0)
 `outlierTukeyHigh` = indicates if dv for a given trial is higher than
 the tukey criterion (1) or not (0)  
 `outlierTukey` = indicates if dv for a given trial exceeds the lower or
-the higher criterion (1) or is within both criteria (0)
+the higher criterion (1) or is within both criteria (0)  
+`Tukey_lower_limit` = highest value above which values are excluded  
+`Tukey_upper_limit` = lowest value below which values are excluded
 
 ### tidyQuickPsy
 

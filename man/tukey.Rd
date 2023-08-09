@@ -17,6 +17,24 @@ tukey(data, dv, tukey_crit = 3, exclude = F)
 }
 \value{
 data frame including new variables concerning tukey outlier analysis.
+
+\code{trialsInSet} = total number of trials in the data set
+
+\code{IQR} = inter quantile range
+
+\code{Quant25} = 25\% quantile
+
+\code{Quant75} = 75\% quantile
+
+\code{outlierTukeyLow} = indicates if dv for a given trial is lower than the tukey criterion (1) or not (0)
+
+\code{outlierTukeyHigh} = indicates if dv for a given trial is higher than the tukey criterion (1) or not (0)
+
+\code{outlierTukey} = indicates if dv for a given trial exceeds the lower or the higher criterion (1) or is within both criteria (0)
+
+\code{Tukey_lower_limit} = highest value above which values are excluded
+
+\code{Tukey_upper_limit} = lowest value below which values are excluded
 }
 \description{
 Detect outlier according to the tukey criterion.

@@ -61,7 +61,7 @@ devtools::install_github("danilinares/quickpsy")
 
 Sets the color palette of ggplots to default values. By default the matplotlib colors are chosen. Also sets the number format for the R output and loads some default packages (`tidyverse`, `pracma`, `extrafont`).
 
-```{r}
+```{r, echo =TRUE}
 set_options()
 ```
 
@@ -72,7 +72,7 @@ Adds variables to an input dataset (data) which indicate if observations on a sp
 The argument tukey_crit can be used to modify the factor k (default = 3).
 
 Identify outliers without excluding them:
-```{r}
+```{r, echo =TRUE}
 tukey(data = loudness_block, 
       dv = Estimated_TTC, 
       tukey_crit=3, 
@@ -80,14 +80,14 @@ tukey(data = loudness_block,
 ```
 
 Identify outliers and exclude them:
-```{r}
+```{r, echo =TRUE}
 loudness_block %>%
 	tukey(Estimated_TTC, 
 	      exclude = TRUE)
 ```
 
 Outlier exclusion groupwise:
-```{r}
+```{r, echo =TRUE}
 loudness_block %>% 
   group_by(Condition, Car_label, GaindB,loudnessVariation) %>% 
   tukey(Estimated_TTC, 
@@ -119,7 +119,7 @@ Use the following arguments in the quickpsy function:
 `grouping` = concatinated vector of the variables that define the groups of trials (i.e., rows in the input dataset) to which separate psychometric functions are fit (e.g., a vector containing the participant code variable and the variables defining separate experimental conditions) 
 
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo =TRUE}
 data <- streetcrossing %>% 
   filter(vp_code == "vp0001")
 
@@ -151,7 +151,7 @@ tidyQuickPsy returns a list with two elements:
 
 Takes an object produced by tidyQuickPsy and plots the resulting psychometric functions for each person separately.
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo =TRUE}
 qp_tidy <- tidyQuickPsy(qp)
 
 plotQuickPsy(qp_tidy)$plot_list[[1]]
@@ -220,7 +220,7 @@ for(i in seq_along(qp_list_clean)){
 
 Plot theme for publication-ready data plots.
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo =TRUE}
 dat_clean <- loudness_block %>%
   tukey(Estimated_TTC, 
         exclude = T) %>% 
@@ -279,7 +279,7 @@ dat_clean %>%
 ### Data sets
 
 
-```{r}
+```{r, echo =TRUE}
 data("loudness_block")
 head(loudness_block)
 

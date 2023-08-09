@@ -12,7 +12,7 @@
 #' @import extrafont
 #' @importFrom ggthemes theme_foundation
 #'
-plotThemeAGO <- function(base_size=12, base_family="Arial Unicode MS") {
+plotThemeAGO <- function(base_size=12, base_family="Arial") {
 
   list(ggthemes::theme_foundation(base_size=base_size, base_family=base_family)
     + theme(plot.title = element_text(face = "bold",
