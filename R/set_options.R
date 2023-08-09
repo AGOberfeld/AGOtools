@@ -65,7 +65,7 @@ set_options <- function(colors = c( '#1f77b4',
   options(width = 250) # extend the width of the output
 
   # set geom options
-  update_geom_defaults("line", aes(linewidth = 2))
-  update_geom_defaults("point", aes(size = 5)) # for unicode: 9
-  update_geom_defaults("errorbar", aes(linewidth = 1, width = 0.3))
+  # update_geom_defaults("line", aes(linewidth = 2))
+  # update_geom_defaults("point", aes(size = 5)) # for unicode: 9
+  # update_geom_defaults("errorbar", aes(linewidth = 1, width = 0.3))
 }
