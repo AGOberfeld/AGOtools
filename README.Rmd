@@ -73,24 +73,24 @@ The argument tukey_crit can be used to modify the factor k (default = 3).
 
 Identify outliers without excluding them:
 ```{r, echo =TRUE}
-tukey(data = loudness_block, 
-      dv = Estimated_TTC, 
+tukey(data = tukey_data , 
+      dv = x, 
       tukey_crit=3, 
       exclude = FALSE)
 ```
 
 Identify outliers and exclude them:
 ```{r, echo =TRUE}
-loudness_block %>%
-	tukey(Estimated_TTC, 
+tukey_data  %>%
+	tukey(x, 
 	      exclude = TRUE)
 ```
 
 Outlier exclusion groupwise:
 ```{r, echo =TRUE}
-loudness_block %>% 
-  group_by(Condition, Car_label, GaindB,loudnessVariation) %>% 
-  tukey(Estimated_TTC, 
+tukey_data  %>% 
+  group_by(group_chr) %>% 
+  tukey(x, 
 	      exclude = TRUE)
 ```
  
