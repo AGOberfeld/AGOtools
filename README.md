@@ -84,41 +84,51 @@ tukey(data = tukey_data ,
       dv = x, 
       tukey_crit=3, 
       exclude = FALSE)
-# A tibble: 3,000 × 12
-   group group_chr      x x_trialsInSet x_IQR x_Quant25 x_Quant75 x_Tukey_lower_limit x_Tukey_upper_limit x_outlierTukeyLow x_outlierTukeyHigh x_outlierTukey
-   <dbl> <chr>      <dbl>         <int> <dbl>     <dbl>     <dbl>               <dbl>               <dbl>             <dbl>              <dbl>          <dbl>
- 1     1 A          0.810          3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 2     1 A         -0.813          3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 3     1 A         -0.393          3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 4     1 A          0.895          3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 5     1 A          1.73           3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 6     1 A          0.593          3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 7     1 A          0.846          3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 8     1 A          2.35           3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 9     1 A          0.871          3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
-10     1 A          1.16           3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
-# ℹ 2,990 more rows
+# A tibble: 3,010 × 11
+   group      x x_trialsInSet x_IQR x_Quant25 x_Quant75 x_Tukey_lower_limit x_Tukey_upper_limit x_outlierTukeyLow x_outlierTukeyHigh x_outlierTukey
+   <chr>  <dbl>         <int> <dbl>     <dbl>     <dbl>               <dbl>               <dbl>             <dbl>              <dbl>          <dbl>
+ 1 A      0.810          3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 2 A     -0.813          3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 3 A     -0.393          3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 4 A      0.895          3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 5 A      1.73           3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 6 A      0.593          3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 7 A      0.846          3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 8 A      2.35           3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 9 A      0.871          3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+10 A      1.16           3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+# ℹ 3,000 more rows
+
+tukey_data  %>% 
+  tukey(x, exclude = FALSE) %>%
+  ggplot(aes(y = x,x = ""))+
+  geom_boxplot(width=0.3,
+               outlier.shape = NA)+
+  geom_jitter(aes(color = factor(x_outlierTukey)), 
+              position = position_jitter(0.15), 
+              alpha = 0.4)
 ```
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="80%" />
 
 Identify outliers and exclude them:
 
 ``` r
 tukey_data  %>%
-    tukey(x, 
-          exclude = TRUE)
-# A tibble: 3,000 × 12
-   group group_chr      x x_trialsInSet x_IQR x_Quant25 x_Quant75 x_Tukey_lower_limit x_Tukey_upper_limit x_outlierTukeyLow x_outlierTukeyHigh x_outlierTukey
-   <dbl> <chr>      <dbl>         <int> <dbl>     <dbl>     <dbl>               <dbl>               <dbl>             <dbl>              <dbl>          <dbl>
- 1     1 A          0.810          3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 2     1 A         -0.813          3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 3     1 A         -0.393          3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 4     1 A          0.895          3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 5     1 A          1.73           3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 6     1 A          0.593          3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 7     1 A          0.846          3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 8     1 A          2.35           3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
- 9     1 A          0.871          3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
-10     1 A          1.16           3000  38.7      1.69      40.3               -114.                156.                 0                  0              0
+    tukey(x, exclude = TRUE)
+# A tibble: 3,000 × 11
+   group      x x_trialsInSet x_IQR x_Quant25 x_Quant75 x_Tukey_lower_limit x_Tukey_upper_limit x_outlierTukeyLow x_outlierTukeyHigh x_outlierTukey
+   <chr>  <dbl>         <int> <dbl>     <dbl>     <dbl>               <dbl>               <dbl>             <dbl>              <dbl>          <dbl>
+ 1 A      0.810          3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 2 A     -0.813          3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 3 A     -0.393          3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 4 A      0.895          3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 5 A      1.73           3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 6 A      0.593          3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 7 A      0.846          3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 8 A      2.35           3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+ 9 A      0.871          3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
+10 A      1.16           3010  38.7      1.68      40.3               -114.                156.                 0                  0              0
 # ℹ 2,990 more rows
 ```
 
@@ -126,25 +136,35 @@ Outlier exclusion groupwise:
 
 ``` r
 tukey_data  %>% 
-  group_by(group_chr) %>% 
+  group_by(group) %>% 
+  tukey(x)
+# A tibble: 3,010 × 11
+# Groups:   group [5]
+   group      x x_trialsInSet x_IQR x_Quant25 x_Quant75 x_Tukey_lower_limit x_Tukey_upper_limit x_outlierTukeyLow x_outlierTukeyHigh x_outlierTukey
+   <chr>  <dbl>         <int> <dbl>     <dbl>     <dbl>               <dbl>               <dbl>             <dbl>              <dbl>          <dbl>
+ 1 A      0.810          1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
+ 2 A     -0.813          1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
+ 3 A     -0.393          1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
+ 4 A      0.895          1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
+ 5 A      1.73           1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
+ 6 A      0.593          1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
+ 7 A      0.846          1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
+ 8 A      2.35           1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
+ 9 A      0.871          1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
+10 A      1.16           1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
+# ℹ 3,000 more rows
+
+tukey_data  %>% 
+  filter(group %in% c("A","B","C")) %>% 
+  group_by(group) %>% 
   tukey(x, 
-          exclude = TRUE)
-# A tibble: 2,975 × 12
-# Groups:   group_chr [2]
-   group group_chr      x x_trialsInSet x_IQR x_Quant25 x_Quant75 x_Tukey_lower_limit x_Tukey_upper_limit x_outlierTukeyLow x_outlierTukeyHigh x_outlierTukey
-   <dbl> <chr>      <dbl>         <int> <dbl>     <dbl>     <dbl>               <dbl>               <dbl>             <dbl>              <dbl>          <dbl>
- 1     1 A          0.810          1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
- 2     1 A         -0.813          1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
- 3     1 A         -0.393          1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
- 4     1 A          0.895          1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
- 5     1 A          1.73           1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
- 6     1 A          0.593          1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
- 7     1 A          0.846          1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
- 8     1 A          2.35           1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
- 9     1 A          0.871          1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
-10     1 A          1.16           1000  1.44     0.275      1.71               -4.04                6.03                 0                  0              0
-# ℹ 2,965 more rows
+          exclude = FALSE) %>%
+  ggplot()+
+  geom_jitter(aes(x = group, y = x, color = factor(x_outlierTukey)), alpha = 0.4, position = position_jitter(0.25))+
+  plotThemeAGO()
 ```
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="80%" />
 
 Returns a list of variables and adds them to the initial data set:
 

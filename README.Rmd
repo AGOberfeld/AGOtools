@@ -77,22 +77,40 @@ tukey(data = tukey_data ,
       dv = x, 
       tukey_crit=3, 
       exclude = FALSE)
+
+tukey_data  %>% 
+  tukey(x, exclude = FALSE) %>%
+  ggplot(aes(y = x,x = ""))+
+  geom_boxplot(width=0.3,
+               outlier.shape = NA)+
+  geom_jitter(aes(color = factor(x_outlierTukey)), 
+              position = position_jitter(0.15), 
+              alpha = 0.4)
 ```
 
 Identify outliers and exclude them:
 ```{r, echo =TRUE}
 tukey_data  %>%
-	tukey(x, 
-	      exclude = TRUE)
+	tukey(x, exclude = TRUE)
 ```
 
 Outlier exclusion groupwise:
 ```{r, echo =TRUE}
 tukey_data  %>% 
-  group_by(group_chr) %>% 
+  group_by(group) %>% 
+  tukey(x)
+
+tukey_data  %>% 
+  filter(group %in% c("A","B","C")) %>% 
+  group_by(group) %>% 
   tukey(x, 
-	      exclude = TRUE)
+	      exclude = FALSE) %>%
+  ggplot()+
+  geom_jitter(aes(x = group, y = x, color = factor(x_outlierTukey)), alpha = 0.4, position = position_jitter(0.25))+
+  plotThemeAGO()
 ```
+
+
  
  
 
