@@ -21,7 +21,7 @@ and adds a string variable "groupKey" indicating the group vars combination
 to the "data" list object
 }
 \examples{
-iris \%>\% nestByAddGroupKey("Species")
+iris |> nestByAddGroupKey("Species")
 
 
 }

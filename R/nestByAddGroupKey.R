@@ -7,13 +7,14 @@
 #'
 #' @param dataframe dataframe to be nested
 #' @param groupVars grouping variable as character string
+#' @importFrom tidyr unite all_of nest
+#' @importFrom dplyr %>% group_by across
 #'
 #' @return data.frame containing nested data
 #' @export
-#' @importFrom tidyr unite all_of nest
-#' @importFrom dplyr %>% group_by across
+
 #' @examples
-#' iris %>% nestByAddGroupKey("Species")
+#' iris |> nestByAddGroupKey("Species")
 #'
 #'
 nestByAddGroupKey <- function(dataframe,groupVars){
