@@ -21,7 +21,7 @@ require(quickpsy)
 <!-- badges: start -->
 <!-- badges: end -->
 
-AGOtools is an R package providing some useful tools for the experimental research on Time-To-Collision (TTC) estimation in traffic contexts. It is built by the Arbeitsgruppe Oberfeld from Johannes Gutenberg-Universität Mainz, Germany. 
+AGOtools is an R package providing some useful tools for the analysis of empirical data (plot themes for publication-ready plots using R's ggplot, outlier detection using a Tukey criterion, helper functions for fitting psychometric functions with the R package quickpsy (https://github.com/danilinares/quickpsy) etc.).
 
 ## Project Status
 
@@ -37,7 +37,7 @@ devtools::install_github("AGOberfeld/AGOtools")
 
 ## Dependencies
 
-Before using AGOtools, make sure the right Quickpsy-version (dev-version from github) is installed:
+Before using AGOtools, make sure the right Quickpsy-version (dev-verion from Github, https://github.com/danilinares/quickpsy) is installed:
 
 ```
 devtools::install_github("danilinares/quickpsy")
@@ -59,21 +59,20 @@ devtools::install_github("danilinares/quickpsy")
 
 ### set_options
 
-Sets the color palette of ggplots to default values. By default the matplotlib colors are chosen.
+Sets the color palette of ggplots to default values. By default the matplotlib colors are chosen. Also sets the number format for the R output and loads some default packages (`tidyverse`, `pracma`, `extrafont`).
 
-```{r}
+```{r, echo =TRUE}
 set_options()
 ```
 
 
 ### tukey
 
-Adds variables to a given dataset (data) which indicate if oberservations on a specified variable (dv) are outliers according to the tukey criterion.
-
-The argument tukey_crit can be used to modify the factor of the inter quantile range (default = 3).
+Adds variables to an input dataset (data) which indicate if observations on a specified variable (dv) are outliers according to a "nonparametric"  criterion proposed by John Tukey. Values of variable dv more than k`*`IQR (interquartile range) below the first quartile (25% quantile) or more than k`*`IQR above the third quartile (75% quantile) are flagged as outliers.
+The argument tukey_crit can be used to modify the factor k (default = 3).
 
 Identify outliers without excluding them:
-```{r}
+```{r, echo =TRUE}
 tukey(data = loudness_block, 
       dv = Estimated_TTC, 
       tukey_crit=3, 
@@ -81,11 +80,21 @@ tukey(data = loudness_block,
 ```
 
 Identify outliers and exclude them:
-```{r}
+```{r, echo =TRUE}
 loudness_block %>%
 	tukey(Estimated_TTC, 
 	      exclude = TRUE)
 ```
+
+Outlier exclusion groupwise:
+```{r, echo =TRUE}
+loudness_block %>% 
+  group_by(Condition, Car_label, GaindB,loudnessVariation) %>% 
+  tukey(Estimated_TTC, 
+	      exclude = TRUE)
+```
+ 
+ 
 
 Returns a list of variables and adds them to the initial data set:
 
@@ -95,21 +104,26 @@ Returns a list of variables and adds them to the initial data set:
 `Quant75` = 75% quantile  
 `outlierTukeyLow` = indicates if dv for a given trial is lower than the tukey criterion (1) or not (0)  
 `outlierTukeyHigh` = indicates if dv for a given trial is higher than the tukey criterion (1) or not (0)   
-`outlierTukey` = indicates if dv for a given trial exceeds the lower or the higher criterion (1) or is within both criteria (0)
+`outlierTukey` = indicates if dv for a given trial exceeds the lower or the higher criterion (1) or is within both criteria (0)  
+`Tukey_lower_limit` = highest value above which values are excluded  
+`Tukey_upper_limit` = lowest value below which values are excluded  
+
 
 ### tidyQuickPsy
 
-Takes a quickpsy-object and turns it into a tibble.
+This function is used to facilitate the analysis of psychometric functions fitted with quickpsy (https://github.com/danilinares/quickpsy).
+
+Takes a quickpsy-object and turns it as a tibble.
 
 Use the following arguments in the quickpsy function:   
 `d` = data  
 `x` = Name of the explanatory variable (e.g. TTC)  
-`k` = Name of the response variable.  
-`n` = number of trials   
-`grouping` = concatinated vector of the variables that define the experimental conditions + partipiant code variable  
+`k` = Name of the variable containing the number of "positive" decisions per group (= unique combination of the grouping variables) 
+`n` = Name of the variable containing the number of trials per group (= unique combination of the grouping variables) 
+`grouping` = concatinated vector of the variables that define the groups of trials (i.e., rows in the input dataset) to which separate psychometric functions are fit (e.g., a vector containing the participant code variable and the variables defining separate experimental conditions) 
 
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo =TRUE}
 data <- streetcrossing %>% 
   filter(vp_code == "vp0001")
 
@@ -141,54 +155,86 @@ tidyQuickPsy returns a list with two elements:
 
 Takes an object produced by tidyQuickPsy and plots the resulting psychometric functions for each person separately.
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo =TRUE}
 qp_tidy <- tidyQuickPsy(qp)
 
 plotQuickPsy(qp_tidy)$plot_list[[1]]
 
 ```
 
-<!-- If the hessian matrix for one participant is not solvable, quickpsy breaks. To prevent this, use `safe_quickpsy`: -->
+If the hessian matrix for one participant is not solvable, use this workaround to loop through all participant-condition combinations:
 
-<!-- ```{r} -->
-<!-- qp_list <- safe_quickpsy(data = streetcrossing, -->
-<!--               part_id = vp_code, -->
-<!--               x = track_TTC, -->
-<!--               k = nCross, -->
-<!--               n = nTrials, -->
-<!--               grouping = c("vp_code","modality","v0","a","label","gain")) -->
+```{r, eval=FALSE, echo = TRUE}
+# load data
+data <- streetcrossing
 
-<!-- # tidy data and combine data sets from each participant: -->
-<!-- tidy_qp_list <- map(qp_list,tidyQuickPsy) -->
+# split by conditions and participant ID
+data_list <- data %>% 
+  group_split(vp_code,modality,v0,a,label,gain)
 
-<!-- map(tidy_qp_list,function(.x){return(.x$tidy_fit)}) %>%  -->
-<!--   bind_rows() %>%  -->
-<!--   head() -->
+qp_list <- list()
+df_list <- list()
 
-<!-- # only participant nr 1: -->
-<!-- plot_list <- map(tidy_qp_list[1], plotQuickPsy) -->
+# safe quickpsy execution
+for(i in seq_along(data_list)){
+  qp_list[[i]] <- tryCatch(tidyQuickPsy(quickpsy(d = data_list[[i]],
+                           x = track_TTC,
+                           k = nCross,
+                           n = nTrials,
+                           grouping = c("vp_code","modality","v0","a","label","gain"),
+                           bootstrap = 'none')),
+                           
+                           warning = function(w){print(w)},
+                           
+                           error = function(e){e},
+                           
+                           finally = "finished")
+  
+  # tidy dfs
+  df_list[[i]] <- qp_list[[i]]$tidy_fit
+  
+  status_message <- paste(round(i/length(data_list),4)*100,"% completed")
+  print(status_message)
+  if(rlang::is_error(qp_list[[i]])){
+    print(paste("Error in data_list-element Nr.",i))
+  }
+}
 
-<!-- # show only first plot: -->
-<!-- plot_list$vp0001$plot_list[1] -->
-<!-- ``` -->
+# Filter List for errors
+qp_list_clean <- qp_list[!sapply(qp_list, rlang::is_error)]
+df_list_clean <- df_list[!sapply(df_list, rlang::is_error)]
 
+# row bind data frame
+
+df <- df_list_clean %>% 
+  bind_rows()
+
+# plot list
+
+plot_list <- list()
+
+for(i in seq_along(qp_list_clean)){
+  plot_list[[i]] <- plotQuickPsy(qp_list_clean[[i]])$plot_list[[1]]
+
+  status_message <- paste(round(i/length(qp_list_clean),2)*100,"% completed")
+  print(status_message)
+}
+```
 ### plotThemeAGO
 
-Application of the plot theme using the iris data set.
+Plot theme for publication-ready data plots.
 
-```{r, warning=FALSE}
-
-ggplot(iris,aes(x=Petal.Length,Petal.Width,color= Species))+
+```{r, warning=FALSE, echo =TRUE}
+ggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = Species))+
   geom_point()+
   plotThemeAGO()
-
 ```
 
 
 ### Data sets
 
 
-```{r}
+```{r, echo =TRUE}
 data("loudness_block")
 head(loudness_block)
 
