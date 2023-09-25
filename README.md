@@ -56,6 +56,7 @@ set_options()
 #> 
 #>     cross
 #> Lade nötiges Paket: rlang
+#> Warning: Paket 'rlang' wurde unter R Version 4.2.3 erstellt
 #> 
 #> Attache Paket: 'rlang'
 #> Die folgenden Objekte sind maskiert von 'package:purrr':
@@ -168,14 +169,17 @@ tukey_data  %>%
 
 Returns a list of variables and adds them to the initial data set:
 
-`trialsInSet` = total number of trials in the data set  
-`IQR` = inter quantile range  
+`trialsInSet` = number of trials in the subset of trials for which the
+outlier detection is run  
+`IQR` = inter-quartile range  
 `Quant25` = 25% quantile  
 `Quant75` = 75% quantile  
-`outlierTukeyLow` = indicates if dv for a given trial is lower than the
-tukey criterion (1) or not (0)  
-`outlierTukeyHigh` = indicates if dv for a given trial is higher than
-the tukey criterion (1) or not (0)  
+`outlierTukeyLow` = indicates whether the value of dv on a given trial
+is lower than Tukey_lower_limit (25% quantile minus tukey_crit\* IQR)
+(1) or not (0)  
+`outlierTukeyHigh` = indicates whether the value of dv on a given trial
+is higher than Tukey_upper_limit (75% quantile plus tukey_crit\* IQR)
+(1) or not (0)  
 `outlierTukey` = indicates if dv for a given trial exceeds the lower or
 the higher criterion (1) or is within both criteria (0)  
 `Tukey_lower_limit` = highest value above which values are excluded  
@@ -195,7 +199,7 @@ Use the following arguments in the quickpsy function:
 `k` = Name of the variable containing the number of “positive” decisions
 per group (= unique combination of the grouping variables) `n` = Name of
 the variable containing the number of trials per group (= unique
-combination of the grouping variables) `grouping` = concatinated vector
+combination of the grouping variables) `grouping` = concatenated vector
 of the variables that define the groups of trials (i.e., rows in the
 input dataset) to which separate psychometric functions are fit (e.g., a
 vector containing the participant code variable and the variables
