@@ -5,19 +5,19 @@
 #' @param tukey_crit factor of the IQR that defines an outlier.
 #' @param exclude logical indicating if outliers should be excluded (default = FALSE).
 #' @return data frame including new variables concerning tukey outlier analysis.
-#' @return `trialsInSet` = total number of trials in the data set
-#' @return `IQR` = inter quantile range
+#' @return `trialsInSet` = number of trials in the subset of trials for which the outlier detection is run
+#' @return `IQR` = inter-quartile range
 #' @return `Quant25` = 25% quantile
 #' @return `Quant75` = 75% quantile
-#' @return `outlierTukeyLow` = indicates if dv for a given trial is lower than the tukey criterion (1) or not (0)
-#' @return `outlierTukeyHigh` = indicates if dv for a given trial is higher than the tukey criterion (1) or not (0)
+#' @return `outlierTukeyLow` = indicates whether the value of dv on a given trial is lower than Tukey_lower_limit (25% quantile minus tukey_crit* IQR)  (1) or not (0)
+#' @return `outlierTukeyHigh` = indicates whether the value of dv on a given trial is higher than Tukey_upper_limit (75% quantile plus tukey_crit* IQR)  (1) or not (0)
 #' @return `outlierTukey` = indicates if dv for a given trial exceeds the lower or the higher criterion (1) or is within both criteria (0)
 #' @return `Tukey_lower_limit` = highest value above which values are excluded
 #' @return `Tukey_upper_limit` = lowest value below which values are excluded
 #' @export
 #'
 #' @examples
-#' tukey(iris,Petal.Length)
+#' tukey(data=iris,dv=Petal.Length,tukey_crit=1.5)
 #'
 #' @importFrom dplyr group_by mutate filter group_vars
 #' @importFrom rlang enexpr as_string
