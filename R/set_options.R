@@ -42,7 +42,7 @@ set_options <- function(colors = c( '#1f77b4',
   require(rlang)
   require(extrafont)
   # install_github("infotroph/DeLuciatoR")
-  require(DeLuciatoR) # for saving plots with ggsav_fitmax
+  require(DeLuciatoR) # for saving plots with ggsave_fitmax
 
   # require(ggthemes)
   # require(colorspace)
@@ -71,12 +71,13 @@ set_options <- function(colors = c( '#1f77b4',
   options(scipen = 999) #avoid scientific notation
   options(width = 250) # extend the width of the output
 
-  # set deault linewidth (geom_line) and point size (geom_point)
+  # set default linewidth (geom_line) and point size (geom_point)
   update_geom_defaults("line", list(size = line_width))
   update_geom_defaults("point", list(size = point_size))
 
+  update_geom_defaults("errorbar", aes(linewidth = 1, width = 0.3))
   # set geom options
   # update_geom_defaults("line", aes(linewidth = 2))
   # update_geom_defaults("point", aes(size = 5)) # for unicode: 9
-  # update_geom_defaults("errorbar", aes(linewidth = 1, width = 0.3))
+
 }
