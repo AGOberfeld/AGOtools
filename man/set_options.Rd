@@ -7,11 +7,17 @@
 set_options(
   colors = c("#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a", "#d62728",
     "#ff9896", "#9467bd", "#c5b0d5", "#8c564b", "#c49c94", "#e377c2", "#f7b6d2",
-    "#7f7f7f", "#c7c7c7", "#bcbd22", "#dbdb8d", "#17becf", "#9edae5")
+    "#7f7f7f", "#c7c7c7", "#bcbd22", "#dbdb8d", "#17becf", "#9edae5"),
+  line_width = 1,
+  point_size = 1
 )
 }
 \arguments{
 \item{colors}{choose default color palette values. Matplotlib colors are chosen by default.}
+
+\item{line_width}{choose default line width for geom_line}
+
+\item{point_size}{choose default point size fpr geom_point}
 }
 \value{
 void

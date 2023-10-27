@@ -2,6 +2,8 @@
 #'
 #' Sets color palette options to the Matplotlib tab20 palette (default), sets global variables
 #' @param colors choose default color palette values. Matplotlib colors are chosen by default.
+#' @param line_width choose default line width for geom_line
+#' @param point_size choose default point size fpr geom_point
 #' @importFrom ggplot2 scale_color_discrete scale_shape_manual
 #' @import knitr
 #'
@@ -30,7 +32,9 @@ set_options <- function(colors = c( '#1f77b4',
                                          '#bcbd22',
                                          '#dbdb8d',
                                          '#17becf',
-                                         '#9edae5')){
+                                         '#9edae5'),
+                        line_width = 1,
+                        point_size = 1){
 
   #load default packages
   require(tidyverse)
@@ -66,6 +70,10 @@ set_options <- function(colors = c( '#1f77b4',
   options(download.file.method="libcurl")
   options(scipen = 999) #avoid scientific notation
   options(width = 250) # extend the width of the output
+
+  # set deault linewidth (geom_line) and point size (geom_point)
+  update_geom_defaults("line", list(size = line_width))
+  update_geom_defaults("point", list(size = point_size))
 
   # set geom options
   # update_geom_defaults("line", aes(linewidth = 2))
