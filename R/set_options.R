@@ -33,8 +33,8 @@ set_options <- function(colors = c( '#1f77b4',
                                          '#dbdb8d',
                                          '#17becf',
                                          '#9edae5'),
-                        line_width = 1,
-                        point_size = 1){
+                        line_width = rel(1),
+                        point_size = rel(2)){
 
   #load default packages
   require(tidyverse)
@@ -72,10 +72,10 @@ set_options <- function(colors = c( '#1f77b4',
   options(width = 250) # extend the width of the output
 
   # set default linewidth (geom_line) and point size (geom_point)
-  update_geom_defaults("line", list(size = line_width))
-  update_geom_defaults("point", list(size = point_size))
+  update_geom_defaults("line", aes(linewidth = line_width))
+  update_geom_defaults("point", aes(size = point_size))
 
-  update_geom_defaults("errorbar", aes(linewidth = 1, width = 0.3))
+  update_geom_defaults("errorbar", aes(linewidth = rel(0.5), width = rel(0.1)))
   # set geom options
   # update_geom_defaults("line", aes(linewidth = 2))
   # update_geom_defaults("point", aes(size = 5)) # for unicode: 9
