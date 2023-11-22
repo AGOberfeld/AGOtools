@@ -44,6 +44,8 @@ set_options <- function(colors = c( '#1f77b4',
   # install_github("infotroph/DeLuciatoR")
   require(DeLuciatoR) # for saving plots with ggsave_fitmax
 
+  Sys.setenv(LANG = "en")
+
   # require(ggthemes)
   # require(colorspace)
   # require(scales)
