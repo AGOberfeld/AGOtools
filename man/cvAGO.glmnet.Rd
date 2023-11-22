@@ -15,6 +15,7 @@ cvAGO.glmnet(
   nCVruns,
   idVarString,
   type.measure,
+  seedX = 4242,
   ...
 )
 }

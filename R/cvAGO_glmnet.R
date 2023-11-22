@@ -16,11 +16,11 @@
 #' @export
 #' @import glmnet groupdata2 tidyverse
 #' @examples To do
-cvAGO.glmnet<-function(dataset,X,Y,family,standardize=TRUE,alpha=1,nfolds,nCVruns,idVarString,type.measure,...)
+cvAGO.glmnet<-function(dataset,X,Y,family,standardize=TRUE,alpha=1,nfolds,nCVruns,idVarString,type.measure,seedX=4242,...)
 {
   #nCVruns: number of CV runs
   #idVarString: grouping (ID) var name (as string) for creating folds, set to NULL if none
-  seedX=4242
+
   set.seed(seedX)
   cvfitList = list()
   coefLassodfList= list()
