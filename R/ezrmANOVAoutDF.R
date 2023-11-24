@@ -2,7 +2,7 @@
 #'
 #' @param ezANOVAobj the input ezANOVA object
 #'
-#' @return rmANOVAout dataframe with relevnat statistics per effect
+#' @return rmANOVAout dataframe with relevant statistics per effect
 #' @export
 #' @import dplyr
 #'
