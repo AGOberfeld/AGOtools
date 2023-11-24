@@ -14,7 +14,7 @@
 #'
 #' @return cvfitList= List of cross-validated glmnet models (one per CV run). coefLassodf = dataframe containing the glmnet parameter estimates etc. per CV run
 #' @export
-#' @import glmnet groupdata2 tidyverse
+#' @import glmnet groupdata2 dplyr
 #' @examples To do
 cvAGO.glmnet<-function(dataset,X,Y,family,standardize=TRUE,alpha=1,nfolds,nCVruns,idVarString,type.measure,seedX=4242,...)
 {
