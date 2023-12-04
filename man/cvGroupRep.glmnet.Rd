@@ -33,7 +33,7 @@ cvGroupRep.glmnet(
 
 \item{nCVruns}{number of CV runs (defualt = 1)}
 
-\item{idVarString}{variable in dataset identifying the unit of observation in groupdata2's foldid, Must be numeric (default = NULL; no grouping variable)}
+\item{idVarString}{variable in dataset identifying the unit of observation in groupdata2's foldid. Must be numeric (default = NULL; no grouping variable)}
 
 \item{type.measure}{measure used for evaluating the GOF}
 

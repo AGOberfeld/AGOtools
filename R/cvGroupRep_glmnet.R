@@ -7,7 +7,7 @@
 #' @param alpha value of alpha parameter in the elastic net (set to 1 by default = Lasso)
 #' @param nfolds number of folds per CV run (default = 10)
 #' @param nCVruns number of CV runs (defualt = 1)
-#' @param idVarString variable in dataset identifying the unit of observation in groupdata2's foldid, Must be numeric (default = NULL; no grouping variable)
+#' @param idVarString variable in dataset identifying the unit of observation in groupdata2's foldid. Must be numeric (default = NULL; no grouping variable)
 #' @param type.measure measure used for evaluating the GOF
 #' @param ...
 #'
@@ -20,14 +20,13 @@ cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alp
   #nCVruns: number of CV runs
   #idVarString: grouping (ID) var name (as string) for creating folds, set to NULL if none
 
-  #extract DVstring from glmFormula
-  formulaTerms=terms(as.formula(glmFormula))
+  #define design matrix, without intercept term (column 1)
+  X <- model.matrix(as.formula(glmFormulaString), data=dataset)[,-1]
+  #and the outcome variable
+    #extract DVstring from glmFormula
+  formulaTerms=terms(as.formula(glmFormulaString))
   formulaVars=attr(formulaTerms, which = "variables")
   DVstring=as.character(formulaVars[[attr(formulaTerms,which="response")+1]])
-  #define design matrix, without intercept term
-  X <- model.matrix(as.formula(glmFormula), data=dataset)[,-1]
-
-  #and the outcome variable
   Y <- as.matrix(dataset[,DVstring])
 
   set.seed(seedX)
@@ -40,9 +39,11 @@ cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alp
     coefLassodf.min=NULL
 
     if (!(is_empty(idVarString))) {
+      #CV-by-group
       dfkFoldByGroup <- groupdata2::fold(dataset, k = nfolds, id_col = idVarString)
     } else
     {
+      #random CV
       dfkFoldByGroup <- groupdata2::fold(dataset, k = nfolds)
     }
     # dfkFoldByGroup <- dfkFoldByGroup %>% arrange(.folds)  #check folding
