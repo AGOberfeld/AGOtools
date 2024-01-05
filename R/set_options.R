@@ -4,7 +4,8 @@
 #' @param colors choose default color palette values. Matplotlib colors are chosen by default.
 #' @param line_width choose default line width for geom_line
 #' @param point_size choose default point size fpr geom_point
-#' @import ggplot2 knitr DeLuciatoR
+#' @import ggplot2 knitr
+#' @import DeLuciatoR
 #'
 #' @return void
 #' @export

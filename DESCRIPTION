@@ -16,20 +16,23 @@ Suggests:
 Config/testthat/edition: 3
 Imports: 
     stats,
-    dplyr,
-    magrittr,
-    tidyr,
+    dplyr, 
     ggplot2,
     stringr,
     tibble,
+    tidyr,
+    magrittr,
     ggthemes,
+    lubridate,
     extrafont,
     rlang,
     quickpsy,
     knitr,
-    pracma
-Remotes: 
-    infotroph/DeLuciatoR
+    pracma,
+    glmnet,
+    groupdata2,
+    DeLuciatoR
+Remotes: infotroph/DeLuciatoR
 Depends: 
     R (>= 2.10)
 LazyData: true
