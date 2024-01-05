@@ -9,13 +9,14 @@
 #' @param nCVruns number of CV runs (defualt = 1)
 #' @param idVarString variable in dataset identifying the unit of observation in groupdata2's foldid. Must be numeric (default = NULL; no grouping variable)
 #' @param type.measure measure used for evaluating the GOF
+#' @param seedX seed for random number generator, default = 4444
 #' @param ...
 #'
 #' @return cvfitList= List of cross-validated glmnet models (one per CV run). coefLassodf = dataframe containing the glmnet parameter estimates etc. per CV run
 #' @export
 #' @import glmnet groupdata2 dplyr
 
-cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alpha=1,nfolds=10,nCVruns=1,idVarString=NULL,type.measure,seedX=4242,...)
+cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alpha=1,nfolds=10,nCVruns=1,idVarString=NULL,type.measure,seedX=4444,...)
 {
   #nCVruns: number of CV runs
   #idVarString: grouping (ID) var name (as string) for creating folds, set to NULL if none

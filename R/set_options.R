@@ -44,13 +44,19 @@ set_options <- function(colors = c( '#1f77b4',
   # install_github("infotroph/DeLuciatoR")
   require(DeLuciatoR) # for saving plots with ggsave_fitmax
 
+  # set R language to English
   Sys.setenv(LANG = "en")
 
-  # require(ggthemes)
-  # require(colorspace)
-  # require(scales)
+  # set default linewidth (geom_line) and point size (geom_point)
+  update_geom_defaults("line", aes(linewidth = line_width))
+  update_geom_defaults("point", aes(size = point_size))
 
-  #show_col(tab20_colors)
+  update_geom_defaults("errorbar", aes(linewidth = rel(0.5), width = rel(0.1)))
+  # set geom options
+  # update_geom_defaults("line", aes(linewidth = 2))
+  # update_geom_defaults("point", aes(size = 5)) # for unicode: 9
+
+  #Define color palette show_col(tab20_colors)
   .GlobalEnv$tab20colorsSatH <- colors[seq(1, length(colors), by = 2)]
   .GlobalEnv$tab20colorsSatL <- colors[seq(2, length(colors), by = 2)]
   .GlobalEnv$tab20colors=c(.GlobalEnv$tab20colorsSatH,.GlobalEnv$tab20colorsSatL)
@@ -65,21 +71,13 @@ set_options <- function(colors = c( '#1f77b4',
   # #define default shape scale
   # scale_shape_discrete <- function(...) {scale_shape_manual(values = c(15, 1, 17, 5))}
 
-  #require(knitr)
-  knitr::opts_chunk$set(echo = FALSE,comment = '', out.width = "80%",dpi=200)
+  #Set kinitr defaults
+  knitr::opts_chunk$set(dev="png", error=T,echo = FALSE,comment = '')
+
   #set some options for output
   options(digits=5)
   options(download.file.method="libcurl")
   options(scipen = 999) #avoid scientific notation
   options(width = 250) # extend the width of the output
-
-  # set default linewidth (geom_line) and point size (geom_point)
-  update_geom_defaults("line", aes(linewidth = line_width))
-  update_geom_defaults("point", aes(size = point_size))
-
-  update_geom_defaults("errorbar", aes(linewidth = rel(0.5), width = rel(0.1)))
-  # set geom options
-  # update_geom_defaults("line", aes(linewidth = 2))
-  # update_geom_defaults("point", aes(size = 5)) # for unicode: 9
 
 }
