@@ -14,7 +14,7 @@
 #' @return cvfitList= List of cross-validated glmnet models (one per CV run). coefLassodf = dataframe containing the glmnet parameter estimates etc. per CV run
 #' @export
 #' @import glmnet groupdata2 dplyr
-#' @examples To do
+
 cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alpha=1,nfolds=10,nCVruns=1,idVarString=NULL,type.measure,seedX=4242,...)
 {
   #nCVruns: number of CV runs

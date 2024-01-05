@@ -5,8 +5,7 @@
 #' @return rmANOVAout dataframe with relevant statistics per effect
 #' @export
 #' @import dplyr
-#'
-#' @examples todo
+
 ezrmANOVAoutDF=function(ezANOVAobj){
   ezANOVAobj$ANOVA$etaSq_partial <- ezANOVAobj$ANOVA$SSn/(ezANOVAobj$ANOVA$SSn+ezANOVAobj$ANOVA$SSd)
   ANOVA=ezANOVAobj$ANOVA %>% as.data.frame()

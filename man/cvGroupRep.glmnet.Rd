@@ -45,6 +45,3 @@ cvfitList= List of cross-validated glmnet models (one per CV run). coefLassodf =
 \description{
 cvGroupRep.glmnet. Runs a by-group repeated cross-validation for glmnet
 }
-\examples{
-To do
-}
