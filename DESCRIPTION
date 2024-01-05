@@ -28,6 +28,8 @@ Imports:
     quickpsy,
     knitr,
     pracma
+Remotes: 
+    infotroph/DeLuciatoR
 Depends: 
     R (>= 2.10)
 LazyData: true
