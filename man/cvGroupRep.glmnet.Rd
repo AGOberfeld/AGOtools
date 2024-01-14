@@ -14,7 +14,7 @@ cvGroupRep.glmnet(
   nCVruns = 1,
   idVarString = NULL,
   type.measure,
-  seedX = 4242,
+  seedX = 4444,
   ...
 )
 }
@@ -31,13 +31,15 @@ cvGroupRep.glmnet(
 
 \item{nfolds}{number of folds per CV run (default = 10)}
 
-\item{nCVruns}{number of CV runs (defualt = 1)}
+\item{nCVruns}{number of CV runs (default = 1)}
 
 \item{idVarString}{variable in dataset identifying the unit of observation in groupdata2's foldid. Must be numeric (default = NULL; no grouping variable)}
 
 \item{type.measure}{measure used for evaluating the GOF}
 
-\item{...}{}
+\item{seedX}{seed for random number generator, default = 4444}
+
+\item{...}{optional  parameters passed to cv.glmnet()}
 }
 \value{
 cvfitList= List of cross-validated glmnet models (one per CV run). coefLassodf = dataframe containing the glmnet parameter estimates etc. per CV run

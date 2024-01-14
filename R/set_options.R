@@ -42,6 +42,7 @@ set_options <- function(colors = c( '#1f77b4',
   require(rlang)
   require(extrafont)
   #font_import() # imports Win fonts -> needs to be run only one per computer
+  #extrafont::loadfonts() # required only once after font_import()
   # install_github("infotroph/DeLuciatoR")
   require(DeLuciatoR) # for saving plots with ggsave_fitmax
 

@@ -6,25 +6,22 @@
 #' @param standardize specifies if vars are standardized (default = TRUE)
 #' @param alpha value of alpha parameter in the elastic net (set to 1 by default = Lasso)
 #' @param nfolds number of folds per CV run (default = 10)
-#' @param nCVruns number of CV runs (defualt = 1)
+#' @param nCVruns number of CV runs (default = 1)
 #' @param idVarString variable in dataset identifying the unit of observation in groupdata2's foldid. Must be numeric (default = NULL; no grouping variable)
 #' @param type.measure measure used for evaluating the GOF
 #' @param seedX seed for random number generator, default = 4444
-#' @param ...
+#' @param ... optional  parameters passed to cv.glmnet()
 #'
 #' @return cvfitList= List of cross-validated glmnet models (one per CV run). coefLassodf = dataframe containing the glmnet parameter estimates etc. per CV run
 #' @export
 #' @import glmnet groupdata2 dplyr
 
-cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alpha=1,nfolds=10,nCVruns=1,idVarString=NULL,type.measure,seedX=4444,...)
+cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alpha=1,nfolds=10,nCVruns=1,
+                            idVarString=NULL,type.measure,seedX=4444,...)
 {
-  #nCVruns: number of CV runs
-  #idVarString: grouping (ID) var name (as string) for creating folds, set to NULL if none
-
   #define design matrix, without intercept term (column 1)
   X <- model.matrix(as.formula(glmFormulaString), data=dataset)[,-1]
-  #and the outcome variable
-    #extract DVstring from glmFormula
+  #and the outcome variable: extract DVstring from glmFormula
   formulaTerms=terms(as.formula(glmFormulaString))
   formulaVars=attr(formulaTerms, which = "variables")
   DVstring=as.character(formulaVars[[attr(formulaTerms,which="response")+1]])
@@ -54,8 +51,7 @@ cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alp
     kFoldByGroup=as.numeric(dfkFoldByGroup$.folds) # for glmnet
 
     # Fit Lasso by CV
-    # cvfit <- cv.glmnet(x=X, y=Y, family = "binomial", alpha = 1,type.measure = "auc",foldid=kFoldByGroup) #foldid: an optional vector of values between 1 and nfolds identifying what fold each observation is in. If supplied, nfolds can be missing.
-    cvfit<-cv.glmnet(x=X,y=Y,family=family,standardize=standardize,nfolds=nfolds,foldid=kFoldByGroup,type.measure=type.measure,alpha=alpha,...)
+    cvfit<-cv.glmnet(x=X,y=Y,family=family,standardize=standardize,nfolds=nfolds,foldid=kFoldByGroup,type.measure=type.measure,alpha=alpha,...) #foldid: an optional vector of values between 1 and nfolds identifying what fold each observation is in. If supplied, nfolds can be missing.
 
     # plot(cvfit)                        #AUC for several lambdas
     # coef(cvfit, s = "lambda.min") #Best solution. lambda.min is the value of 𝜆 that gives minimum mean cross-validated error, while lambda.1se is the value of 𝜆 that gives the most regularized model such that the cross-validated error is within one standard error of the minimum.
