@@ -35,7 +35,7 @@ cvGroupRep.glmnet(
 
 \item{idVarString}{variable in dataset identifying the unit of observation in groupdata2's foldid. Must be numeric (default = NULL; no grouping variable)}
 
-\item{type.measure}{measure used for evaluating the GOF}
+\item{type.measure}{measure (loss function) used for evaluating the GOF}
 
 \item{seedX}{seed for random number generator, default = 4444}
 

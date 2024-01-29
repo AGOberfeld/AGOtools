@@ -8,7 +8,7 @@
 #' @param nfolds number of folds per CV run (default = 10)
 #' @param nCVruns number of CV runs (default = 1)
 #' @param idVarString variable in dataset identifying the unit of observation in groupdata2's foldid. Must be numeric (default = NULL; no grouping variable)
-#' @param type.measure measure used for evaluating the GOF
+#' @param type.measure measure (loss function) used for evaluating the GOF
 #' @param seedX seed for random number generator, default = 4444
 #' @param ... optional  parameters passed to cv.glmnet()
 #'
@@ -31,10 +31,14 @@ cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alp
   cvfitList = list()
   coefLassodfList= list()
   for (ii in 1:nCVruns) {
+    dfkFoldByGroup=NULL
     kFoldByGroup=NULL
     cvfit=NULL
     coefLassodf.1se=NULL
     coefLassodf.min=NULL
+    coefLassodf=NULL
+    coefLassoSparseMatrix.1se=NULL
+    coefLassoSparseMatrix.min=NULL
 
     if (!(is_empty(idVarString))) {
       #CV-by-group
@@ -66,8 +70,8 @@ cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alp
     coefLassodf.1se=coefLassodf.1se %>% mutate(predSelectedLasso.1se=if_else(regCoeffLasso.1se==0,0,1)) #compute indicator (0/1) specifying if predictor was included in selected model
     #cvm = The mean cross-validated error - a vector of length length(lambda).
     # index: a one column matrix with the indices of lambda.min and lambda.1se in the sequence of coefficients, fits etc.
-    coefLassodf.1se=coefLassodf.1se %>% mutate(lambda.1se=cvfit$lambda.1se,AUC.1se_mean=cvfit$cvm[cvfit$index[2]],
-                                               AUC.1se_SE=cvfit$cvsd[cvfit$index[2]])
+    coefLassodf.1se=coefLassodf.1se %>% mutate(lambda.1se=cvfit$lambda.1se,lossM.1se_mean=cvfit$cvm[cvfit$index[2]],
+                                               lossM.1se_SE=cvfit$cvsd[cvfit$index[2]])
 
     coefLassoSparseMatrix.min=coef(cvfit, s = "lambda.min") #Best solution
     coefLassodf.min <- as.data.frame(as.matrix(coefLassoSparseMatrix.min))
@@ -77,11 +81,11 @@ cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alp
         regCoeffLasso.min = s1
       )
     coefLassodf.min=coefLassodf.min %>% mutate(predSelectedLasso.min=if_else(regCoeffLasso.min==0,0,1))
-    coefLassodf.min=coefLassodf.min %>% mutate(lambda.min=cvfit$lambda.min,AUC.min_mean=cvfit$cvm[cvfit$index[1]],
-                                               AUC.min_SE=cvfit$cvsd[cvfit$index[1]])
+    coefLassodf.min=coefLassodf.min %>% mutate(lambda.min=cvfit$lambda.min,lossM.min_mean=cvfit$cvm[cvfit$index[1]],
+                                               lossM.min_SE=cvfit$cvsd[cvfit$index[1]])
 
     coefLassodf=full_join(coefLassodf.1se,coefLassodf.min) #join the two solutions
-    coefLassodf=coefLassodf%>% mutate(CVrun=ii)
+    coefLassodf=coefLassodf%>% mutate(CVrun=ii,type.measure=type.measure)
     cvfitList[[ii]]=cvfit #add cvfit to list
     coefLassodfList[[ii]]= coefLassodf #add coeffs to list
   }
