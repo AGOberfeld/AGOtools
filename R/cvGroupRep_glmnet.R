@@ -34,11 +34,11 @@ cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alp
     dfkFoldByGroup=NULL
     kFoldByGroup=NULL
     cvfit=NULL
+    coefLassoSparseMatrix.1se=NULL
     coefLassodf.1se=NULL
+    coefLassoSparseMatrix.min=NULL
     coefLassodf.min=NULL
     coefLassodf=NULL
-    coefLassoSparseMatrix.1se=NULL
-    coefLassoSparseMatrix.min=NULL
 
     if (!(is_empty(idVarString))) {
       #CV-by-group
@@ -84,7 +84,7 @@ cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alp
     coefLassodf.min=coefLassodf.min %>% mutate(lambda.min=cvfit$lambda.min,lossM.min_mean=cvfit$cvm[cvfit$index[1]],
                                                lossM.min_SE=cvfit$cvsd[cvfit$index[1]])
 
-    coefLassodf=full_join(coefLassodf.1se,coefLassodf.min) #join the two solutions
+    coefLassodf=full_join(coefLassodf.1se,coefLassodf.min,by = join_by(predictor)) #join the two solutions
     coefLassodf=coefLassodf%>% mutate(CVrun=ii,type.measure=type.measure)
     cvfitList[[ii]]=cvfit #add cvfit to list
     coefLassodfList[[ii]]= coefLassodf #add coeffs to list
