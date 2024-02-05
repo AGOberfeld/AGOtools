@@ -49,6 +49,9 @@ set_options <- function(colors = c( '#1f77b4',
   # set R language to English
   Sys.setenv(LANG = "en")
 
+  options(dplyr.summarise.inform = FALSE) #turn off summarise "grouped output by" messages
+
+
   # set default linewidth (geom_line) and point size (geom_point)
   update_geom_defaults("line", aes(linewidth = line_width))
   update_geom_defaults("point", aes(size = point_size))
@@ -73,7 +76,7 @@ set_options <- function(colors = c( '#1f77b4',
   # #define default shape scale
   # scale_shape_discrete <- function(...) {scale_shape_manual(values = c(15, 1, 17, 5))}
 
-  #Set kinitr defaults
+  #Set knitr defaults
   knitr::opts_chunk$set(dev="png", error=T,echo = FALSE,comment = '')
 
   #set some options for output
