@@ -1,4 +1,4 @@
-#' ezrmANOVAoutDF function for extracting relevant output of an rmANOVA with ezANOVA to a dataframe
+#' ezrmANOVAoutDF Function for extracting relevant output of an rmANOVA conducted with ezANOVA to a dataframe
 #'
 #' @param ezANOVAobj the input ezANOVA object
 #'
@@ -14,6 +14,6 @@ ezrmANOVAoutDF=function(ezANOVAobj){
     rmANOVAout=left_join(ANOVA,HFGG,by=join_by(Effect))
   } else
   {rmANOVAout=ANOVA}
-  rmANOVAout=rmANOVAout %>% mutate(dz=if_else(DFn==1,sqrt(F)/sqrt(DFd+1),NA)) #add Cohen's dz if numerator df ==1
+
   return(rmANOVAout)
 }

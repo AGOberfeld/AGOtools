@@ -1,16 +1,18 @@
-#' Detect outliers according to a Tukey criterion.
+#' Detect outliers in one variable inside a dataframe, according to a Tukey criterion.
 #'
-#' @param dv continuous dependent variable. For TTC experiments insert the estimated TTC here.
+#' @param dv continuous dependent variable within a dataframe (does not work for vectors!!). Example: RT in a response time experiment
 #' @param tukey_crit factor of the IQR that defines an outlier.
 #'
 #' @return A list of vectors:
-#' * `trialsInSet` = total number of trials in the data set
+#' * `trialsInSet` = total number of trials / observations in the input dependent variable
 #' * `IQR` = inter quantile range
 #' * `Quant25` = 25% quantile
 #' * `Quant75` = 75% quantile
-#' * `outlierTukeyLow` = indicates if dv for a given trial is lower than the tukey criterion (1) or not (0)
 #' * `Tukey_lower_limit` = lower limit below which the values are excluded
 #' * `Tukey_upper_limit` = upper limit above which the values are excluded
+#' * `outlierTukeyLow` = indicates if dv on a given trial is lower than Tukey_lower_limit (1) or not (0)
+#' * `outlierTukeyHigh` = indicates if dv on a given trial is higher than Tukey_upper_limit (1) or not (0)
+#' * `outlierTukey` = indicates if dv on a given trial is an outlier  according to either the upper or the lower limit (1) or not (0)
 #' @importFrom dplyr ungroup
 #' @export
 #'
@@ -20,7 +22,7 @@
 #'
 #'
 tukey_outlier_fun <- function(dv,tukey_crit=3){
-  #computes outliers in variable dv according to  a Tukey criterion. Returns list of named outputs
+  #computes outliers in dataframe variable dv according to  a Tukey criterion. Returns list of named outputs
   dv_ <- rlang::enexpr(dv)
   dv_str <- rlang::as_string(dv_)
 

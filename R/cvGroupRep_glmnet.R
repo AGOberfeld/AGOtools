@@ -55,7 +55,8 @@ cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alp
     kFoldByGroup=as.numeric(dfkFoldByGroup$.folds) # for glmnet
 
     # Fit Lasso by CV
-    cvfit<-cv.glmnet(x=X,y=Y,family=family,standardize=standardize,nfolds=nfolds,foldid=kFoldByGroup,type.measure=type.measure,alpha=alpha,...) #foldid: an optional vector of values between 1 and nfolds identifying what fold each observation is in. If supplied, nfolds can be missing.
+    cvfit<-cv.glmnet(x=X,y=Y,family=family,standardize=standardize,nfolds=nfolds,
+                     foldid=kFoldByGroup,type.measure=type.measure,alpha=alpha,...) #foldid: an optional vector of values between 1 and nfolds identifying what fold each observation is in. If supplied, nfolds can be missing.
 
     # plot(cvfit)                        #AUC for several lambdas
     # coef(cvfit, s = "lambda.min") #Best solution. lambda.min is the value of 𝜆 that gives minimum mean cross-validated error, while lambda.1se is the value of 𝜆 that gives the most regularized model such that the cross-validated error is within one standard error of the minimum.
