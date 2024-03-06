@@ -37,7 +37,7 @@ devtools::install_github("AGOberfeld/AGOtools")
 
 ## Dependencies
 
-Before using AGOtools, make sure the right Quickpsy-version (dev-verion from Github, https://github.com/danilinares/quickpsy) is installed:
+If you want to use the helper fuznctions for quickpsy, make sure the correct Quickpsy-version (dev-version from Github, https://github.com/danilinares/quickpsy) is installed:
 
 ```
 devtools::install_github("danilinares/quickpsy")
@@ -59,7 +59,7 @@ devtools::install_github("danilinares/quickpsy")
 
 ### set_options
 
-Sets the color palette of ggplots to default values. By default the matplotlib colors are chosen. Also sets the number format for the R output and loads some default packages (`tidyverse`, `pracma`, `extrafont`).
+Sets the color palette of ggplots to default values. By default the matplotlib colors are chosen. Also sets the number format for the R output and loads some default packages (e.g., `tidyverse`, `pracma`, `extrafont`).
 
 ```{r, echo =TRUE}
 set_options()
@@ -69,7 +69,7 @@ set_options()
 ### tukey
 
 Adds variables to an input dataset (data) which indicate if observations on a specified variable (dv) are outliers according to a "nonparametric"  criterion proposed by John Tukey. Values of variable dv more than k`*`IQR (interquartile range) below the first quartile (25% quantile) or more than k`*`IQR above the third quartile (75% quantile) are flagged as outliers.
-The argument tukey_crit can be used to modify the factor k (default = 3).
+The argument tukey_crit can be used to modify the factor k (default: tukey_crit = 3).
 
 Identify outliers without excluding them:
 ```{r, echo =TRUE}
@@ -125,7 +125,6 @@ Returns a list of variables and adds them to the initial data set:
 `outlierTukey` = indicates if dv for a given trial exceeds the lower or the higher criterion (1) or is within both criteria (0)  
 `Tukey_lower_limit` = highest value above which values are excluded  
 `Tukey_upper_limit` = lowest value below which values are excluded  
-
 
 ### tidyQuickPsy
 

@@ -24,8 +24,9 @@ Install AGOtools with:
 
 ## Dependencies
 
-Before using AGOtools, make sure the right Quickpsy-version (dev-verion
-from Github, <https://github.com/danilinares/quickpsy>) is installed:
+If you want to use the helper fuznctions for quickpsy, make sure the
+correct Quickpsy-version (dev-version from Github,
+<https://github.com/danilinares/quickpsy>) is installed:
 
     devtools::install_github("danilinares/quickpsy")
 
@@ -44,28 +45,27 @@ quickpsy before installing it again from github.
 
 Sets the color palette of ggplots to default values. By default the
 matplotlib colors are chosen. Also sets the number format for the R
-output and loads some default packages (`tidyverse`, `pracma`,
+output and loads some default packages (e.g., `tidyverse`, `pracma`,
 `extrafont`).
 
 ``` r
 set_options()
-#> Lade nötiges Paket: pracma
+#> Loading required package: pracma
 #> 
-#> Attache Paket: 'pracma'
-#> Das folgende Objekt ist maskiert 'package:purrr':
+#> Attaching package: 'pracma'
+#> The following object is masked from 'package:purrr':
 #> 
 #>     cross
-#> Lade nötiges Paket: rlang
-#> Warning: Paket 'rlang' wurde unter R Version 4.2.3 erstellt
+#> Loading required package: rlang
 #> 
-#> Attache Paket: 'rlang'
-#> Die folgenden Objekte sind maskiert von 'package:purrr':
+#> Attaching package: 'rlang'
+#> The following objects are masked from 'package:purrr':
 #> 
 #>     %@%, flatten, flatten_chr, flatten_dbl, flatten_int, flatten_lgl,
 #>     flatten_raw, invoke, splice
-#> Lade nötiges Paket: extrafont
+#> Loading required package: extrafont
 #> Registering fonts with R
-#> Lade nötiges Paket: DeLuciatoR
+#> Loading required package: DeLuciatoR
 ```
 
 ### tukey
@@ -76,7 +76,7 @@ criterion proposed by John Tukey. Values of variable dv more than
 k`*`IQR (interquartile range) below the first quartile (25% quantile) or
 more than k`*`IQR above the third quartile (75% quantile) are flagged as
 outliers. The argument tukey_crit can be used to modify the factor k
-(default = 3).
+(default: tukey_crit = 3).
 
 Identify outliers without excluding them:
 
@@ -110,7 +110,7 @@ tukey_data  %>%
               alpha = 0.4)
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="80%" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
 Identify outliers and exclude them:
 
@@ -165,7 +165,7 @@ tukey_data  %>%
   plotThemeAGO()
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="80%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 Returns a list of variables and adds them to the initial data set:
 
@@ -220,16 +220,13 @@ qp <- quickpsy(d = data,
                 bootstrap = 'none')  
 
 qp_tidy <- tidyQuickPsy(qp)
+Error in `pivot_wider()`:
+! Can't subset columns that don't exist.
+✖ Column `parinf` doesn't exist.
 
 qp_tidy$tidy_fit %>% 
   head()
-# A tibble: 3 × 20
-# Groups:   vp_code, modality, v0, a, label, gain [3]
-  vp_code modality    v0     a label                                 gain muEst sigmaEst se_muEst se_sigmaEst nTrials LLRtestvalue LLRtestDF p_value LLRpValue     LL nParFittedModel LLsaturated nParSaturatedModel trialData        
-  <chr>   <chr>    <dbl> <int> <chr>                                <int> <dbl>    <dbl>    <dbl>       <dbl>   <int>        <dbl>     <int>   <dbl>     <dbl>  <dbl>           <int>       <dbl>              <int> <list>           
-1 vp0001  A           10     2 Kia_v0_10_r0_60_a_20_i_11_2019_04_15     0  4.14    1.19     0.176       0.292      84        15.6         10   0.113     0.113 -17.0                2       -9.21                 12 <tibble [12 × 6]>
-2 vp0001  A           10     2 Kia_v0_10_r0_60_a_20_i_11_2019_04_15    10  6.37    0.948    0.167       0.190      80         2.62         6   0.854     0.854  -6.65               2       -5.34                  8 <tibble [8 × 6]> 
-3 vp0001  AV          10     2 Kia_v0_10_r0_60_a_20_i_11_2019_04_15     0  3.60    0.820    0.137       0.159      82         9.71         9   0.375     0.375 -11.3                2       -6.40                 11 <tibble [11 × 6]>
+Error in eval(expr, envir, enclos): object 'qp_tidy' not found
 ```
 
 tidyQuickPsy returns a list with two elements:  
@@ -244,11 +241,13 @@ psychometric functions for each person separately.
 
 ``` r
 qp_tidy <- tidyQuickPsy(qp)
+Error in `pivot_wider()`:
+! Can't subset columns that don't exist.
+✖ Column `parinf` doesn't exist.
 
 plotQuickPsy(qp_tidy)$plot_list[[1]]
+Error in eval(expr, envir, enclos): object 'qp_tidy' not found
 ```
-
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="80%" />
 
 If the hessian matrix for one participant is not solvable, use this
 workaround to loop through all participant-condition combinations:
@@ -320,7 +319,7 @@ ggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = Species))+
   plotThemeAGO()
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.png" width="80%" />
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
 
 ### Data sets
 
