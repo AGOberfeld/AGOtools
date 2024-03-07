@@ -10,7 +10,7 @@ ezrmANOVAoutDF(ezANOVAobj)
 \item{ezANOVAobj}{the input ezANOVA object}
 }
 \value{
-rmANOVAout dataframe with relevant statistics per effect
+rmANOVAout: dataframe with relevant statistics per effect
 }
 \description{
 ezrmANOVAoutDF Function for extracting relevant output of an rmANOVA conducted with ezANOVA to a dataframe
