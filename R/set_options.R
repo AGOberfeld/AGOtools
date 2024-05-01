@@ -77,8 +77,7 @@ set_options <- function(colors = c( '#1f77b4',
   # scale_shape_discrete <- function(...) {scale_shape_manual(values = c(15, 1, 17, 5))}
 
   #Set knitr defaults
-  knitr::opts_chunk$set(dev="png", error=T,echo = FALSE,comment = '')
-
+  knitr::opts_chunk$set(dev="png", error=T,echo = T,comment = '')
   #set some options for output
   options(digits=5)
   options(download.file.method="libcurl")
