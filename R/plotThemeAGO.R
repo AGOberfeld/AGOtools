@@ -12,7 +12,7 @@
 #' @import extrafont
 #' @importFrom ggthemes theme_foundation
 #'
-plotThemeAGO <- function(base_size=12, base_family="Arial") {
+plotThemeAGO <- function(base_size=12, base_family="Arial",...) {
 
   list(ggthemes::theme_foundation(base_size=base_size, base_family=base_family)
     + theme(plot.title = element_text(face = "bold",
@@ -40,7 +40,7 @@ plotThemeAGO <- function(base_size=12, base_family="Arial") {
             legend.margin=margin(t = 3, r = 3, b = 0, l = 0, unit = "mm"),
             legend.title = element_text(face="italic",size=rel(0.8)),
             strip.background = element_blank(),
-            strip.text = element_text(face="bold")),
+            strip.text = element_text(face="bold"),...),
      scale_shape_manual(values = c(15, 1, 17, 5,2,5,7))
     )
 

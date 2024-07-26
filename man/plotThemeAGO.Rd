@@ -4,7 +4,7 @@
 \alias{plotThemeAGO}
 \title{Complete plot theme for publication-ready data plots}
 \usage{
-plotThemeAGO(base_size = 12, base_family = "Arial")
+plotThemeAGO(base_size = 12, base_family = "Arial", ...)
 }
 \arguments{
 \item{base_size}{base size}
