@@ -84,9 +84,9 @@ show_plot_in_loop <- function(plot_and_plotname, seperate_plotname = "") {
 #' @import ggplot2
 #' @export 
 plot_basics = function(error_bar_width = 1, point_size = 2, stroke_size = 1.5, line_width_size = 0.75){
-  plot_basics_list = list(stat_summary(fun = "mean", geom = "line", position = position_jitter(width = dodge, seed = jitter_seed)),
-                   stat_summary(fun = "mean", geom = "point", size = rel(point_size), stroke = rel(stroke_size), position = position_jitter(width = dodge, seed = jitter_seed)),
-                   stat_summary(fun.data = mean_se, geom = "errorbar", linewidth = line_width_size, width = rel(error_bar_width), linetype = "solid", position = position_jitter(width = dodge, seed = jitter_seed)))
+  plot_basics_list = list(stat_summary(fun = "mean", geom = "line"),
+                   stat_summary(fun = "mean", geom = "point", size = rel(point_size), stroke = rel(stroke_size)),
+                   stat_summary(fun.data = mean_se, geom = "errorbar", linewidth = line_width_size, width = rel(error_bar_width), linetype = "solid"))
   return(plot_basics_list)
   }
 
