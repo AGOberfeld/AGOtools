@@ -8,7 +8,9 @@ plot_basics(
   error_bar_width = 1,
   point_size = 2,
   stroke_size = 1.5,
-  line_width_size = 0.75
+  line_width = 1,
+  errorbar_line_width = 0.75,
+  positiondodge_width = 0
 )
 }
 \arguments{

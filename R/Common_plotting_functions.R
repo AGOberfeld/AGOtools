@@ -83,11 +83,11 @@ show_plot_in_loop <- function(plot_and_plotname, seperate_plotname = "") {
 #' @param error_bar_width width of the error bars
 #' @import ggplot2
 #' @export 
-plot_basics = function(error_bar_width = 1, point_size = 2, stroke_size = 1.5, line_width_size = 0.75){
-  plot_basics_list = list(stat_summary(fun = "mean", geom = "line"),
-                   stat_summary(fun = "mean", geom = "point", size = rel(point_size), stroke = rel(stroke_size)),
-                   stat_summary(fun.data = mean_se, geom = "errorbar", linewidth = line_width_size, width = rel(error_bar_width), linetype = "solid"))
+plot_basics = function(error_bar_width = 1, point_size = 2, stroke_size = 1.5, line_width = 1, errorbar_line_width = 0.75, positiondodge_width = 0) {
+  plot_basics_list = list(stat_summary(fun = "mean", geom = "line", linewidth = line_width, position = position_dodge(width = positiondodge_width)),
+    stat_summary(fun.data = mean_se, geom = "errorbar", linewidth = errorbar_line_width, width = error_bar_width, linetype = "solid", position = position_dodge(width = positiondodge_width)), 
+                 stat_summary(fun = "mean", geom = "point", size = point_size, stroke = stroke_size, position = position_dodge(width = positiondodge_width)))
   return(plot_basics_list)
-  }
+}
 
 
