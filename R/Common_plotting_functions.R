@@ -78,29 +78,29 @@ show_plot_in_loop <- function(plot_and_plotname, seperate_plotname = "") {
 
 #' @author Thirsa Huisman
 #' @title plot_basics
-#' @description This is a list of the basic plot elements that are used in most plots, note that positiondodge can give errorbar width issues when the nr of groups per x changes. 
+#' @description This is a list of the basic plot elements that are used in most plots. 
 #' @details error_bar_width needs to be scaled according to the size of the x_axis, e.g., if x goes from 0 to 10 vs 0 to 1000, you need to scale the width accordingly.
 #' @param error_bar_width width of the error bars
 #' @import ggplot2
 #' @export 
-plot_basics = function(error_bar_width = 1, point_size = 2, stroke_size = 1.5, line_width = 1, errorbar_line_width = 0.75, positiondodge_width = 0) {
-  plot_basics_list = list(stat_summary(fun = "mean", geom = "line", linewidth = line_width, position = position_dodge(width = positiondodge_width)),
-    stat_summary(fun.data = mean_se, geom = "errorbar", linewidth = errorbar_line_width, width = error_bar_width, linetype = "solid", position = position_dodge(width = positiondodge_width)), 
-                 stat_summary(fun = "mean", geom = "point", size = point_size, stroke = stroke_size, position = position_dodge(width = positiondodge_width)))
+plot_basics = function(error_bar_width = 1, point_size = 2, stroke_size = 1.5, line_width = 1, errorbar_line_width = 0.75) {
+  plot_basics_list = list(stat_summary(fun = "mean", geom = "line", linewidth = line_width),
+    stat_summary(fun.data = mean_se, geom = "errorbar", linewidth = errorbar_line_width, width = error_bar_width, linetype = "solid"), 
+                 stat_summary(fun = "mean", geom = "point", size = point_size, stroke = stroke_size))
   return(plot_basics_list)
 }
 
 
 #' @author Thirsa Huisman
 #' @title plot_basics
-#' @description This is a list of the basic plot elements that are used in most plots. Shifts are done via position_jitter instead of dodge to avoid errorbar width issues 
+#' @description This is a list of the basic plot elements that are used in most plots, note that positiondodge can give errorbar width issues when the nr of groups per x changes. 
 #' @details error_bar_width needs to be scaled according to the size of the x_axis, e.g., if x goes from 0 to 10 vs 0 to 1000, you need to scale the width accordingly.
 #' @param error_bar_width width of the error bars
 #' @import ggplot2
 #' @export 
-plot_basics_jitter = function(error_bar_width = 1, point_size = 2, stroke_size = 1.5, line_width = 1, errorbar_line_width = 0.75, jitter_width = 0, jitter_height = 0) {
-  plot_basics_list = list(stat_summary(fun = "mean", geom = "line", linewidth = line_width, position = position_jitter(width = jitter_width, height = jitter_height)),
-    stat_summary(fun.data = mean_se, geom = "errorbar", linewidth = errorbar_line_width, width = error_bar_width, linetype = "solid", position_jitter(width = jitter_width, height = jitter_height)), 
-                 stat_summary(fun = "mean", geom = "point", size = point_size, stroke = stroke_size, position_jitter(width = jitter_width, height = jitter_height)))
+plot_basics_positiondodge = function(error_bar_width = 1, point_size = 2, stroke_size = 1.5, line_width = 1, errorbar_line_width = 0.75, positiondodge_width = 0) {
+  plot_basics_list = list(stat_summary(fun = "mean", geom = "line", linewidth = line_width, position = position_dodge(width = positiondodge_width)),
+    stat_summary(fun.data = mean_se, geom = "errorbar", linewidth = errorbar_line_width, width = error_bar_width, linetype = "solid", position = position_dodge(width = positiondodge_width)), 
+                 stat_summary(fun = "mean", geom = "point", size = point_size, stroke = stroke_size, position = position_dodge(width = positiondodge_width)))
   return(plot_basics_list)
 }

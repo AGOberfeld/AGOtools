@@ -9,15 +9,14 @@ plot_basics(
   point_size = 2,
   stroke_size = 1.5,
   line_width = 1,
-  errorbar_line_width = 0.75,
-  positiondodge_width = 0
+  errorbar_line_width = 0.75
 )
 }
 \arguments{
 \item{error_bar_width}{width of the error bars}
 }
 \description{
-This is a list of the basic plot elements that are used in most plots, note that positiondodge can give errorbar width issues when the nr of groups per x changes.
+This is a list of the basic plot elements that are used in most plots.
 }
 \details{
 error_bar_width needs to be scaled according to the size of the x_axis, e.g., if x goes from 0 to 10 vs 0 to 1000, you need to scale the width accordingly.
