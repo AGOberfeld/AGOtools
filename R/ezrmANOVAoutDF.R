@@ -23,3 +23,83 @@ ezrmANOVAoutDF=function(ezANOVAobj){
 
   return(rmANOVAout)
 }
+
+#' @author Thirsa Huisman
+#' @title add_dz_to_ANOVA_table
+#' @export
+add_dz_to_ANOVA_table <- function(no_dz_anova, nwithin){
+  no_dz_anova_no_intercept <- no_dz_anova %>%
+    mutate(dz = ifelse(DFn == 1, sqrt(F)/sqrt(nwithin), NA))
+}
+
+
+#' @author Thirsa Huisman
+#' @title format_ANOVA_table
+#' @export
+#' @import formattable
+format_ANOVA_table <- function(ezanova_output, add_dz = TRUE){
+  anova_output_clean = ezrmANOVAoutDF(ezanova_output)
+  # select columns
+  ## with huynh-feldt
+  if ("p[HF]" %in% colnames(anova_output_clean)){
+    selected_column_names = c("Effect", "F", "DFn", "DFd", "HFe", "p", "etaSq_partial")
+    anova_output_clean <- anova_output_clean %>% mutate(corrected_p = ifelse(is.na(`p[HF]`), `p`, `p[HF]`))%>%
+      select(-p)%>% rename(`p` = corrected_p)
+  }else{ ##without huynh-feldt
+    selected_column_names = c("Effect", "F", "DFn", "DFd", "p", "etaSq_partial")}
+
+  # filter out intercept and select columns
+  anova_table_unformatted <- anova_output_clean %>% filter(Effect != "(Intercept)") %>%
+    select(selected_column_names)
+
+  # add dz
+  if (add_dz){
+    nsubjects = length(ezanova_output$aov$subject.f$fitted.values) + 1
+    anova_table_unformatted = add_dz_to_ANOVA_table(anova_table_unformatted, nsubjects)
+  }
+  anovaOutputFmttab<- anova_table_unformatted %>%  mutate_if(is.numeric, round, digits=3)
+  anovaOutput_char <- anovaOutputFmttab
+  anovaOutput_char$p[anovaOutputFmttab$p == 0] = sprintf("<0.001")
+
+  p_formatter <- formatter("span", style = x ~ ifelse(x == "<0.001",
+                                                      style(font.weight = "bold"),
+                                                      ifelse(as.numeric(x) <= 0.05,
+                                                             style(font.weight = "bold"),
+                                                             NA))
+  )
+  anovaOutputFormat=formattable(anovaOutput_char, list(area(col="p") ~ p_formatter))
+  anovaOutputFormat$Effect <- gsub(":", " × ", anovaOutputFormat$Effect)
+  # replace NA values with empty space
+  if ("HFe" %in% colnames(anovaOutputFormat)){
+    anovaOutputFormat$HFe[is.na(anovaOutputFormat$HFe)] = ""
+  }
+  if ("dz" %in% colnames(anovaOutputFormat)){
+    anovaOutputFormat$dz[is.na(anovaOutputFormat$dz)] = ""
+  }
+  return(anovaOutputFormat)
+}
+
+#' @author Thirsa Huisman
+#' @title main_and_subscript
+#' @export
+main_and_subscript <- function(main, subscript){
+  paste0(main, "<sub>", subscript, "</sub>")
+}
+
+#' @author Thirsa Huisman
+#' @title italic_main_and_subscript
+#' @export
+italic_main_and_subscript <- function(main, subscript = ""){
+  paste0("<i>", main, "<i>","<i>","<sub>", subscript, "</sub></i>")
+}
+
+
+# examples for further formatting:
+
+#anovaOutputFormat = anovaOut
+#anovaOutputFormat$Effect <- gsub("TTC_s_intended", "TTC_s", anovaOutputFormat$Effect)
+#anovaOutputFormat$Effect <- gsub("LAeqFinal", main_and_subscript("L", "Aeq"), anovaOutputFormat$Effect)
+#anovaOutputFormat$Effect <- gsub("Docc", italic_main_and_subscript("D", "Occ"), anovaOutputFormat$Effect)
+#anovaOutputFormat$Effect <- gsub("a", italic_main_and_subscript("a"), anovaOutputFormat$Effect)  # makes single letter italic
+#anovaOutputFormat
+
