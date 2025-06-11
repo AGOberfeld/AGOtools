@@ -2,6 +2,7 @@
 
 export(KmhToMs)
 export(MsToKmh)
+export(add_d_to_ANOVA_table)
 export(add_dz_to_ANOVA_table)
 export(cvGroupRep.glmnet)
 export(ezrmANOVAoutDF)

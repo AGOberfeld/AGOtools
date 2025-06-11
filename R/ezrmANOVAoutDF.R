@@ -28,8 +28,18 @@ ezrmANOVAoutDF=function(ezANOVAobj){
 #' @title add_dz_to_ANOVA_table
 #' @export
 add_dz_to_ANOVA_table <- function(no_dz_anova, nwithin){
+  cat(sprintf("Adding dz to ANOVA table with nwithin = %s\n", nwithin))
   no_dz_anova_no_intercept <- no_dz_anova %>%
     mutate(dz = ifelse(DFn == 1, sqrt(F)/sqrt(nwithin), NA))
+}
+
+#' @author Thirsa Huisman
+#' @title add_d_to_ANOVA_table
+#' @export
+add_d_to_ANOVA_table <- function(no_d_anova, nbetween){
+  cat(sprintf("Adding d to ANOVA table with nbetween = %s\n", nbetween))
+  no_d_anova_no_intercept <- no_d_anova %>%
+    mutate(d = ifelse(DFn == 1, sqrt(F)*sqrt(2/nbetween), NA))
 }
 
 
@@ -37,7 +47,7 @@ add_dz_to_ANOVA_table <- function(no_dz_anova, nwithin){
 #' @title format_ANOVA_table
 #' @export
 #' @import formattable
-format_ANOVA_table <- function(ezanova_output, add_dz = TRUE){
+format_ANOVA_table <- function(ezanova_output, add_dz = TRUE, participant_column_name = "Participantnr"){
   anova_output_clean = ezrmANOVAoutDF(ezanova_output)
   # select columns
   ## with huynh-feldt
@@ -54,7 +64,8 @@ format_ANOVA_table <- function(ezanova_output, add_dz = TRUE){
 
   # add dz
   if (add_dz){
-    nsubjects = length(ezanova_output$aov$subject.f$fitted.values) + 1
+    aov = ezanova_output$aov[[participant_column_name]]
+    nsubjects = length(aov$fitted.values) + 1
     anova_table_unformatted = add_dz_to_ANOVA_table(anova_table_unformatted, nsubjects)
   }
   anovaOutputFmttab<- anova_table_unformatted %>%  mutate_if(is.numeric, round, digits=3)

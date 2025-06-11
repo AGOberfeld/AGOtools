@@ -4,7 +4,11 @@
 \alias{format_ANOVA_table}
 \title{format_ANOVA_table}
 \usage{
-format_ANOVA_table(ezanova_output, add_dz = TRUE)
+format_ANOVA_table(
+  ezanova_output,
+  add_dz = TRUE,
+  participant_column_name = "Participantnr"
+)
 }
 \description{
 format_ANOVA_table
