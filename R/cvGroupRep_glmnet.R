@@ -42,12 +42,12 @@ cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alp
 
     if (!(is_empty(idVarString))) {
       #CV-by-group
-      cat('CV-by-group: ',idVarString,'\n')
+      cat('cvGroupRep.glmnet:: CV-by-group: ',idVarString,'\n')
       dfkFoldByGroup <- groupdata2::fold(dataset, k = nfolds, id_col = idVarString)
     } else
     {
       #random CV
-      cat('random CV\n')
+      cat('cvGroupRep.glmnet:: random CV\n')
       dfkFoldByGroup <- groupdata2::fold(dataset, k = nfolds)
     }
     # dfkFoldByGroup <- dfkFoldByGroup %>% arrange(.folds)  #check folding
