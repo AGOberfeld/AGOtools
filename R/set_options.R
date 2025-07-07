@@ -37,14 +37,14 @@ set_options <- function(colors = c( '#1f77b4',
                         point_size = rel(2)){
 
   #load default packages
-  require(tidyverse)
-  require(pracma)
-  require(rlang)
-  require(extrafont)
+  library(tidyverse)
+  library(pracma)
+  library(rlang)
+  library(extrafont)
   #font_import() # imports Win fonts -> needs to be run only one per computer
   #extrafont::loadfonts() # required only once after font_import()
   # install_github("infotroph/DeLuciatoR")
-  require(DeLuciatoR) # for saving plots with ggsave_fitmax
+  library(DeLuciatoR) # for saving plots with ggsave_fitmax
 
   # set R language to English
   Sys.setenv(LANG = "en")
