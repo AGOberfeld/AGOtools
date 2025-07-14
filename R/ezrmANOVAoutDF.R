@@ -16,7 +16,7 @@ ezrmANOVAoutDF=function(ezANOVAobj){
         `p[HF]` = ifelse(is.na(`p[HF]`), p, `p[HF]`),
         `p[HF]<.05`=ifelse(is.na(`p[HF]<.05`), `p<.05`, `p[HF]<.05`),
         `p[GG]` = ifelse(is.na(`p[GG]`), p, `p[GG]`),
-        `p[GG]<.05`=ifelse(is.na(`p[GG]<.05`), `p<.05`, `p[GG]<.05`))
+        `p[GG]<.05`=ifelse(is.na(`p[GG]<.05`), `p<.05`, `p[GG]<.05`)
     )
   } else
   {
