@@ -16,10 +16,20 @@ ezrmANOVAoutDF=function(ezANOVAobj){
         `p[HF]` = ifelse(is.na(`p[HF]`), p, `p[HF]`),
         `p[HF]<.05`=ifelse(is.na(`p[HF]<.05`), `p<.05`, `p[HF]<.05`),
         `p[GG]` = ifelse(is.na(`p[GG]`), p, `p[GG]`),
-        `p[GG]<.05`=ifelse(is.na(`p[GG]<.05`), `p<.05`, `p[GG]<.05`)
+        `p[GG]<.05`=ifelse(is.na(`p[GG]<.05`), `p<.05`, `p[GG]<.05`))
     )
   } else
-  {rmANOVAout=ANOVA}
+  {
+    rmANOVAout=ANOVA
+    rmANOVAout = rmANOVAout %>% mutate( # make sure pGG and pHF have values for all effects
+      `p[HF]` =  p,
+      `p[HF]<.05`=`p<.05`,
+      `p[GG]` =  p,
+      `p[GG]<.05`= `p<.05`,
+      GGe = NA,
+      HFe=NA
+    )
+    }
 
   return(rmANOVAout)
 }
