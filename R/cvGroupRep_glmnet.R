@@ -66,10 +66,13 @@ cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alp
     coefLassoSparseMatrix.1se=coef(cvfit, s = "lambda.1se") #Best sparse solution
     coefLassodf.1se <- as.data.frame(as.matrix(coefLassoSparseMatrix.1se))
     coefLassodf.1se$predictor <- row.names(coefLassodf.1se)
-    coefLassodf.1se=coefLassodf.1se%>%
-      rename(
-        regCoeffLasso.1se = s1
-      )
+    # does not wotrk anymore, apparently a chnage in the column name in glmnet
+    # coefLassodf.1se=coefLassodf.1se%>%
+    #   rename(
+    #     regCoeffLasso.1se = s1
+    #   )
+    colnames(coefLassodf.1se)[1] = "regCoeffLasso.1se"
+
     coefLassodf.1se=coefLassodf.1se %>% mutate(predSelectedLasso.1se=if_else(regCoeffLasso.1se==0,0,1)) #compute indicator (0/1) specifying if predictor was included in selected model
     #cvm = The mean cross-validated error - a vector of length length(lambda).
     # index: a one column matrix with the indices of lambda.min and lambda.1se in the sequence of coefficients, fits etc.
@@ -79,10 +82,11 @@ cvGroupRep.glmnet<-function(dataset,glmFormulaString,family,standardize=TRUE,alp
     coefLassoSparseMatrix.min=coef(cvfit, s = "lambda.min") #Best solution
     coefLassodf.min <- as.data.frame(as.matrix(coefLassoSparseMatrix.min))
     coefLassodf.min$predictor <- row.names(coefLassodf.min)
-    coefLassodf.min=coefLassodf.min%>%
-      rename(
-        regCoeffLasso.min = s1
-      )
+    # coefLassodf.min=coefLassodf.min%>%
+    #   rename(
+    #     regCoeffLasso.min = s1
+    #   )
+    colnames(coefLassodf.min)[1] = "regCoeffLasso.min"
     coefLassodf.min=coefLassodf.min %>% mutate(predSelectedLasso.min=if_else(regCoeffLasso.min==0,0,1))
     coefLassodf.min=coefLassodf.min %>% mutate(lambda.min=cvfit$lambda.min,lossM.min_mean=cvfit$cvm[cvfit$index[1]],
                                                lossM.min_SE=cvfit$cvsd[cvfit$index[1]])
