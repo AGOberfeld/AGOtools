@@ -79,7 +79,7 @@ format_ANOVA_table <- function(ezANOVAobject, add_dz = TRUE, participant_column_
 
   # add dz
   if (add_dz){
-    aov = ezanova_output$aov[[participant_column_name]]
+    aov = ezANOVAobject$aov[[participant_column_name]]
     nsubjects = length(aov$fitted.values) + 1
     anova_table_unformatted = add_dz_to_ANOVA_table(anova_table_unformatted, nsubjects)
   }
