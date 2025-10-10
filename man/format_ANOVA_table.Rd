@@ -5,10 +5,18 @@
 \title{format_ANOVA_table}
 \usage{
 format_ANOVA_table(
-  ezanova_output,
+  ezANOVAobject,
   add_dz = TRUE,
   participant_column_name = "Participantnr"
 )
+}
+\arguments{
+\item{add_dz}{add Cohen's dz to the table (!! valid only for within-subject effects, not checked by function!)}
+
+\item{ezanovaObject}{object created by ezANOVA}
+}
+\value{
+formattable object with formatted ANOVA table
 }
 \description{
 format_ANOVA_table

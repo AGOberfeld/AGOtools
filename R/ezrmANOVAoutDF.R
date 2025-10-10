@@ -55,10 +55,15 @@ add_d_to_ANOVA_table <- function(no_d_anova, nbetween){
 
 #' @author Thirsa Huisman
 #' @title format_ANOVA_table
+#' @param ezanovaObject object created by ezANOVA
+#' @param add_dz add Cohen's dz to the table (!! valid only for within-subject effects, not checked by function!)
+
 #' @export
 #' @import formattable
-format_ANOVA_table <- function(ezanova_output, add_dz = TRUE, participant_column_name = "Participantnr"){
-  anova_output_clean = ezrmANOVAoutDF(ezanova_output)
+#' @return formattable object with formatted ANOVA table
+
+format_ANOVA_table <- function(ezANOVAobject, add_dz = TRUE, participant_column_name = "Participantnr"){
+  anova_output_clean = ezrmANOVAoutDF(ezANOVAobject)
   # select columns
   ## with huynh-feldt
   if ("p[HF]" %in% colnames(anova_output_clean)){
