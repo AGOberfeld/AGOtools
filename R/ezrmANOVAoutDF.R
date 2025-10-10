@@ -91,7 +91,8 @@ format_ANOVA_table <- function(ezANOVAobject, add_dz = TRUE, participant_column_
                                                       style(font.weight = "bold"),
                                                       ifelse(as.numeric(x) <= 0.05,
                                                              style(font.weight = "bold"),
-                                                             NA))
+                                                             NA)),
+                                                      x~style(digits(x,3))
   )
   anovaOutputFormat=formattable(anovaOutput_char, list(area(col="p") ~ p_formatter))
   anovaOutputFormat$Effect <- gsub(":", " × ", anovaOutputFormat$Effect)
