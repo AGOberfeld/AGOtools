@@ -2,7 +2,7 @@
 % Please edit documentation in R/cvGroupRep_glmnet.R
 \name{cvGroupRep.glmnet}
 \alias{cvGroupRep.glmnet}
-\title{cvGroupRep.glmnet. Runs a by-group repeated cross-validation for glmnet}
+\title{cvGroupRep.glmnet. Runs a by-group repeated cross-validation with glmnet}
 \usage{
 cvGroupRep.glmnet(
   dataset,
@@ -45,5 +45,5 @@ cvGroupRep.glmnet(
 cvfitList= List of cross-validated glmnet models (one per CV run). coefLassodf = dataframe containing the glmnet parameter estimates etc. per CV run
 }
 \description{
-cvGroupRep.glmnet. Runs a by-group repeated cross-validation for glmnet
+cvGroupRep.glmnet. Runs a by-group repeated cross-validation with glmnet
 }
