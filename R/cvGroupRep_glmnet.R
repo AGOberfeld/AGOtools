@@ -1,4 +1,4 @@
-#' cvGroupRep.glmnet. Runs a by-group repeated cross-validation for glmnet
+#' cvGroupRep.glmnet. Runs a by-group repeated cross-validation with glmnet
 #'
 #' @param dataset this is the dataset (data frame)
 #' @param glmFormulaString regression formula compatible with glmnet

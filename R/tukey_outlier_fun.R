@@ -26,7 +26,8 @@ tukey_outlier_fun <- function(dv,tukey_crit=3){
   dv_ <- rlang::enexpr(dv)
   dv_str <- rlang::as_string(dv_)
 
-  trialsInSet=dplyr::n() #number of trials in dv set
+  #trialsInSet=dplyr::n() #number of trials in dv set OLD, caused problems
+  trialsInSet=length(dv) #number of trials in dv set
   IQR=stats::IQR(dv,na.rm = TRUE)
   Quant25=unname(stats::quantile(dv,probs=0.25,na.rm = TRUE))
   Quant75=unname(stats::quantile(dv,probs=0.75,na.rm = TRUE))
