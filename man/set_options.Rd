@@ -13,7 +13,7 @@ set_options(
 )
 }
 \arguments{
-\item{colors}{choose default color palette values. Matplotlib colors are chosen by default.}
+\item{colors}{choose default color palette values. Matplotlib tab20 colors are chosen by default.}
 
 \item{line_width}{choose default line width for geom_line}
 
@@ -23,7 +23,7 @@ set_options(
 void
 }
 \description{
-Sets color palette options to the Matplotlib tab20 palette (default), sets global variables
+Sets color palette options to the Matplotlib tab20 palette (default), loads default packages, sets global variables
 }
 \examples{
 set_options()
