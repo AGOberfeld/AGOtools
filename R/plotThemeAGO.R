@@ -1,4 +1,3 @@
-
 #' Complete plot theme for publication-ready data plots
 #' @param base_size base size
 #' @param base_family base font family, default = Arial Unicode MS
@@ -6,10 +5,9 @@
 #' @export
 #'
 #'
-#'
 #' @importFrom dplyr %>%
 #' @importFrom ggplot2 aes ggplot theme element_text element_rect element_line unit margin scale_color_discrete scale_shape_manual geom_point scale_color_manual scale_shape_manual scale_fill_manual
-#' @import extrafont
+# #' @import extrafont
 #' @importFrom ggthemes theme_foundation
 #'
 plotThemeAGO <- function(base_size=12, base_family="Arial",...) {
@@ -18,7 +16,7 @@ plotThemeAGO <- function(base_size=12, base_family="Arial",...) {
     + theme(plot.title = element_text(face = "bold",
                                       size = rel(0.8), hjust = 0.5),
             text = element_text(),
-            plot.background = element_rect(colour = NA),
+            plot.background = element_rect(fill = NULL,colour = NULL),
             plot.caption = element_text(size =  rel(1)),
             panel.background = element_rect(colour = NA),
             #panel.grid.major = element_line(colour="#f0f0f0"),
@@ -38,7 +36,7 @@ plotThemeAGO <- function(base_size=12, base_family="Arial",...) {
             legend.direction = "horizontal",
             legend.key.size= unit(0.21, "cm"),
             legend.margin=margin(t = 3, r = 3, b = 0, l = 0, unit = "mm"),
-            legend.title = element_text(face="italic",size=rel(0.8)),
+            legend.title = element_text(face="italic",size=rel(0.81)),
             strip.background = element_blank(),
             strip.text = element_text(face="bold"),...),
      scale_shape_manual(values = c(15, 1, 17, 5,2,5,7))
