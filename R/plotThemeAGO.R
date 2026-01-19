@@ -15,8 +15,8 @@ plotThemeAGO <- function(base_size=12, base_family="Arial",...) {
     + theme(plot.title = element_text(face = "bold",
                                       size = rel(0.8)), #hjust = 0.5
             text = element_text(),
-            plot.background = element_rect(fill = NULL,colour = NULL),
-            panel.background = element_rect(fill = NULL,colour = NULL),
+            plot.background = element_rect(fill = "white",colour = NA),
+            panel.background = element_rect(fill = "white",colour = NA),
             plot.caption = element_text(size =  rel(1)),
             #panel.grid.major = element_line(colour="#f0f0f0"),
             panel.grid.major =element_blank(),
@@ -31,7 +31,7 @@ plotThemeAGO <- function(base_size=12, base_family="Arial",...) {
             axis.line = element_line(colour="black"),
             axis.ticks = element_line(),
             legend.position = "inside",
-            legend.position.inside = c(0.05,0.95),
+            legend.position.inside = c(0.3,0.7),
             legend.direction = "horizontal",
             legend.margin=margin(t = 1, r = 1, b = 1, l = 1, unit = "mm"),
             legend.key = element_rect(colour = NA),
@@ -39,7 +39,7 @@ plotThemeAGO <- function(base_size=12, base_family="Arial",...) {
             legend.title = element_text(face="italic",size=rel(0.8)),
             strip.background = element_blank(),
             strip.text = element_text(face="bold"),...),
-     scale_shape_manual(values = c(15, 1, 17, 5,2,5,7)) # set default sequence of shapes
+            scale_shape_manual(values = c(15, 1, 17, 5,2,5,7)) # set default sequence of shapes
     )
 
 }
