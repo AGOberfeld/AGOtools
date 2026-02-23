@@ -5,8 +5,7 @@
 #' @export
 #'
 #'
-#' @importFrom dplyr %>%
-#' @importFrom ggplot2 aes ggplot theme element_text element_rect element_line unit margin scale_color_discrete scale_shape_manual geom_point scale_color_manual scale_shape_manual scale_fill_manual
+#' @importFrom ggplot2 aes ggplot theme element_text element_rect element_blank element_line unit margin scale_color_discrete scale_shape_manual scale_color_manual scale_shape_manual scale_fill_manual
 #' @importFrom ggthemes theme_foundation
 #'
 plotThemeAGO <- function(base_size=12, base_family="Arial",...) {
@@ -31,7 +30,7 @@ plotThemeAGO <- function(base_size=12, base_family="Arial",...) {
             axis.line = element_line(colour="black"),
             axis.ticks = element_line(),
             legend.position = "inside",
-            legend.position.inside = c(0.3,0.7),
+            legend.position.inside = c(0.3,0.3),
             legend.direction = "horizontal",
             legend.margin=margin(t = 1, r = 1, b = 1, l = 1, unit = "mm"),
             legend.key = element_rect(colour = NA),
