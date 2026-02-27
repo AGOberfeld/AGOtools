@@ -1,7 +1,7 @@
 #' @param gObj ggplot object
 #' @author Daniel Oberfeld-Twistel
 #' @title pShawe
-#' @return img: the saved image
+#' @return img: the saved image, fName: the file name of the saved image
 #' @description Saves ggplot object as an image file with DeLuciatoR::ggsave_fitmax, then loads it to display in the RStudio viewer pane.
 #' @import DeLuciatoR
 #' @import magick
@@ -29,19 +29,18 @@ pShawe=function(gObj,maxwidth=16,
 
   img=image_read(fName)
 
-  # # In interactive RStudio session: show img in viewer pane
-  # if (interactive()) {
-  #   img
-  # }
+  # In interactive RStudio session: show img in viewer pane
+  if (interactive()) {
+    print(img)
+  }
 
-  # When knitting: include img in HTML so that pShawe can be called in a loop/function, requires results='asis' in chunk options (and unique image file names!)
-
+  # When knitting: include img in HTML so that pShawe can be called in a loop/function, requires results='asis' in chunk options
   if (!interactive()) {
     cat("![](",fName,")")
   }
 
-  # return(list(img=img,fName=fName))
-  return(img)
+  return(list(img=img,fName=fName))
+  # return(img)
 }
 
 

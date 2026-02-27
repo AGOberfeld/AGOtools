@@ -20,7 +20,7 @@ pShawe(
 \item{gObj}{ggplot object}
 }
 \value{
-img: the saved image
+img: the saved image, fName: the file name of the saved image
 }
 \description{
 Saves ggplot object as an image file with DeLuciatoR::ggsave_fitmax, then loads it to display in the RStudio viewer pane.
