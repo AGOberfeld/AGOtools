@@ -20,10 +20,10 @@ pShawe(
 \item{gObj}{ggplot object}
 }
 \value{
-the saved then loaded image
+img: the saved image , fName: the filename of the saved image
 }
 \description{
-Saved image then loads it to ensure that the R image matches the final produced image
+Saves ggplot object as an image file with DeLuciatoR::ggsave_fitmax, then loads it to display in the RStudio viewer pane.
 }
 \author{
 Daniel Oberfeld-Twistel
