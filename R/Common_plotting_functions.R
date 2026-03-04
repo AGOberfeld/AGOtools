@@ -1,8 +1,17 @@
-#' @param gObj ggplot object
 #' @author Daniel Oberfeld-Twistel
 #' @title pShawe
-#' @return img: the saved image, fName: the file name of the saved image
-#' @description Saves ggplot object as an image file with DeLuciatoR::ggsave_fitmax, then loads it to display in the RStudio viewer pane.
+#' @description Saves ggplot object as an image file with DeLuciatoR::ggsave_fitmax, then loads it to display in the RStudio viewer pane or includes link to image in knitted HTML output
+#' @param gObj ggplot object
+#' @param maxwidth maximum width of image in units as specfied by parameter units
+#' @param maxwidth maximum height f image in units as specfied by parameter units
+#' @param units Units ("cm", "in", "mm", "px") for maxwidth and maxheight
+#' @param dpi resolution of the saved image
+#' @param device file format for the saved image, e.g., "png"
+#' @param fnSuffix suffix to add to the file name of the saved image, e.g., "_v1"
+#' @param imgPath path to save the image, default is current working directory
+#' @param showInViewer whether to show the image in the RStudio viewer pane (when calling from interactive R session)
+#' @param includeInHTML whether to include the image in the HTML output when knitting
+#' @return list(img,fname). img: the saved image, fName: the file name of the saved image
 #' @import DeLuciatoR
 #' @import magick
 #' @export
@@ -14,6 +23,8 @@ pShawe=function(gObj,maxwidth=16,
                 device = "png",
                 fnSuffix="",
                 imgPath=getwd(),
+                showInViewer=TRUE,
+                includeInHTML=TRUE,
                 ...) {
   fName=file.path(imgPath,paste0(deparse(substitute(gObj)),fnSuffix,'.',device)) #filename = plot object name plus suffix
 
@@ -29,14 +40,17 @@ pShawe=function(gObj,maxwidth=16,
 
   img=image_read(fName)
 
-  # In interactive RStudio session: show img in viewer pane
-  if (interactive()) {
+  # In interactive RStudio session: show img in viewer pane, if showInViewer=T
+
+  if (interactive() && showInViewer) {
     print(img)
   }
 
-  # When knitting: include img in HTML so that pShawe can be called in a loop/function, requires results='asis' in chunk options
-  if (!interactive()) {
+  # When knitting: include img in HTML (if includeInHTML=T) so that pShawe can be called in a loop/function, requires results='asis' in chunk options,
+  if (!interactive() && includeInHTML) {
     cat("![](",fName,")")
+    cat("\n\n")
+    # invisible(capture.output(print(img)))
   }
 
   return(list(img=img,fName=fName))

@@ -13,17 +13,35 @@ pShawe(
   device = "png",
   fnSuffix = "",
   imgPath = getwd(),
+  showInViewer = TRUE,
+  includeInHTML = TRUE,
   ...
 )
 }
 \arguments{
 \item{gObj}{ggplot object}
+
+\item{maxwidth}{maximum height f image in units as specfied by parameter units}
+
+\item{units}{Units ("cm", "in", "mm", "px") for maxwidth and maxheight}
+
+\item{dpi}{resolution of the saved image}
+
+\item{device}{file format for the saved image, e.g., "png"}
+
+\item{fnSuffix}{suffix to add to the file name of the saved image, e.g., "_v1"}
+
+\item{imgPath}{path to save the image, default is current working directory}
+
+\item{showInViewer}{whether to show the image in the RStudio viewer pane (when calling from interactive R session)}
+
+\item{includeInHTML}{whether to include the image in the HTML output when knitting}
 }
 \value{
-img: the saved image, fName: the file name of the saved image
+list(img,fname). img: the saved image, fName: the file name of the saved image
 }
 \description{
-Saves ggplot object as an image file with DeLuciatoR::ggsave_fitmax, then loads it to display in the RStudio viewer pane.
+Saves ggplot object as an image file with DeLuciatoR::ggsave_fitmax, then loads it to display in the RStudio viewer pane or includes link to image in knitted HTML output
 }
 \author{
 Daniel Oberfeld-Twistel
