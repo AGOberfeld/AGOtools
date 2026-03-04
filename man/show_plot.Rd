@@ -4,12 +4,12 @@
 \alias{show_plot}
 \title{show_plot}
 \usage{
-show_plot(plot_and_plotname, seperate_plotname = "")
+show_plot(plot_and_plotname, separate_plotname = "")
 }
 \arguments{
-\item{plot_and_plotname}{if no seperate_plotname is given, show_plot will try to show "plot_and_plotname" or load "plot_and_plotname.png". Use sepearte_plotname if you save the files to a different folder}
+\item{plot_and_plotname}{if no separate_plotname is given, show_plot will try to show "plot_and_plotname" or load "plot_and_plotname.png". Use sepearte_plotname if you save the files to a different folder}
 
-\item{seperate_plotname}{Full name of the plot, eg: "saved_image.png". Needs to be used when figure is stored in subfolder (relative pathing) or other folder entirely (full pathing).}
+\item{separate_plotname}{Full name of the plot, eg: "saved_image.png". Needs to be used when figure is stored in subfolder (relative pathing) or other folder entirely (full pathing).}
 }
 \description{
 When knitting it loads the preper saved image, when merely running the code it shows the simple plot.

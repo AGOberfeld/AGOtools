@@ -4,12 +4,12 @@
 \alias{show_plot_in_loop}
 \title{show_plot_in_loop}
 \usage{
-show_plot_in_loop(plot_and_plotname, seperate_plotname = "")
+show_plot_in_loop(plot_and_plotname, separate_plotname = "")
 }
 \arguments{
-\item{plot_and_plotname}{if no seperate_plotname is given, show_plot_in_loop will try to show "plot_and_plotname" or load "plot_and_plotname.png". Use sepearte_plotname if you save the files to a different folder}
+\item{plot_and_plotname}{if no separate_plotname is given, show_plot_in_loop will try to show "plot_and_plotname" or load "plot_and_plotname.png". Use sepearte_plotname if you save the files to a different folder}
 
-\item{seperate_plotname}{Full name of the plot, eg: "saved_image.png". Needs to be used when figure is stored in subfolder (relative pathing) or other folder entirely (full pathing).}
+\item{separate_plotname}{Full name of the plot, eg: "saved_image.png". Needs to be used when figure is stored in subfolder (relative pathing) or other folder entirely (full pathing).}
 }
 \description{
 In block-settings ```{r, results='asis'} is required for individual plots to show up as intended.

@@ -60,16 +60,16 @@ pShawe=function(gObj,maxwidth=16,
 
 #' @author Thirsa Huisman
 #' @title show_plot
-#' @param plot_and_plotname if no seperate_plotname is given, show_plot will try to show "plot_and_plotname" or load "plot_and_plotname.png". Use sepearte_plotname if you save the files to a different folder
-#' @param seperate_plotname Full name of the plot, eg: "saved_image.png". Needs to be used when figure is stored in subfolder (relative pathing) or other folder entirely (full pathing).
+#' @param plot_and_plotname if no separate_plotname is given, show_plot will try to show "plot_and_plotname" or load "plot_and_plotname.png". Use sepearte_plotname if you save the files to a different folder
+#' @param separate_plotname Full name of the plot, eg: "saved_image.png". Needs to be used when figure is stored in subfolder (relative pathing) or other folder entirely (full pathing).
 #' @description When knitting it loads the preper saved image, when merely running the code it shows the simple plot.
 #' @export
-show_plot <- function(plot_and_plotname, seperate_plotname = "") {
+show_plot <- function(plot_and_plotname, separate_plotname = "") {
   if (knitr::is_latex_output() || knitr::is_html_output()) {
-    if (seperate_plotname == ""){
+    if (separate_plotname == ""){
       filename = paste0(deparse(substitute(plot_and_plotname)), ".png")
     }else{
-      filename = seperate_plotname
+      filename = separate_plotname
     }
     knitr::include_graphics(filename)
   } else {
@@ -79,19 +79,19 @@ show_plot <- function(plot_and_plotname, seperate_plotname = "") {
 
 #' @author Thirsa Huisman
 #' @title show_plot_in_loop
-#' @param plot_and_plotname if no seperate_plotname is given, show_plot_in_loop will try to show "plot_and_plotname" or load "plot_and_plotname.png". Use sepearte_plotname if you save the files to a different folder
-#' @param seperate_plotname Full name of the plot, eg: "saved_image.png". Needs to be used when figure is stored in subfolder (relative pathing) or other folder entirely (full pathing).
+#' @param plot_and_plotname if no separate_plotname is given, show_plot_in_loop will try to show "plot_and_plotname" or load "plot_and_plotname.png". Use sepearte_plotname if you save the files to a different folder
+#' @param separate_plotname Full name of the plot, eg: "saved_image.png". Needs to be used when figure is stored in subfolder (relative pathing) or other folder entirely (full pathing).
 #' @description In block-settings ```{r, results='asis'} is required for individual plots to show up as intended.
 #' @details
 #' This function outputs raw Markdown and should be used in an R Markdown chunk with the option {r, results='asis'}``` for the output to render correctly.
 #'
 #' @export
-show_plot_in_loop <- function(plot_and_plotname, seperate_plotname = "") {
+show_plot_in_loop <- function(plot_and_plotname, separate_plotname = "") {
   if (knitr::is_latex_output() || knitr::is_html_output()) {
-    if (seperate_plotname == ""){
+    if (separate_plotname == ""){
       filename = paste0(deparse(substitute(plot_and_plotname)), ".png")
     }else{
-      filename = seperate_plotname
+      filename = separate_plotname
     }
     cat("![](",filename,")")
   } else {
