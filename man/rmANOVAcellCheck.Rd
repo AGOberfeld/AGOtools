@@ -11,7 +11,7 @@ rmANOVAcellCheck(df, subjIDstr, factorsStr, verbose = F)
 
 \item{subjIDstr}{Name of the column identifying the subjects (string), e.g., "subjCode".}
 
-\item{factorsStr}{Vector of factors in the rmANOVA (character vector), e.g., c("Condition","Time")}
+\item{factorsStr}{Vector of column names of the factors in the rmANOVA (character vector), e.g., c("Condition","Time")}
 
 \item{verbose}{logical (default = FALSE).}
 }

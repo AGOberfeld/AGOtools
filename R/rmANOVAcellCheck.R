@@ -2,7 +2,7 @@
 #'
 #' @param df input dataframe
 #' @param subjIDstr Name of the column identifying the subjects (string), e.g., "subjCode".
-#' @param factorsStr Vector of factors in the rmANOVA (character vector), e.g., c("Condition","Time")
+#' @param factorsStr Vector of column names of the factors in the rmANOVA (character vector), e.g., c("Condition","Time")
 #' @param verbose logical (default = FALSE).
 #' @return `nEmptyCells` = number of empty cells
 #' @return `df_nonEmpty` = data frame where subjects with empty cells are removed
