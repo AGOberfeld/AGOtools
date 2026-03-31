@@ -1,4 +1,4 @@
-#' Detect outlier according to the tukey criterion.
+#' Detect outliers according to a Tukey criterion. Within each analysis group, outliers are defined as values that are either higher than the 75% quantile plus a factor (tukey_crit) of the IQR or lower than the 25% quantile minus a factor of the IQR. The factor can be defined by the user (default = 3). This function adds new variables to the data frame that indicate whether a given trial is an outlier according to the Tukey criterion and what the upper and lower limits are.
 #'
 #' @param data data frame to apply the tukey outlier analysis on.
 #' @param dv variable to apply the tukey outlier analysis on.

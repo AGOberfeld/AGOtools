@@ -22,7 +22,7 @@
 #'
 #'
 tukey_outlier_fun <- function(dv,tukey_crit=3){
-  #computes outliers in dataframe variable dv according to  a Tukey criterion. Returns list of named outputs
+  #computes outliers in dataframe variable dv according to  a Tukey criterion. Returns list of named vectors
   dv_ <- rlang::enexpr(dv)
   dv_str <- rlang::as_string(dv_)
 
