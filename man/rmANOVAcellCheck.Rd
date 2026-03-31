@@ -20,7 +20,7 @@ rmANOVAcellCheck(df, subjIDstr, factorsStr, verbose = F)
 
 \code{df_nonEmpty} = data frame where subjects with empty cells are removed
 
-\code{maxObsPerCell} = maximum number of observations per cell (must be 1 for an rmANOVA)
+\code{maxObsPerCell} = maximum number of observations in df_nonEmpty per cell (must be 1 for an rmANOVA)
 }
 \description{
 Check a dataframe prior to running a repeated-measures ANOVA. Detects and removes subjects with empty cells, and issues warning if there are cells containing more than one observation

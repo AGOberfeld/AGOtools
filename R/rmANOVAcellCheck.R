@@ -6,7 +6,7 @@
 #' @param verbose logical (default = FALSE).
 #' @return `nEmptyCells` = number of empty cells
 #' @return `df_nonEmpty` = data frame where subjects with empty cells are removed
-#' @return `maxObsPerCell` = maximum number of observations per cell (must be 1 for an rmANOVA)
+#' @return `maxObsPerCell` = maximum number of observations in df_nonEmpty per cell (must be 1 for an rmANOVA)
 #' @importFrom dplyr group_by mutate filter ungroup distinct select arrange across all_of
 #' @importFrom tidyr complete
 #' @importFrom rlang syms
