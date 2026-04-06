@@ -18,7 +18,7 @@ rmANOVAcellCheck=function(df,subjIDstr,withinSfactorsStr,verbose=F) {
     cat("\nChecking df for rmANOVA.\nSubject ID var: ",subjIDstr,"\nWithin-subjects factors: ",withinSfactorsStr,"\n\n")
   }
   df_empty = df
-  df_empty$subjID = df_empty[[subjIDstr]]
+  # df_empty$subjID = df_empty[[subjIDstr]]
   # Check for empty cells
   df_empty=df_empty |>  mutate(cellInData = TRUE) |>
     complete(!!!syms(c(subjIDstr,withinSfactorsStr)))  |> ungroup()
@@ -29,12 +29,12 @@ rmANOVAcellCheck=function(df,subjIDstr,withinSfactorsStr,verbose=F) {
   # check if   cellInData is NA in  any row
   if (nEmptyCells>0) {
     warning("Subjects with empty cells detected!\n",immediate. = T,call. =F)
-    print(knitr::kable(df_empty |> filter(has_empty) |> distinct(subjID)))
+    print(knitr::kable(df_empty |> filter(has_empty) |> distinct(across(all_of(subjIDstr)))))
     cat("\nEmpty cells:\n")
-    print(knitr::kable(df_empty |> filter(is.na(cellInData)) |> select(all_of(c(subjIDstr,withinSfactorsStr)))|> arrange(subjID)))
+    print(knitr::kable(df_empty |> filter(is.na(cellInData)) |> select(all_of(c(subjIDstr,withinSfactorsStr)))|> arrange(across(all_of(subjIDstr)))))
     # Remove subjects with empty cells
     cat("\nRemoving subjects with empty cells\n")
-    df_nonEmpty= df_empty |> filter(!has_empty) |> select(-subjID,-cellInData,-has_empty)
+    df_nonEmpty= df_empty |> filter(!has_empty) |> select(-cellInData,-has_empty)
   } else {
     cat("\nNo empty cells detected.\n")
     df_nonEmpty=df
