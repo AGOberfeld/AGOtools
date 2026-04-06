@@ -2,7 +2,7 @@
 #'
 #' @param df input dataframe
 #' @param subjIDstr Name of the column identifying the subjects (string), e.g., "subjCode".
-#' @param factorsStr Vector of column names of the factors in the rmANOVA (character vector), e.g., c("Condition","Time")
+#' @param withinSfactorsStr Vector of column names of the within-subjects factors in the rmANOVA (character vector), e.g., c("Condition","Time")
 #' @param verbose logical (default = FALSE).
 #' @return `nEmptyCells` = number of empty cells
 #' @return `df_nonEmpty` = data frame where subjects with empty cells are removed
@@ -13,16 +13,16 @@
 #' @importFrom knitr kable
 #' @export
 
-rmANOVAcellCheck=function(df,subjIDstr,factorsStr,verbose=F) {
+rmANOVAcellCheck=function(df,subjIDstr,withinSfactorsStr,verbose=F) {
   if (verbose) {
-    cat("\nChecking df for rmANOVA.\nSubject ID variable: ",subjIDstr,"\nFactors: ",factorsStr,"\n\n")
+    cat("\nChecking df for rmANOVA.\nSubject ID var: ",subjIDstr,"\nWithin-subjects factors: ",withinSfactorsStr,"\n\n")
   }
   df_empty = df
   df_empty$subjID = df_empty[[subjIDstr]]
   # Check for empty cells
   df_empty=df_empty |>  mutate(cellInData = TRUE) |>
-    group_by(subjID) |>
-    complete(!!!syms(factorsStr)) |>
+    complete(!!!syms(c(subjIDstr,withinSfactorsStr)))  |> ungroup()
+  df_empty=df_empty|>group_by(across(all_of(subjIDstr))) |>
     mutate(has_empty = any(is.na(cellInData))) |> ungroup()
   nEmptyCells=sum(is.na(df_empty$cellInData))
   # print(nEmptyCells)
@@ -31,7 +31,7 @@ rmANOVAcellCheck=function(df,subjIDstr,factorsStr,verbose=F) {
     warning("Subjects with empty cells detected!\n",immediate. = T,call. =F)
     print(knitr::kable(df_empty |> filter(has_empty) |> distinct(subjID)))
     cat("\nEmpty cells:\n")
-    print(knitr::kable(df_empty |> filter(is.na(cellInData)) |> select(all_of(c("subjID",factorsStr)))|> arrange(subjID)))
+    print(knitr::kable(df_empty |> filter(is.na(cellInData)) |> select(all_of(c(subjIDstr,withinSfactorsStr)))|> arrange(subjID)))
     # Remove subjects with empty cells
     cat("\nRemoving subjects with empty cells\n")
     df_nonEmpty= df_empty |> filter(!has_empty) |> select(-subjID,-cellInData,-has_empty)
@@ -41,7 +41,7 @@ rmANOVAcellCheck=function(df,subjIDstr,factorsStr,verbose=F) {
   }
 
   # Check cell counts, warning if a cell contains more than 1 observation
-  cellCounts= df_nonEmpty |>  group_by(across(all_of(c(subjIDstr,factorsStr)))) |>
+  cellCounts= df_nonEmpty |>  group_by(across(all_of(c(subjIDstr,withinSfactorsStr)))) |>
     count() |>  ungroup()
   maxObsPerCell=max(cellCounts$n)
   if (maxObsPerCell>1) {

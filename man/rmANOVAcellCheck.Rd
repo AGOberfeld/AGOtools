@@ -4,14 +4,14 @@
 \alias{rmANOVAcellCheck}
 \title{Check a dataframe prior to running a repeated-measures ANOVA. Detects and removes subjects with empty cells, and issues warning if there are cells containing more than one observation}
 \usage{
-rmANOVAcellCheck(df, subjIDstr, factorsStr, verbose = F)
+rmANOVAcellCheck(df, subjIDstr, withinSfactorsStr, verbose = F)
 }
 \arguments{
 \item{df}{input dataframe}
 
 \item{subjIDstr}{Name of the column identifying the subjects (string), e.g., "subjCode".}
 
-\item{factorsStr}{Vector of column names of the factors in the rmANOVA (character vector), e.g., c("Condition","Time")}
+\item{withinSfactorsStr}{Vector of column names of the within-subjects factors in the rmANOVA (character vector), e.g., c("Condition","Time")}
 
 \item{verbose}{logical (default = FALSE).}
 }
