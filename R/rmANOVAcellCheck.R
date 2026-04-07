@@ -33,7 +33,7 @@ rmANOVAcellCheck=function(df,subjIDstr,withinSfactorsStr,verbose=F) {
     cat("\nEmpty cells:\n")
     print(knitr::kable(df_empty |> filter(is.na(cellInData)) |> select(all_of(c(subjIDstr,withinSfactorsStr)))|> arrange(across(all_of(subjIDstr)))))
     # Remove subjects with empty cells
-    cat("\nRemoving subjects with empty cells\n")
+    cat("\nRemoving subjects with empty cells, return df_nonEmpty\n")
     df_nonEmpty= df_empty |> filter(!has_empty) |> select(-cellInData,-has_empty)
   } else {
     cat("\nNo empty cells detected.\n")
@@ -45,7 +45,7 @@ rmANOVAcellCheck=function(df,subjIDstr,withinSfactorsStr,verbose=F) {
     count() |>  ungroup()
   maxObsPerCell=max(cellCounts$n)
   if (maxObsPerCell>1) {
-    warning("Some cells contain more than 1 observation. Data frame cannot be used in rmANOVA.",immediate. = T,call. =F)
+    warning("Some cells contain more than 1 observation. Data frame cannot be used in an rmANOVA.",immediate. = T,call. =F)
     print(knitr::kable(cellCounts |> filter(n>1)))
   }
   return(list(nEmptyCells=nEmptyCells,df_nonEmpty=df_nonEmpty,maxObsPerCell=maxObsPerCell))
