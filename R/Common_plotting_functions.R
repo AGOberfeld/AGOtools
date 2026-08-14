@@ -12,8 +12,8 @@
 #' @param showInViewer whether to show the image in the RStudio viewer pane (when calling from interactive R session)
 #' @param includeInHTML whether to include the image in the HTML output when knitting
 #' @return list(img,fname). img: the saved image, fName: the file name of the saved image
-#' @import DeLuciatoR
-#' @import magick
+#' @importFrom DeLuciatoR ggsave_fitmax
+#' @importFrom magick image_read
 #' @export
 # save/show plot (ggsave_fitmax and display it in Rstudio viewer pane / markdown)
 pShawe=function(gObj,maxwidth=16,

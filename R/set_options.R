@@ -5,7 +5,6 @@
 #' @param line_width choose default line width for geom_line
 #' @param point_size choose default point size fpr geom_point
 #' @import ggplot2 knitr
-#' @import DeLuciatoR
 #'
 #' @return void
 #' @export
@@ -36,15 +35,15 @@ set_options <- function(colors = c( '#1f77b4',
                         line_width = rel(1),
                         point_size = rel(2)){
 
-  #load default packages
+  #load some default packages that are used in our projects
   library(tidyverse)
-  library(pracma)
+  # library(pracma)
   library(rlang)
   library(extrafont)
   #extrafont::font_import() # imports Win fonts -> needs to be run only once per computer
   #extrafont::loadfonts() # required only once after font_import()
   # install_github("infotroph/DeLuciatoR")
-  library(DeLuciatoR) # for saving plots with ggsave_fitmax
+  # library(DeLuciatoR) # for saving plots with ggsave_fitmax
 
   # set R language to English
   Sys.setenv(LANG = "en")
