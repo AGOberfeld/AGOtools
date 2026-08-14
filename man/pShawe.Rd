@@ -21,7 +21,9 @@ pShawe(
 \arguments{
 \item{gObj}{ggplot object}
 
-\item{maxwidth}{maximum height f image in units as specfied by parameter units}
+\item{maxwidth}{maximum width of image in units as specfied by parameter units}
+
+\item{maxheight}{maximum height f image in units as specfied by parameter units}
 
 \item{units}{Units ("cm", "in", "mm", "px") for maxwidth and maxheight}
 
@@ -36,6 +38,8 @@ pShawe(
 \item{showInViewer}{whether to show the image in the RStudio viewer pane (when calling from interactive R session)}
 
 \item{includeInHTML}{whether to include the image in the HTML output when knitting}
+
+\item{...}{optional  parameters passed to ggsave_fitmax()}
 }
 \value{
 list(img,fname). img: the saved image, fName: the file name of the saved image

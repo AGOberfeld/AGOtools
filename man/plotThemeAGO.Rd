@@ -10,6 +10,8 @@ plotThemeAGO(base_size = 12, base_family = "Arial", ...)
 \item{base_size}{base size}
 
 \item{base_family}{base font family, default = Arial Unicode MS}
+
+\item{...}{optional  parameters passed to theme()}
 }
 \description{
 Complete plot theme for publication-ready data plots

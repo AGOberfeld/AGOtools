@@ -3,7 +3,7 @@
 #' @description Saves ggplot object as an image file with DeLuciatoR::ggsave_fitmax, then loads it to display in the RStudio viewer pane or includes link to image in knitted HTML output
 #' @param gObj ggplot object
 #' @param maxwidth maximum width of image in units as specfied by parameter units
-#' @param maxwidth maximum height f image in units as specfied by parameter units
+#' @param maxheight maximum height f image in units as specfied by parameter units
 #' @param units Units ("cm", "in", "mm", "px") for maxwidth and maxheight
 #' @param dpi resolution of the saved image
 #' @param device file format for the saved image, e.g., "png"
@@ -11,7 +11,10 @@
 #' @param imgPath path to save the image, default is current working directory
 #' @param showInViewer whether to show the image in the RStudio viewer pane (when calling from interactive R session)
 #' @param includeInHTML whether to include the image in the HTML output when knitting
+#' @param ... optional  parameters passed to ggsave_fitmax()
+#'
 #' @return list(img,fname). img: the saved image, fName: the file name of the saved image
+#'
 #' @importFrom DeLuciatoR ggsave_fitmax
 #' @importFrom magick image_read
 #' @export

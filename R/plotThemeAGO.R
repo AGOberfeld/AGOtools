@@ -1,6 +1,7 @@
 #' Complete plot theme for publication-ready data plots
 #' @param base_size base size
 #' @param base_family base font family, default = Arial Unicode MS
+#' @param ... optional  parameters passed to theme()
 #'
 #' @export
 #'
@@ -38,7 +39,7 @@ plotThemeAGO <- function(base_size=12, base_family="Arial",...) {
             legend.title = element_text(face="italic",size=rel(0.8)),
             strip.background = element_blank(),
             strip.text = element_text(face="bold"),...),
-            scale_shape_manual(values = c(15, 1, 17, 5,2,5,7)) # set default sequence of shapes
-    )
+            scale_shape_manual(values = c(15, 1, 17, 5,2,5,7)), # set default sequence of shapes
+        )
 
 }
