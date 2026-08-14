@@ -15,7 +15,7 @@
 
 rmANOVAcellCheck=function(df,subjIDstr,withinSfactorsStr,verbose=F) {
   if (verbose) {
-    cat("\nChecking df for rmANOVA.\nSubject ID var: ",subjIDstr,"\nWithin-subjects factors: ",withinSfactorsStr,"\n\n")
+    cat("\nChecking df for rmANOVA.\nSubject ID var: ",subjIDstr,"\nWithin-subjects factors: ",withinSfactorsStr,"\n")
   }
   df_empty = df
   # df_empty$subjID = df_empty[[subjIDstr]]
@@ -36,7 +36,9 @@ rmANOVAcellCheck=function(df,subjIDstr,withinSfactorsStr,verbose=F) {
     cat("\nRemoving subjects with empty cells, return df_nonEmpty\n")
     df_nonEmpty= df_empty |> filter(!has_empty) |> select(-cellInData,-has_empty)
   } else {
-    cat("\nNo empty cells detected.\n")
+    if (verbose) {
+      cat("No empty cells detected.\n")
+    }
     df_nonEmpty=df
   }
 
