@@ -1,4 +1,6 @@
 #' ezrmANOVAoutDF Function for extracting relevant output of an rmANOVA conducted with ezANOVA to a dataframe
+#' @author Thirsa Huisman, Daniel Oberfeld
+#' @title ezrmANOVAoutDF
 #'
 #' @param ezANOVAobj the input ezANOVA object
 #'
@@ -47,6 +49,7 @@ add_dz_to_ANOVA_table <- function(no_dz_anova, nwithin){
 #' @title add_d_to_ANOVA_table
 #' @export
 add_d_to_ANOVA_table <- function(no_d_anova, nbetween){
+  # nbetween = number of subjects per group (for between-subjects effects), so total sample size = 2*nbetween
   cat(sprintf("Adding d to ANOVA table with nbetween = %s\n", nbetween))
   no_d_anova_no_intercept <- no_d_anova %>%
     mutate(d = ifelse(DFn == 1, sqrt(F)*sqrt(2/nbetween), NA))

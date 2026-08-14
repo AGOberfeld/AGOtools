@@ -2,7 +2,7 @@
 % Please edit documentation in R/ezrmANOVAoutDF.R
 \name{ezrmANOVAoutDF}
 \alias{ezrmANOVAoutDF}
-\title{ezrmANOVAoutDF Function for extracting relevant output of an rmANOVA conducted with ezANOVA to a dataframe}
+\title{ezrmANOVAoutDF}
 \usage{
 ezrmANOVAoutDF(ezANOVAobj)
 }
@@ -14,4 +14,7 @@ rmANOVAout: dataframe with relevant statistics per effect
 }
 \description{
 ezrmANOVAoutDF Function for extracting relevant output of an rmANOVA conducted with ezANOVA to a dataframe
+}
+\author{
+Thirsa Huisman, Daniel Oberfeld
 }
