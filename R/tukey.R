@@ -19,7 +19,7 @@
 #' @examples
 #' tukey(data=iris,dv=Petal.Length,tukey_crit=1.5)
 #'
-#' @importFrom dplyr group_by mutate filter group_vars
+#' @importFrom dplyr group_by mutate filter
 #' @importFrom rlang enexpr as_string
 #' @importFrom tidyr as_tibble
 

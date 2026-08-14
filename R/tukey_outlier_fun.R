@@ -13,7 +13,8 @@
 #' * `outlierTukeyLow` = indicates if dv on a given trial is lower than Tukey_lower_limit (1) or not (0)
 #' * `outlierTukeyHigh` = indicates if dv on a given trial is higher than Tukey_upper_limit (1) or not (0)
 #' * `outlierTukey` = indicates if dv on a given trial is an outlier  according to either the upper or the lower limit (1) or not (0)
-#' @importFrom dplyr ungroup
+#' @importFrom rlang enexpr as_string
+#' @importFrom stats IQR quantile
 #' @export
 #'
 #' @examples

@@ -33,7 +33,7 @@ set_options <- function(colors = c( '#1f77b4',
                                          '#17becf',
                                          '#9edae5'),
                         line_width = rel(1),
-                        point_size = rel(2)){
+                        point_size = rel(3)){
 
   #load some default packages that are used in our projects
   library(tidyverse)
