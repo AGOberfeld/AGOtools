@@ -2,17 +2,20 @@ Package: AGOtools
 Title: Useful tools for the analysis of data from behavioral experiments and other empirical data
 Version: 0.0.0.9000
 Authors@R: 
-    person("Daniel", "Oberfeld-Twistel", , "oberfeld@uni-mainz.de", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-6710-3309"))
-    person("Simon", "Schaefer", , "ssimonbe@students.uni-mainz.de", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Provides useful tools for the analysis of empirical data (plot themes for publication-ready plots using R's ggplot, outlier detection using a Tukey criterion, helper function for fitting psychometric functions with 'quickpsy' etc.). Maintained by the work group of Prof. Dr. Daniel Oberfeld-Twistel at Johannes Gutenberg-Universitaet Mainz (https://www.staff.uni-mainz.de/oberfeld/).
+    c(person("Daniel", "Oberfeld-Twistel", email = "oberfeld@uni-mainz.de", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-6710-3309"),role = c("aut", "cre")),
+    person("Simon", "Schaefer", email = "ssimonbe@students.uni-mainz.de", role = "aut",
+           comment = c(ORCID = "YOUR-ORCID-ID")),
+    person("Thirsa", "Huisman", email = "thuisman@uni-mainz.de", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-7650-5377")))
+Description: Provides useful tools for the analysis of empirical data (plot themes for publication-ready plots using R's ggplot, outlier detection using a Tukey criterion, helper function for running regression analyses with cross-validation etc.). Maintained by the work group of Prof. Dr. Daniel Oberfeld-Twistel at Johannes Gutenberg-Universitaet Mainz (https://www.staff.uni-mainz.de/oberfeld/).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Suggests: 
     testthat (>= 3.0.0)
+    quickpsy
 Config/testthat/edition: 3
 Imports: 
     stats,
@@ -23,15 +26,13 @@ Imports:
     tidyr,
     magrittr,
     ggthemes,
-    lubridate,
     extrafont,
     rlang,
-    quickpsy,
     knitr,
-    pracma,
     glmnet,
     groupdata2,
-    DeLuciatoR
+    DeLuciatoR,
+    magick
 Remotes: infotroph/DeLuciatoR
 Depends: 
     R (>= 2.10)
