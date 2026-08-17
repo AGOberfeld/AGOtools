@@ -12,7 +12,7 @@
 plotThemeAGO <- function(base_size=12, base_family="Arial",...) {
 
   list(ggthemes::theme_foundation(base_size=base_size, base_family=base_family),
-    theme(plot.title = element_text(face = "bold",
+       ggplot2::theme(plot.title = element_text(face = "bold",
                                       size = rel(0.8)), #hjust = 0.5
             text = element_text(),
             plot.background = element_rect(fill = "white",colour = NA),
@@ -39,7 +39,7 @@ plotThemeAGO <- function(base_size=12, base_family="Arial",...) {
             legend.title = element_text(face="italic",size=rel(0.8)),
             strip.background = element_blank(),
             strip.text = element_text(face="bold"),...),
-            scale_shape_manual(values = c(15, 1, 17, 5,2,5,7)), # set default sequence of shapes
+            scale_shape_manual(values = c(15, 1, 17, 5,2,5,7)) # set default sequence of shapes
         )
 
 }
